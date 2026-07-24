@@ -1,6 +1,6 @@
 export const companyName = 'CV. Technodigi Mandiri Solusi';
 export const brandName = 'Technodigi';
-export const contactEmail = 'technodigimandirisolusi@gmail.com';
+export const contactEmail = 'support@technodigi.co.id';
 export const contactPhone = '+62 853 5361 5220';
 export const contactWhatsAppUrl =
 	'https://wa.me/6285353615220?text=Halo%20Technodigi%2C%20saya%20ingin%20konsultasi%20solusi%20digital.';
