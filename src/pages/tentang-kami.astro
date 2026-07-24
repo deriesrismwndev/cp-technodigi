@@ -1,0 +1,316 @@
+---
+import '../styles/pages/about-page.css';
+import SiteFooter from '../components/layout/SiteFooter.astro';
+import SiteHeader from '../components/layout/SiteHeader.astro';
+import { companyName } from '../data/site';
+import Layout from '../layouts/Layout.astro';
+
+const aboutTitle = `Tentang Kami | ${companyName}`;
+const aboutDescription = `${companyName} adalah perusahaan solusi digital dan teknologi cerdas yang menghadirkan sistem digital, automasi, analitik data, dan solusi berbasis AI untuk transformasi bisnis.`;
+
+const philosophyItems = [
+	{
+		title: 'Kecerdasan',
+		summary: 'Memanfaatkan data dan AI untuk membantu organisasi mengambil keputusan yang lebih tepat.',
+	},
+	{
+		title: 'Inovasi',
+		summary: 'Mengubah ide menjadi solusi digital yang relevan, bernilai, dan berdampak nyata.',
+	},
+	{
+		title: 'Keberlanjutan',
+		summary: 'Membangun teknologi yang adaptif terhadap kebutuhan hari ini dan perkembangan masa depan.',
+	},
+];
+
+const missionItems = [
+	'Membangun ekosistem digital yang kolaboratif dan berorientasi pada kemajuan teknologi berkelanjutan.',
+	'Menyediakan layanan teknologi yang adaptif dan inovatif guna mendukung pertumbuhan bisnis dan daya saing digital.',
+	'Mendorong transformasi digital di berbagai sektor melalui produk unggulan dan layanan terpercaya.',
+	'Memberdayakan talenta lokal dan global melalui pembelajaran teknologi dan pengembangan kapabilitas digital berkelanjutan.',
+];
+
+const journeyItems = [
+	'Kepercayaan klien menjadi bukti kualitas, konsistensi, dan komitmen kami.',
+	'Eksperimen teknologi berkelanjutan memastikan setiap produk selalu future-ready.',
+	'Kolaborasi lintas sektor menciptakan solusi holistik yang memadukan manusia, data, dan teknologi.',
+];
+
+const strategyItems = [
+	{
+		title: 'Innovation',
+		summary:
+			'Kami terus mengeksplorasi teknologi terkini, dari AI hingga automation, untuk menciptakan solusi baru yang relevan dan visioner.',
+	},
+	{
+		title: 'Collaboration',
+		summary:
+			'Kami percaya ide terbaik lahir dari kolaborasi strategis bersama perusahaan, institusi, dan mitra teknologi.',
+	},
+	{
+		title: 'Adaptability',
+		summary:
+			'Kami membangun sistem yang kuat sekaligus fleksibel terhadap perubahan, karena masa depan selalu bergerak cepat.',
+	},
+];
+
+const trustItems = [
+	{
+		title: 'Strategic Thinking & Innovation',
+		summary: 'Kami hadir sebagai mitra yang ikut berpikir strategis untuk kebutuhan masa depan.',
+	},
+	{
+		title: 'End-to-End Service',
+		summary: 'Dari konsultasi, desain, implementasi, hingga maintenance dalam satu alur layanan.',
+	},
+	{
+		title: 'AI & Data-Driven Approach',
+		summary: 'Solusi dibangun berdasarkan analitik, automasi, dan kecerdasan buatan.',
+	},
+	{
+		title: 'Security & Scalability',
+		summary: 'Sistem dirancang agar aman, cepat, stabil, dan siap berkembang.',
+	},
+	{
+		title: 'Human-Centered Technology',
+		summary: 'Teknologi difokuskan pada kemudahan penggunaan dan pengalaman pengguna.',
+	},
+];
+
+const serviceItems = [
+	{
+		title: 'Sistem Manajemen Digital',
+		summary:
+			'Solusi untuk mengelola dan memantau proses bisnis secara efisien melalui sistem digital yang terintegrasi dan mudah digunakan.',
+	},
+	{
+		title: 'Automation Systems',
+		summary:
+			'Otomatisasi proses bisnis untuk meningkatkan efisiensi, mengurangi kesalahan, dan mempercepat alur kerja perusahaan.',
+	},
+	{
+		title: 'Data Analytics',
+		summary:
+			'Analisis data untuk menghasilkan insight strategis yang membantu pengambilan keputusan lebih cepat dan akurat.',
+	},
+	{
+		title: 'Solusi Berbasis AI',
+		summary:
+			'Penerapan kecerdasan buatan untuk mendukung inovasi, prediksi, dan peningkatan kinerja bisnis.',
+	},
+	{
+		title: 'Support & Pengembangan Lanjutan',
+		summary:
+			'Dukungan teknis dan pembaruan sistem berkelanjutan agar solusi digital tetap optimal dan up to date.',
+	},
+];
+
+const breadcrumbSchema = {
+	'@type': 'BreadcrumbList',
+	'@id': 'https://technodigi.id/tentang-kami#breadcrumb',
+	itemListElement: [
+		{
+			'@type': 'ListItem',
+			position: 1,
+			name: 'Beranda',
+			item: 'https://technodigi.id/',
+		},
+		{
+			'@type': 'ListItem',
+			position: 2,
+			name: 'Tentang Kami',
+			item: 'https://technodigi.id/tentang-kami',
+		},
+	],
+};
+---
+
+<Layout title={aboutTitle} description={aboutDescription} canonical="/tentang-kami" structuredData={breadcrumbSchema}>
+	<div class="page-shell">
+		<SiteHeader active="about" />
+
+		<main>
+			<section class="about-hero" aria-labelledby="about-hero-title">
+				<div class="about-hero-media" aria-hidden="true">
+					<img src="/images/it-hero.png" alt="" width="1672" height="941" fetchpriority="high" />
+				</div>
+
+				<div class="container about-hero-content">
+					<p class="section-kicker">Tentang Kami</p>
+					<h1 id="about-hero-title">Empowering Digital Intelligence</h1>
+					<p>
+						{companyName} adalah perusahaan yang bergerak di bidang pengembangan solusi digital dan
+						teknologi cerdas untuk menjawab tantangan era transformasi digital.
+					</p>
+				</div>
+			</section>
+
+			<section class="about-section about-intro" aria-labelledby="company-profile-title">
+				<div class="container intro-grid">
+					<div>
+						<p class="section-kicker">Profil Perusahaan</p>
+						<h2 id="company-profile-title">Solusi digital yang efektif, efisien, dan adaptif.</h2>
+					</div>
+
+					<div class="rich-copy">
+						<p>
+							Kami menggabungkan pendekatan teknologi modern dan kecerdasan digital untuk
+							menghadirkan produk yang relevan, aman, serta mudah dikembangkan. Fokus kami mencakup
+							integrasi AI, automasi berbasis data, dan sistem digital yang membantu organisasi
+							bergerak lebih cepat.
+						</p>
+						<p>
+							Dengan fondasi inovasi, profesionalisme, dan orientasi terhadap solusi, kami
+							bertekad mempercepat transformasi digital di berbagai sektor. Kami percaya sinergi
+							antara teknologi dan kecerdasan digital adalah kunci untuk menciptakan masa depan
+							yang lebih terhubung, efisien, dan berkelanjutan.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<section class="about-section vision-section" aria-labelledby="vision-title">
+				<div class="container vision-grid">
+					<div class="vision-panel">
+						<p class="section-kicker">Visi</p>
+						<h2 id="vision-title">
+							Menjadi perusahaan digital intelligence terdepan yang menyediakan solusi teknologi
+							cerdas dan inovatif.
+						</h2>
+						<p>
+							Kami ingin mempercepat transformasi di berbagai sektor melalui teknologi yang dapat
+							diandalkan, bernilai, dan siap berkembang bersama kebutuhan bisnis.
+						</p>
+					</div>
+
+					<div class="mission-panel">
+						<p class="section-kicker">Misi</p>
+						<ol class="mission-list">
+							{missionItems.map((item) => <li>{item}</li>)}
+						</ol>
+					</div>
+				</div>
+			</section>
+
+			<section class="about-section philosophy-section" aria-labelledby="philosophy-title">
+				<div class="container section-heading-left">
+					<p class="section-kicker">Our Philosophy</p>
+					<h2 id="philosophy-title">Kami percaya masa depan ditentukan oleh kemampuan beradaptasi.</h2>
+					<p>
+						"Innovation is not just about technology - it's about reimagining possibilities."
+					</p>
+				</div>
+
+				<div class="container philosophy-grid" aria-label="Fondasi filosofi perusahaan">
+					{
+						philosophyItems.map((item, index) => (
+							<article class="info-card">
+								<span>{String(index + 1).padStart(2, '0')}</span>
+								<h3>{item.title}</h3>
+								<p>{item.summary}</p>
+							</article>
+						))
+					}
+				</div>
+			</section>
+
+			<section class="about-section journey-section" aria-labelledby="journey-title">
+				<div class="container journey-grid">
+					<div>
+						<p class="section-kicker">Our Journey</p>
+						<h2 id="journey-title">Driving Innovation for the Future</h2>
+					</div>
+
+					<div class="rich-copy">
+						<p>
+							Sejak awal berdirinya, {companyName} hadir untuk menjawab kebutuhan industri di era
+							digital yang terus berubah. Kami memulai dari tim kecil yang visioner dan berkembang
+							menjadi partner transformasi digital bagi berbagai lembaga dan perusahaan di
+							Indonesia.
+						</p>
+						<ul class="clean-list">
+							{journeyItems.map((item) => <li>{item}</li>)}
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<section class="about-section expertise-section" aria-labelledby="expertise-title">
+				<div class="container expertise-grid">
+					<div class="expertise-copy">
+						<p class="section-kicker">Our Expertise</p>
+						<h2 id="expertise-title">Bridging Business and Technology</h2>
+						<p>
+							Kami menggabungkan inovasi digital, keahlian teknis, dan wawasan bisnis untuk
+							menghadirkan solusi yang tidak hanya canggih, tetapi juga relevan dan bernilai.
+						</p>
+					</div>
+
+					<div class="strategy-list" aria-label="Strategi Technodigi">
+						{strategyItems.map((item) => (
+							<article>
+								<h3>{item.title}</h3>
+								<p>{item.summary}</p>
+							</article>
+						))}
+					</div>
+				</div>
+			</section>
+
+			<section class="about-section trust-section" aria-labelledby="trust-title">
+				<div class="container section-heading">
+					<p class="section-kicker">Why Choose Us</p>
+					<h2 id="trust-title">Why Clients Trust Technodigi</h2>
+					<p>"We don't deliver technology. We deliver transformation."</p>
+				</div>
+
+				<div class="container trust-grid">
+					{trustItems.map((item) => (
+						<article class="info-card">
+							<h3>{item.title}</h3>
+							<p>{item.summary}</p>
+						</article>
+					))}
+				</div>
+			</section>
+
+			<section class="about-section service-section" aria-labelledby="services-title">
+				<div class="container services-layout">
+					<div>
+						<p class="section-kicker">Our Service</p>
+						<h2 id="services-title">Layanan utama untuk transformasi digital yang terukur.</h2>
+					</div>
+
+					<div class="service-list">
+						{serviceItems.map((item, index) => (
+							<article>
+								<span>{String(index + 1).padStart(2, '0')}</span>
+								<div>
+									<h3>{item.title}</h3>
+									<p>{item.summary}</p>
+								</div>
+							</article>
+						))}
+					</div>
+				</div>
+			</section>
+
+			<section class="about-section partner-section" aria-labelledby="partners-title">
+				<div class="container partner-layout">
+					<div>
+						<p class="section-kicker">Kemitraan dan Kolaborasi</p>
+						<h2 id="partners-title">Our Partners</h2>
+					</div>
+					<p>
+						Kami menjalin kerja sama dengan berbagai mitra strategis untuk memperluas jangkauan,
+						memperkuat ekosistem digital, dan menghadirkan solusi yang memberikan dampak nyata.
+						Melalui kolaborasi ini, kami menciptakan sinergi yang saling menguatkan, mempercepat
+						inovasi, serta menghadirkan nilai tambah bagi setiap pihak yang terlibat.
+					</p>
+				</div>
+			</section>
+		</main>
+
+		<SiteFooter />
+	</div>
+</Layout>

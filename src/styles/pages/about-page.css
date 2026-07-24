@@ -1,0 +1,414 @@
+.about-hero {
+	position: relative;
+	display: flex;
+	min-height: 62svh;
+	align-items: center;
+	overflow: hidden;
+	color: #ffffff;
+}
+
+.about-hero::before {
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	background: linear-gradient(
+		90deg,
+		rgba(19, 36, 79, 0.96) 0%,
+		rgba(27, 47, 97, 0.84) 46%,
+		rgba(35, 180, 165, 0.34) 100%
+	);
+	content: "";
+}
+
+.about-hero-media {
+	position: absolute;
+	inset: 0;
+}
+
+.about-hero-media img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+	filter: saturate(0.96) contrast(1.04);
+}
+
+.about-hero-content {
+	position: relative;
+	z-index: 2;
+	padding: 92px 0 72px;
+}
+
+.section-kicker {
+	margin: 0 0 16px;
+	color: var(--color-secondary);
+	font-size: 0.78rem;
+	font-weight: 850;
+	letter-spacing: 0;
+	text-transform: uppercase;
+}
+
+.about-hero h1 {
+	max-width: 820px;
+	margin: 0;
+	color: #ffffff;
+	font-size: 4rem;
+	font-weight: 850;
+	letter-spacing: 0;
+	line-height: 1;
+}
+
+.about-hero p:not(.section-kicker) {
+	max-width: 760px;
+	margin: 24px 0 0;
+	color: rgba(255, 255, 255, 0.84);
+	font-size: 1.14rem;
+	line-height: 1.75;
+}
+
+.about-section {
+	padding: 88px 0;
+}
+
+.about-intro,
+.philosophy-section,
+.trust-section {
+	background: #ffffff;
+}
+
+.vision-section,
+.expertise-section {
+	background: #eef8f6;
+}
+
+.journey-section,
+.service-section {
+	background: var(--color-paper);
+}
+
+.partner-section {
+	background:
+		radial-gradient(circle at 86% 12%, rgba(128, 200, 114, 0.2), transparent 30%),
+		linear-gradient(135deg, #13244f 0%, var(--color-primary) 58%, #101b3c 100%);
+	color: #ffffff;
+}
+
+.intro-grid,
+.journey-grid,
+.services-layout,
+.partner-layout {
+	display: grid;
+	grid-template-columns: 0.86fr 1.14fr;
+	gap: 64px;
+	align-items: start;
+}
+
+.vision-grid,
+.expertise-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 28px;
+	align-items: stretch;
+}
+
+.about-section h2,
+.section-heading h2,
+.section-heading-left h2 {
+	margin: 0;
+	color: var(--color-primary);
+	font-size: 2.55rem;
+	font-weight: 850;
+	letter-spacing: 0;
+	line-height: 1.1;
+}
+
+.partner-section h2,
+.partner-section .section-kicker {
+	color: #ffffff;
+}
+
+.rich-copy,
+.expertise-copy p,
+.partner-layout p,
+.section-heading p,
+.section-heading-left p {
+	color: var(--color-muted);
+	font-size: 1.05rem;
+	line-height: 1.8;
+}
+
+.rich-copy {
+	display: grid;
+	gap: 18px;
+}
+
+.rich-copy p,
+.rich-copy ul,
+.expertise-copy p,
+.partner-layout p,
+.section-heading p,
+.section-heading-left p,
+.vision-panel p,
+.mission-list,
+.info-card p,
+.strategy-list p,
+.service-list p {
+	margin: 0;
+}
+
+.rich-copy p + p,
+.expertise-copy p {
+	margin-top: 20px;
+}
+
+.vision-panel,
+.mission-panel {
+	border-radius: 8px;
+	padding: 34px;
+}
+
+.vision-panel {
+	background: #ffffff;
+}
+
+.vision-panel p {
+	margin-top: 22px;
+	color: var(--color-muted);
+	font-size: 1.02rem;
+	line-height: 1.8;
+}
+
+.mission-panel {
+	background: var(--color-primary);
+	color: #ffffff;
+}
+
+.mission-panel .section-kicker {
+	color: var(--color-accent);
+}
+
+.mission-list {
+	display: grid;
+	gap: 18px;
+	padding-left: 22px;
+	color: rgba(255, 255, 255, 0.84);
+	line-height: 1.7;
+}
+
+.mission-list li::marker {
+	color: var(--color-accent);
+	font-weight: 850;
+}
+
+.section-heading,
+.section-heading-left {
+	max-width: 760px;
+}
+
+.section-heading {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.section-heading p,
+.section-heading-left p {
+	margin-top: 18px;
+}
+
+.philosophy-grid,
+.trust-grid {
+	display: grid;
+	gap: 22px;
+	margin-top: 42px;
+}
+
+.philosophy-grid {
+	grid-template-columns: repeat(3, 1fr);
+}
+
+.trust-grid {
+	grid-template-columns: repeat(5, 1fr);
+}
+
+.info-card {
+	border: 1px solid rgba(27, 47, 97, 0.1);
+	border-radius: 8px;
+	background: #ffffff;
+	padding: 24px;
+	box-shadow: 0 14px 32px rgba(27, 47, 97, 0.06);
+}
+
+.info-card span {
+	color: var(--color-secondary);
+	font-size: 0.84rem;
+	font-weight: 850;
+}
+
+.info-card h3,
+.strategy-list h3,
+.service-list h3 {
+	margin: 14px 0 10px;
+	color: var(--color-primary);
+	font-size: 1.08rem;
+	font-weight: 820;
+	letter-spacing: 0;
+	line-height: 1.25;
+}
+
+.info-card p,
+.strategy-list p,
+.service-list p {
+	color: var(--color-muted);
+	line-height: 1.7;
+}
+
+.clean-list {
+	display: grid;
+	gap: 12px;
+	padding-left: 20px;
+}
+
+.clean-list li::marker {
+	color: var(--color-secondary);
+}
+
+.expertise-copy {
+	border-radius: 8px;
+	background: #ffffff;
+	padding: 34px;
+}
+
+.strategy-list {
+	display: grid;
+	gap: 16px;
+}
+
+.strategy-list article {
+	border-left: 3px solid var(--color-secondary);
+	background: #ffffff;
+	padding: 22px 24px;
+}
+
+.strategy-list h3 {
+	margin-top: 0;
+}
+
+.service-list {
+	display: grid;
+	border-top: 1px solid rgba(27, 47, 97, 0.12);
+}
+
+.service-list article {
+	display: grid;
+	grid-template-columns: 58px 1fr;
+	gap: 24px;
+	border-bottom: 1px solid rgba(27, 47, 97, 0.12);
+	padding: 24px 0;
+}
+
+.service-list span {
+	color: var(--color-secondary);
+	font-size: 0.84rem;
+	font-weight: 850;
+}
+
+.service-list h3 {
+	margin-top: 0;
+}
+
+.partner-layout {
+	align-items: center;
+}
+
+.partner-layout p {
+	color: rgba(255, 255, 255, 0.78);
+}
+
+@media (max-width: 1100px) {
+	.trust-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (max-width: 940px) {
+	.about-hero {
+		min-height: 56svh;
+	}
+
+	.about-hero h1 {
+		font-size: 3.25rem;
+	}
+
+	.intro-grid,
+	.journey-grid,
+	.services-layout,
+	.partner-layout,
+	.vision-grid,
+	.expertise-grid {
+		grid-template-columns: 1fr;
+		gap: 36px;
+	}
+
+	.philosophy-grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media (max-width: 640px) {
+	.about-hero {
+		min-height: auto;
+	}
+
+	.about-hero::before {
+		background: linear-gradient(
+			90deg,
+			rgba(19, 36, 79, 0.97) 0%,
+			rgba(27, 47, 97, 0.9) 64%,
+			rgba(35, 180, 165, 0.62) 100%
+		);
+	}
+
+	.about-hero-content {
+		padding: 78px 0 58px;
+	}
+
+	.about-hero h1 {
+		font-size: 2.45rem;
+	}
+
+	.about-hero p:not(.section-kicker),
+	.rich-copy,
+	.expertise-copy p,
+	.partner-layout p,
+	.section-heading p,
+	.section-heading-left p {
+		font-size: 1rem;
+		line-height: 1.7;
+	}
+
+	.about-section {
+		padding: 66px 0;
+	}
+
+	.about-section h2,
+	.section-heading h2,
+	.section-heading-left h2 {
+		font-size: 2rem;
+	}
+
+	.vision-panel,
+	.mission-panel,
+	.expertise-copy,
+	.info-card {
+		padding: 22px;
+	}
+
+	.trust-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.service-list article {
+		grid-template-columns: 44px 1fr;
+		gap: 14px;
+	}
+}

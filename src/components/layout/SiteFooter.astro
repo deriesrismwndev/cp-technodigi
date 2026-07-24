@@ -1,0 +1,12 @@
+---
+import '../../styles/components/layout.css';
+import { companyName } from '../../data/site';
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+	<div class="container mx-auto flex justify-center items-center text-center">
+		<p>&copy; {currentYear} {companyName}</p>
+	</div>
+</footer>

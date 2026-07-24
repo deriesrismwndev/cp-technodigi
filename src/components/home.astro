@@ -1,0 +1,160 @@
+---
+import '../styles/pages/home.css';
+import {
+	companyName,
+	featuredProducts,
+	valueItems,
+} from '../data/site';
+import ProductCard from './product/ProductCard.astro';
+---
+
+<main>
+	<section class="hero" id="beranda" aria-labelledby="hero-title">
+		<div class="hero-media" aria-hidden="true">
+			<img src="/images/it-hero.png" alt="" width="1672" height="941" fetchpriority="high" />
+		</div>
+
+		<div class="container hero-content">
+			<p class="eyebrow">Software | Hardware | Konsultan IT</p>
+			<h1 id="hero-title">Technodigi</h1>
+			<p class="hero-copy">
+				{companyName} adalah mitra teknologi untuk membangun sistem digital, integrasi AI,
+				automasi berbasis data, dan strategi IT yang aman serta siap mendukung pertumbuhan bisnis.
+			</p>
+			<div class="hero-actions" aria-label="Aksi utama">
+				<a class="button button-primary" href="/kontak">
+					Mulai Konsultasi
+					<svg aria-hidden="true" viewBox="0 0 24 24">
+						<path d="M5 12h14" />
+						<path d="m13 6 6 6-6 6" />
+					</svg>
+				</a>
+				<a class="button button-secondary" href="/produk">Lihat Produk</a>
+			</div>
+		</div>
+	</section>
+
+	<section class="section section-light" id="tentang-kami" aria-labelledby="about-title">
+		<div class="container about-grid">
+			<div>
+				<p class="section-kicker">Tentang Kami</p>
+				<h2 id="about-title">Solusi digital yang menyatukan kecerdasan, inovasi, dan dampak bisnis.</h2>
+			</div>
+			<div class="about-copy">
+				<p>
+					{companyName} membantu organisasi menjawab tantangan transformasi digital melalui
+					sistem manajemen digital, automasi, data analytics, dan solusi berbasis AI.
+				</p>
+				<p>
+					Setiap solusi dirancang agar efektif, efisien, adaptif, dan dapat berkembang mengikuti
+					kebutuhan bisnis tanpa mengorbankan stabilitas.
+				</p>
+				<a class="button button-primary about-link" href="/tentang-kami">
+					Selengkapnya
+					<svg aria-hidden="true" viewBox="0 0 24 24">
+						<path d="M5 12h14" />
+						<path d="m13 6 6 6-6 6" />
+					</svg>
+				</a>
+			</div>
+		</div>
+
+		<div class="container value-grid" aria-label="Keunggulan TechnoDigi">
+			{
+				valueItems.map((item) => (
+					<div class="value-item">
+						<span>{item.number}</span>
+						<h3>{item.title}</h3>
+						<p>{item.summary}</p>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="section section-muted" id="produk" aria-labelledby="products-title">
+		<div class="container section-heading">
+			<p class="section-kicker">Produk dan Layanan</p>
+			<h2 id="products-title">Layanan inti untuk kebutuhan teknologi perusahaan.</h2>
+			<p>
+				Paket dapat disesuaikan untuk proyek baru, modernisasi sistem lama, atau penguatan
+				infrastruktur IT yang sedang berjalan.
+			</p>
+		</div>
+
+		<div class="container product-grid">
+			{featuredProducts.map((product) => <ProductCard product={product} variant="compact" />)}
+		</div>
+
+		<div class="container product-action">
+			<a class="button button-primary" href="/produk">
+				Lihat Semua Produk
+				<svg aria-hidden="true" viewBox="0 0 24 24">
+					<path d="M5 12h14" />
+					<path d="m13 6 6 6-6 6" />
+				</svg>
+			</a>
+		</div>
+	</section>
+
+	<section class="section contact-section" id="partner" aria-labelledby="partner-title">
+		<div class="container contact-grid">
+			<div class="contact-copy partner-copy">
+				<p class="section-kicker">Partner & Client</p>
+
+				<h2 id="partner-title">Dipercaya berbagai partner dan client.</h2>
+
+				<p>
+					{companyName} menghadirkan solusi teknologi modern untuk berbagai perusahaan dan
+					institusi.
+				</p>
+			</div>
+
+			<div class="client-slider">
+				<div class="client-track">
+					<img
+						class="client-logo"
+						src="/images/client/logo_kerjasama.png"
+						alt="Logo partner Kerja Sama"
+						width="2022"
+						height="1843"
+						loading="lazy"
+					/>
+					<img
+						class="client-logo"
+						src="/images/client/logo_palembang.png"
+						alt="Logo partner Palembang"
+						width="473"
+						height="600"
+						loading="lazy"
+					/>
+					<div class="coming-soon">Coming Soon</div>
+					<div class="coming-soon">Coming Soon</div>
+					<div class="coming-soon">Coming Soon</div>
+
+					<img
+						class="client-logo"
+						src="/images/client/logo_kerjasama.png"
+						alt=""
+						width="2022"
+						height="1843"
+						loading="lazy"
+						aria-hidden="true"
+					/>
+					<img
+						class="client-logo"
+						src="/images/client/logo_palembang.png"
+						alt=""
+						width="473"
+						height="600"
+						loading="lazy"
+						aria-hidden="true"
+					/>
+					<div class="coming-soon">Coming Soon</div>
+					<div class="coming-soon">Coming Soon</div>
+					<div class="coming-soon">Coming Soon</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</main>

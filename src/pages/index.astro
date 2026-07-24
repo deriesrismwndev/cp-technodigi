@@ -1,0 +1,36 @@
+---
+import Home from '../components/home.astro';
+import SiteFooter from '../components/layout/SiteFooter.astro';
+import SiteHeader from '../components/layout/SiteHeader.astro';
+import { companyName, products } from '../data/site';
+import Layout from '../layouts/Layout.astro';
+
+const homeTitle = 'Technodigi | Software, Hardware, dan Konsultan IT';
+const homeDescription = `${companyName} membantu bisnis membangun software, menyediakan hardware, dan menjalankan konsultasi IT untuk operasional yang aman, terukur, dan siap berkembang.`;
+const offerCatalogSchema = {
+	'@type': 'OfferCatalog',
+	'@id': 'https://technodigi.id/#offer-catalog',
+	name: 'Katalog Layanan Technodigi',
+	itemListElement: products.map((product) => ({
+		'@type': 'Offer',
+		itemOffered: {
+			'@type': 'Service',
+			name: product.title,
+			description: product.summary,
+			serviceType: product.category,
+			provider: {
+				'@id': 'https://technodigi.id/#organization',
+			},
+			areaServed: 'Indonesia',
+		},
+	})),
+};
+---
+
+<Layout title={homeTitle} description={homeDescription} canonical="/" structuredData={offerCatalogSchema}>
+	<div class="page-shell">
+		<SiteHeader active="home" />
+		<Home />
+		<SiteFooter />
+	</div>
+</Layout>

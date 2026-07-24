@@ -1,0 +1,115 @@
+---
+import '../../styles/components/layout.css';
+import {
+	contactEmail,
+	contactPhone,
+	contactWhatsAppUrl,
+	navItems,
+	type NavKey,
+} from '../../data/site';
+
+interface Props {
+	active?: NavKey;
+}
+
+const { active = 'home' } = Astro.props;
+---
+
+<header class="site-header">
+	<div class="container header-inner">
+		<a class="brand" href="/" aria-label="Technodigi beranda">
+			<img src="/images/technodigi_logo.svg" alt="TechnoDigi" width="2480" height="1906" />
+		</a>
+
+		<nav class="site-nav" aria-label="Menu utama">
+			{
+				navItems.map((item) => (
+					<a href={item.href} aria-current={active === item.key ? 'page' : undefined}>
+						{item.label}
+					</a>
+				))
+			}
+		</nav>
+
+		<button
+			class="header-action"
+			type="button"
+			data-consultation-trigger
+			aria-haspopup="dialog"
+			aria-controls="consultation-dialog"
+		>
+			Konsultasi
+		</button>
+	</div>
+</header>
+
+<dialog class="consultation-modal" id="consultation-dialog" data-consultation-dialog>
+	<div class="consultation-modal-inner">
+		<div class="consultation-modal-head">
+			<div>
+				<p>Pilih Kanal</p>
+				<h2>Konsultasi Technodigi</h2>
+			</div>
+			<button class="modal-close" type="button" data-consultation-close aria-label="Tutup modal">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+
+		<div class="consultation-options" aria-label="Pilihan kanal konsultasi">
+			<a
+				class="consultation-option"
+				href={contactWhatsAppUrl}
+				target="_blank"
+				rel="noopener noreferrer"
+				data-consultation-link
+			>
+				<span>WhatsApp</span>
+				<strong>{contactPhone}</strong>
+				<small>Chat langsung di tab baru</small>
+			</a>
+
+			<a
+				class="consultation-option"
+				href={`mailto:${contactEmail}`}
+				target="_blank"
+				rel="noopener noreferrer"
+				data-consultation-link
+			>
+				<span>Email</span>
+				<strong>{contactEmail}</strong>
+				<small>Buka email di tab baru</small>
+			</a>
+		</div>
+	</div>
+</dialog>
+
+<script>
+	const setupConsultationModal = () => {
+		const trigger = document.querySelector('[data-consultation-trigger]');
+		const dialog = document.querySelector('[data-consultation-dialog]');
+
+		if (!(trigger instanceof HTMLButtonElement) || !(dialog instanceof HTMLDialogElement)) return;
+		if (trigger.dataset.bound === 'true') return;
+
+		trigger.dataset.bound = 'true';
+
+		trigger.addEventListener('click', () => {
+			if (!dialog.open) dialog.showModal();
+		});
+
+		dialog.querySelectorAll('[data-consultation-close]').forEach((button) => {
+			button.addEventListener('click', () => dialog.close());
+		});
+
+		dialog.querySelectorAll('[data-consultation-link]').forEach((link) => {
+			link.addEventListener('click', () => dialog.close());
+		});
+
+		dialog.addEventListener('click', (event) => {
+			if (event.target === dialog) dialog.close();
+		});
+	};
+
+	setupConsultationModal();
+	document.addEventListener('astro:page-load', setupConsultationModal);
+</script>
