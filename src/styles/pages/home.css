@@ -6,6 +6,7 @@
   overflow: hidden;
   color: #ffffff;
   scroll-margin-top: 80px;
+  isolation: isolate;
 }
 
 .hero::before {
@@ -39,7 +40,10 @@
 .hero-content {
   position: relative;
   z-index: 2;
-  padding: 92px 0 72px;
+  width: min(100%, 760px);
+  max-width: 760px;
+  margin-left: max(0px, calc((100% - 1120px) / 5));
+  padding: clamp(80px, 8vw, 112px) 0 clamp(64px, 7vw, 88px);
 }
 
 .eyebrow,
@@ -56,17 +60,17 @@
   max-width: 680px;
   margin: 0;
   color: #ffffff;
-  font-size: 4.5rem;
+  font-size: clamp(2.8rem, 2.1rem + 2.8vw, 3.8rem);
   font-weight: 850;
   letter-spacing: 0;
-  line-height: 0.98;
+  line-height: 1.02;
 }
 
 .hero-copy {
   max-width: 650px;
   margin: 24px 0 0;
   color: rgba(255, 255, 255, 0.86);
-  font-size: 1.18rem;
+  font-size: 1.05rem;
   line-height: 1.75;
 }
 
@@ -77,9 +81,27 @@
   margin-top: 34px;
 }
 
+.hero-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.hero-highlight {
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px 14px;
+  color: rgba(255, 255, 255, 0.94);
+  font-size: 0.95rem;
+  font-weight: 650;
+  backdrop-filter: blur(6px);
+}
+
 .section {
   position: relative;
-  padding: 108px 0;
+  padding: 96px 0;
   scroll-margin-top: 92px;
 }
 
@@ -115,10 +137,10 @@
 .section-heading h2 {
   margin: 0;
   color: var(--color-primary);
-  font-size: 2.55rem;
+  font-size: clamp(1.9rem, 1.5rem + 1.2vw, 2.3rem);
   font-weight: 850;
   letter-spacing: 0;
-  line-height: 1.1;
+  line-height: 1.12;
 }
 
 .about-copy {
@@ -154,6 +176,12 @@
 .value-item {
   border-top: 2px solid var(--color-secondary);
   padding-top: 24px;
+  transition: transform 180ms ease, border-color 180ms ease;
+}
+
+.value-item:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-accent);
 }
 
 .value-item span,
@@ -367,10 +395,17 @@
 
 .faq-item {
   border: 1px solid rgba(27, 47, 97, 0.1);
-  border-radius: 8px;
+  border-radius: 10px;
   background: #ffffff;
   padding: 0 22px;
   box-shadow: 0 10px 28px rgba(27, 47, 97, 0.05);
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.faq-item:hover {
+  transform: translateY(-1px);
+  border-color: rgba(35, 180, 165, 0.42);
+  box-shadow: 0 14px 30px rgba(27, 47, 97, 0.08);
 }
 
 .faq-item summary {
@@ -430,7 +465,7 @@
   }
 
   .hero h1 {
-    font-size: 3.3rem;
+    font-size: clamp(2.45rem, 1.9rem + 2vw, 3.1rem);
   }
 
   .about-grid,
@@ -469,11 +504,11 @@
   }
 
   .hero h1 {
-    font-size: 2.55rem;
+    font-size: 2.35rem;
   }
 
   .hero-copy {
-    font-size: 1rem;
+    font-size: 0.98rem;
     line-height: 1.7;
   }
 

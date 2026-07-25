@@ -110,21 +110,23 @@ textarea {
 	justify-content: center;
 	gap: 10px;
 	border: 0;
-	border-radius: 6px;
+	border-radius: 999px;
 	cursor: pointer;
 	font-weight: 800;
 	letter-spacing: 0;
-	padding: 13px 18px;
+	padding: 13px 20px;
 	text-decoration: none;
 	transition:
 		transform 180ms ease,
 		box-shadow 180ms ease,
 		background-color 180ms ease,
 		color 180ms ease;
+	box-shadow: 0 10px 24px rgba(27, 47, 97, 0.12);
 }
 
 .button:hover {
-	transform: translateY(-1px);
+	transform: translateY(-2px);
+	box-shadow: 0 14px 30px rgba(27, 47, 97, 0.18);
 }
 
 .button svg {
