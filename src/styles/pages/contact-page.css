@@ -128,6 +128,38 @@ a.contact-method:hover {
 	line-height: 1.5;
 }
 
+.contact-method-locations {
+	gap: 10px;
+}
+
+.location-list {
+	display: grid;
+	gap: 12px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.location-list li {
+	display: grid;
+	gap: 2px;
+}
+
+.location-list strong {
+	color: #ffffff;
+	font-size: 1.05rem;
+	line-height: 1.35;
+}
+
+.location-list small {
+	color: rgba(255, 255, 255, 0.62);
+	font-size: 0.84rem;
+}
+
+.location-note {
+	margin-top: 2px;
+}
+
 .contact-section {
 	padding: 88px 0;
 }

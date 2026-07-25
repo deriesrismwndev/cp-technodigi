@@ -15,13 +15,28 @@ interface Props {
 const { active = 'home' } = Astro.props;
 ---
 
-<header class="site-header">
+<header class="site-header" data-site-header>
 	<div class="container header-inner">
 		<a class="brand" href="/" aria-label="Technodigi beranda">
 			<img src="/images/technodigi_logo.svg" alt="TechnoDigi" width="2480" height="1906" />
 		</a>
 
-		<nav class="site-nav" aria-label="Menu utama">
+		<button
+			class="nav-toggle"
+			type="button"
+			data-nav-toggle
+			aria-expanded="false"
+			aria-controls="site-nav-panel"
+			aria-label="Buka menu navigasi"
+		>
+			<span class="nav-toggle-box" aria-hidden="true">
+				<span class="nav-toggle-bar"></span>
+				<span class="nav-toggle-bar"></span>
+				<span class="nav-toggle-bar"></span>
+			</span>
+		</button>
+
+		<nav class="site-nav site-nav-desktop" aria-label="Menu utama">
 			{
 				navItems.map((item) => (
 					<a href={item.href} aria-current={active === item.key ? 'page' : undefined}>
@@ -32,7 +47,7 @@ const { active = 'home' } = Astro.props;
 		</nav>
 
 		<button
-			class="header-action"
+			class="header-action header-action-desktop"
 			type="button"
 			data-consultation-trigger
 			aria-haspopup="dialog"
@@ -40,6 +55,30 @@ const { active = 'home' } = Astro.props;
 		>
 			Konsultasi
 		</button>
+	</div>
+
+	<div class="header-nav-panel" id="site-nav-panel" data-nav-panel hidden>
+		<div class="container header-nav-panel-inner">
+			<nav class="site-nav site-nav-mobile" aria-label="Menu utama">
+				{
+					navItems.map((item) => (
+						<a href={item.href} aria-current={active === item.key ? 'page' : undefined}>
+							{item.label}
+						</a>
+					))
+				}
+			</nav>
+
+			<button
+				class="header-action header-action-mobile"
+				type="button"
+				data-consultation-trigger
+				aria-haspopup="dialog"
+				aria-controls="consultation-dialog"
+			>
+				Konsultasi
+			</button>
+		</div>
 	</div>
 </header>
 
@@ -84,32 +123,98 @@ const { active = 'home' } = Astro.props;
 </dialog>
 
 <script>
-	const setupConsultationModal = () => {
-		const trigger = document.querySelector('[data-consultation-trigger]');
-		const dialog = document.querySelector('[data-consultation-dialog]');
+	const setupMobileNav = () => {
+		const header = document.querySelector('[data-site-header]');
+		const toggle = document.querySelector('[data-nav-toggle]');
+		const panel = document.querySelector('[data-nav-panel]');
 
-		if (!(trigger instanceof HTMLButtonElement) || !(dialog instanceof HTMLDialogElement)) return;
-		if (trigger.dataset.bound === 'true') return;
+		if (!(header instanceof HTMLElement) || !(toggle instanceof HTMLButtonElement)) return;
+		if (!(panel instanceof HTMLElement)) return;
+		if (toggle.dataset.bound === 'true') return;
 
-		trigger.dataset.bound = 'true';
+		toggle.dataset.bound = 'true';
 
-		trigger.addEventListener('click', () => {
-			if (!dialog.open) dialog.showModal();
+		const closeNav = () => {
+			header.removeAttribute('data-nav-open');
+			panel.hidden = true;
+			toggle.setAttribute('aria-expanded', 'false');
+			toggle.setAttribute('aria-label', 'Buka menu navigasi');
+			document.body.style.removeProperty('overflow');
+		};
+
+		const openNav = () => {
+			header.setAttribute('data-nav-open', '');
+			panel.hidden = false;
+			toggle.setAttribute('aria-expanded', 'true');
+			toggle.setAttribute('aria-label', 'Tutup menu navigasi');
+			document.body.style.overflow = 'hidden';
+		};
+
+		toggle.addEventListener('click', () => {
+			if (header.hasAttribute('data-nav-open')) closeNav();
+			else openNav();
 		});
 
-		dialog.querySelectorAll('[data-consultation-close]').forEach((button) => {
-			button.addEventListener('click', () => dialog.close());
+		panel.querySelectorAll('a').forEach((link) => {
+			link.addEventListener('click', closeNav);
 		});
 
-		dialog.querySelectorAll('[data-consultation-link]').forEach((link) => {
-			link.addEventListener('click', () => dialog.close());
+		panel.querySelectorAll('[data-consultation-trigger]').forEach((button) => {
+			button.addEventListener('click', closeNav);
 		});
 
-		dialog.addEventListener('click', (event) => {
-			if (event.target === dialog) dialog.close();
+		document.addEventListener('keydown', (event) => {
+			if (event.key === 'Escape' && header.hasAttribute('data-nav-open')) closeNav();
+		});
+
+		window.addEventListener('resize', () => {
+			if (window.innerWidth > 940) closeNav();
 		});
 	};
 
+	const setupConsultationModal = () => {
+		const triggers = document.querySelectorAll('[data-consultation-trigger]');
+		const dialog = document.querySelector('[data-consultation-dialog]');
+
+		if (!(dialog instanceof HTMLDialogElement) || triggers.length === 0) return;
+
+		triggers.forEach((trigger) => {
+			if (!(trigger instanceof HTMLButtonElement)) return;
+			if (trigger.dataset.bound === 'true') return;
+
+			trigger.dataset.bound = 'true';
+
+			trigger.addEventListener('click', () => {
+				if (!dialog.open) dialog.showModal();
+			});
+		});
+
+		dialog.querySelectorAll('[data-consultation-close]').forEach((button) => {
+			if (button instanceof HTMLButtonElement && button.dataset.bound !== 'true') {
+				button.dataset.bound = 'true';
+				button.addEventListener('click', () => dialog.close());
+			}
+		});
+
+		dialog.querySelectorAll('[data-consultation-link]').forEach((link) => {
+			if (link instanceof HTMLAnchorElement && link.dataset.bound !== 'true') {
+				link.dataset.bound = 'true';
+				link.addEventListener('click', () => dialog.close());
+			}
+		});
+
+		if (dialog.dataset.bound !== 'true') {
+			dialog.dataset.bound = 'true';
+			dialog.addEventListener('click', (event) => {
+				if (event.target === dialog) dialog.close();
+			});
+		}
+	};
+
+	setupMobileNav();
 	setupConsultationModal();
-	document.addEventListener('astro:page-load', setupConsultationModal);
+	document.addEventListener('astro:page-load', () => {
+		setupMobileNav();
+		setupConsultationModal();
+	});
 </script>

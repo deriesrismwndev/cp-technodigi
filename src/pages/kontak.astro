@@ -3,16 +3,27 @@ import '../styles/pages/contact-page.css';
 import SiteFooter from '../components/layout/SiteFooter.astro';
 import SiteHeader from '../components/layout/SiteHeader.astro';
 import {
+	brandName,
 	companyName,
 	contactEmail,
-	contactLocation,
 	contactPhone,
 	contactWhatsAppUrl,
+	defaultKeywords,
+	officeLocations,
 } from '../data/site';
 import Layout from '../layouts/Layout.astro';
+import { absoluteUrl, buildBreadcrumbSchema } from '../lib/seo';
 
-const contactTitle = `Kontak | ${companyName}`;
-const contactDescription = `Hubungi ${companyName} melalui WhatsApp ${contactPhone} atau email ${contactEmail} untuk konsultasi solusi digital, automasi, data analytics, dan AI.`;
+const contactTitle = `Kontak & Konsultasi IT | ${brandName}`;
+const contactDescription = `Hubungi ${brandName} via WhatsApp ${contactPhone} atau email ${contactEmail}. Kantor di Lubuklinggau dan Bogor. Konsultasi solusi software, hardware, automasi, data analytics, dan AI.`;
+const contactKeywords = [
+	...defaultKeywords,
+	'kontak technodigi',
+	'konsultasi it whatsapp',
+	'jasa it lubuklinggau',
+	'jasa it bogor',
+	'hubungi software house',
+];
 
 const contactTopics = [
 	'Sistem Manajemen Digital',
@@ -37,33 +48,22 @@ const responseSteps = [
 	},
 ];
 
-const breadcrumbSchema = {
-	'@type': 'BreadcrumbList',
-	'@id': 'https://technodigi.id/kontak#breadcrumb',
-	itemListElement: [
-		{
-			'@type': 'ListItem',
-			position: 1,
-			name: 'Beranda',
-			item: 'https://technodigi.id/',
-		},
-		{
-			'@type': 'ListItem',
-			position: 2,
-			name: 'Kontak',
-			item: 'https://technodigi.id/kontak',
-		},
+const breadcrumbSchema = buildBreadcrumbSchema(
+	[
+		{ name: 'Beranda', path: '/' },
+		{ name: 'Kontak', path: '/kontak' },
 	],
-};
+	'/kontak#breadcrumb',
+);
 
 const contactPageSchema = {
 	'@type': 'ContactPage',
-	'@id': 'https://technodigi.id/kontak#contact-page',
+	'@id': absoluteUrl('/kontak#contact-page'),
 	name: contactTitle,
 	description: contactDescription,
-	url: 'https://technodigi.id/kontak',
+	url: absoluteUrl('/kontak'),
 	mainEntity: {
-		'@id': 'https://technodigi.id/#organization',
+		'@id': absoluteUrl('#organization'),
 	},
 };
 ---
@@ -71,16 +71,24 @@ const contactPageSchema = {
 <Layout
 	title={contactTitle}
 	description={contactDescription}
+	keywords={contactKeywords}
 	canonical="/kontak"
+	pageType="ContactPage"
 	structuredData={[breadcrumbSchema, contactPageSchema]}
 >
 	<div class="page-shell">
 		<SiteHeader active="contact" />
 
-		<main>
+		<main id="main-content">
 			<section class="contact-hero" aria-labelledby="contact-hero-title">
 				<div class="contact-hero-media" aria-hidden="true">
-					<img src="/images/it-hero.png" alt="" width="1672" height="941" fetchpriority="high" />
+					<img
+						src="/images/it-hero.png"
+						alt="Hubungi Technodigi untuk konsultasi software, hardware, dan layanan IT"
+						width="1672"
+						height="941"
+						fetchpriority="high"
+					/>
 				</div>
 
 				<div class="container contact-hero-inner">
@@ -128,10 +136,19 @@ const contactPageSchema = {
 							<small>Kirim email ke Technodigi</small>
 						</a>
 
-						<div class="contact-method">
+						<div class="contact-method contact-method-locations">
 							<span>Lokasi</span>
-							<strong>{contactLocation}</strong>
-							<small>Melayani kebutuhan transformasi digital di Indonesia.</small>
+							<ul class="location-list">
+								{
+									officeLocations.map((office) => (
+										<li>
+											<strong>{office.label}</strong>
+											<small>{office.region}</small>
+										</li>
+									))
+								}
+							</ul>
+							<small class="location-note">Melayani kebutuhan transformasi digital di Indonesia.</small>
 						</div>
 					</aside>
 				</div>

@@ -2,32 +2,52 @@
 import Home from '../components/home.astro';
 import SiteFooter from '../components/layout/SiteFooter.astro';
 import SiteHeader from '../components/layout/SiteHeader.astro';
-import { companyName, products } from '../data/site';
+import { brandName, companyName, defaultKeywords, faqItems, products } from '../data/site';
 import Layout from '../layouts/Layout.astro';
+import { absoluteUrl, buildFaqSchema } from '../lib/seo';
 
-const homeTitle = 'Technodigi | Software, Hardware, dan Konsultan IT';
-const homeDescription = `${companyName} membantu bisnis membangun software, menyediakan hardware, dan menjalankan konsultasi IT untuk operasional yang aman, terukur, dan siap berkembang.`;
+const homeTitle = `${brandName} | Jasa Software, Hardware & Konsultan IT Indonesia`;
+const homeDescription = `${companyName} membantu bisnis di Indonesia membangun software custom, pengadaan hardware, dan konsultasi IT. Konsultasi gratis via WhatsApp untuk transformasi digital yang terukur.`;
+const homeKeywords = [
+	...defaultKeywords,
+	'technodigi indonesia',
+	'jasa pembuatan aplikasi',
+	'konsultasi it gratis',
+	'mitra transformasi digital',
+];
+
 const offerCatalogSchema = {
 	'@type': 'OfferCatalog',
-	'@id': 'https://technodigi.id/#offer-catalog',
-	name: 'Katalog Layanan Technodigi',
-	itemListElement: products.map((product) => ({
+	'@id': absoluteUrl('#offer-catalog'),
+	name: `Katalog Layanan ${brandName}`,
+	itemListElement: products.map((product, index) => ({
 		'@type': 'Offer',
+		position: index + 1,
 		itemOffered: {
 			'@type': 'Service',
+			'@id': absoluteUrl(`/produk#${product.id}`),
 			name: product.title,
 			description: product.summary,
 			serviceType: product.category,
 			provider: {
-				'@id': 'https://technodigi.id/#organization',
+				'@id': absoluteUrl('#organization'),
 			},
 			areaServed: 'Indonesia',
 		},
 	})),
 };
+
+const faqSchema = buildFaqSchema(faqItems, '/#faq');
 ---
 
-<Layout title={homeTitle} description={homeDescription} canonical="/" structuredData={offerCatalogSchema}>
+<Layout
+	title={homeTitle}
+	description={homeDescription}
+	keywords={homeKeywords}
+	canonical="/"
+	pageType="WebPage"
+	structuredData={[offerCatalogSchema, faqSchema]}
+>
 	<div class="page-shell">
 		<SiteHeader active="home" />
 		<Home />

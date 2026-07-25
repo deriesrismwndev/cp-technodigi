@@ -1,10 +1,101 @@
 export const companyName = 'CV. Technodigi Mandiri Solusi';
 export const brandName = 'Technodigi';
+export const siteUrl = 'https://technodigi.id';
+export const siteTagline = 'Software, Hardware, dan Konsultan IT';
 export const contactEmail = 'support@technodigi.co.id';
 export const contactPhone = '+62 853 5361 5220';
 export const contactWhatsAppUrl =
 	'https://wa.me/6285353615220?text=Halo%20Technodigi%2C%20saya%20ingin%20konsultasi%20solusi%20digital.';
-export const contactLocation = 'Lubuklinggau, Indonesia';
+
+export interface OfficeLocation {
+	city: string;
+	region: string;
+	country: string;
+	label: string;
+	geoRegion: string;
+	latitude: number;
+	longitude: number;
+}
+
+export const officeLocations: OfficeLocation[] = [
+	{
+		city: 'Lubuklinggau',
+		region: 'Sumatera Selatan',
+		country: 'ID',
+		label: 'Lubuklinggau, Indonesia',
+		geoRegion: 'ID-SL',
+		latitude: -3.2945,
+		longitude: 102.8612,
+	},
+	{
+		city: 'Bogor',
+		region: 'Jawa Barat',
+		country: 'ID',
+		label: 'Bogor, Indonesia',
+		geoRegion: 'ID-JB',
+		latitude: -6.5971,
+		longitude: 106.806,
+	},
+];
+
+/** @deprecated Use officeLocations */
+export const contactLocation = officeLocations.map((office) => office.label).join(' · ');
+
+/** @deprecated Use officeLocations */
+export const geo = {
+	region: officeLocations.map((office) => office.geoRegion).join(', '),
+	placename: officeLocations.map((office) => office.city).join(', '),
+	latitude: officeLocations[0].latitude,
+	longitude: officeLocations[0].longitude,
+};
+
+export const socialProfiles: string[] = [];
+
+export const defaultKeywords = [
+	'technodigi',
+	'jasa software indonesia',
+	'jasa hardware it',
+	'konsultan it',
+	'transformasi digital',
+	'pengembangan aplikasi custom',
+	'integrasi api',
+	'data analytics',
+	'solusi ai bisnis',
+	'jaringan kantor',
+	'audit sistem it',
+	'it consulting lubuklinggau',
+	'it consulting bogor',
+	'software house sumatera selatan',
+	'software house bogor',
+];
+
+export interface FaqItem {
+	question: string;
+	answer: string;
+}
+
+export const faqItems: FaqItem[] = [
+	{
+		question: 'Layanan apa saja yang disediakan Technodigi?',
+		answer:
+			'Technodigi menyediakan pengembangan software custom, dashboard dan business intelligence, integrasi API, pengadaan hardware, infrastruktur jaringan, audit IT, roadmap transformasi digital, serta tata kelola keamanan IT.',
+	},
+	{
+		question: 'Apakah Technodigi melayani klien di luar area kantor?',
+		answer:
+			'Ya. Technodigi berkantor di Lubuklinggau dan Bogor, serta melayani kebutuhan software, hardware, dan konsultasi IT untuk bisnis di seluruh Indonesia, baik untuk proyek baru maupun modernisasi sistem yang sudah berjalan.',
+	},
+	{
+		question: 'Bagaimana cara memulai konsultasi dengan Technodigi?',
+		answer:
+			'Anda dapat menghubungi Technodigi melalui WhatsApp atau email di halaman kontak. Tim kami akan membantu memetakan kebutuhan, prioritas, dan langkah implementasi yang paling relevan.',
+	},
+	{
+		question: 'Apakah solusi Technodigi bisa disesuaikan dengan kebutuhan bisnis?',
+		answer:
+			'Setiap layanan dapat dikurasi sesuai skala bisnis, alur kerja internal, dan target operasional. Ruang lingkup, milestone, dan dukungan pasca implementasi disusun sebelum eksekusi proyek.',
+	},
+];
 
 export type NavKey = 'home' | 'about' | 'products' | 'contact';
 

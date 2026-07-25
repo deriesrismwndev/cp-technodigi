@@ -1,11 +1,12 @@
 import type { APIRoute } from 'astro';
+import { siteUrl } from '../data/site';
+import { absoluteUrl } from '../lib/seo';
 
-const fallbackSite = 'https://technodigi.id';
 const routes = [
 	{ path: '/', priority: '1.0', changefreq: 'weekly' },
 	{ path: '/tentang-kami', priority: '0.8', changefreq: 'monthly' },
 	{ path: '/produk', priority: '0.9', changefreq: 'weekly' },
-	{ path: '/kontak', priority: '0.7', changefreq: 'monthly' },
+	{ path: '/kontak', priority: '0.8', changefreq: 'monthly' },
 ];
 
 const escapeXml = (value: string) =>
@@ -17,11 +18,11 @@ const escapeXml = (value: string) =>
 		.replaceAll("'", '&apos;');
 
 export const GET: APIRoute = ({ site }) => {
-	const siteUrl = site ?? new URL(fallbackSite);
+	const siteBase = site ?? new URL(siteUrl);
 	const lastmod = new Date().toISOString().slice(0, 10);
 	const urls = routes
 		.map((route) => {
-			const loc = new URL(route.path, siteUrl).toString();
+			const loc = absoluteUrl(route.path, siteBase);
 
 			return [
 				'  <url>',

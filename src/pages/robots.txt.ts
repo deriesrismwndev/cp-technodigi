@@ -1,14 +1,15 @@
 import type { APIRoute } from 'astro';
-
-const fallbackSite = 'https://technodigi.id';
+import { siteUrl } from '../data/site';
+import { absoluteUrl } from '../lib/seo';
 
 export const GET: APIRoute = ({ site }) => {
-	const siteUrl = (site ?? new URL(fallbackSite)).toString().replace(/\/$/, '');
+	const siteBase = (site ?? new URL(siteUrl)).toString().replace(/\/$/, '');
 	const body = [
 		'User-agent: *',
 		'Allow: /',
+		'Disallow: /manifest.webmanifest',
 		'',
-		`Sitemap: ${siteUrl}/sitemap.xml`,
+		`Sitemap: ${absoluteUrl('/sitemap.xml', siteBase)}`,
 		'',
 	].join('\n');
 

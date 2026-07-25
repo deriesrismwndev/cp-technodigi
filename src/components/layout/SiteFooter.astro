@@ -1,12 +1,67 @@
 ---
 import '../../styles/components/layout.css';
-import { companyName } from '../../data/site';
+import {
+	brandName,
+	companyName,
+	contactEmail,
+	contactPhone,
+	contactWhatsAppUrl,
+	officeLocations,
+	navItems,
+} from '../../data/site';
 
 const currentYear = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
-	<div class="container mx-auto flex justify-center items-center text-center">
-		<p>&copy; {currentYear} {companyName}</p>
+	<div class="container footer-inner">
+		<div class="footer-brand">
+			<a class="footer-logo" href="/" aria-label={`${brandName} beranda`}>
+				<img src="/images/technodigi_logo.svg" alt={brandName} width="2480" height="1906" loading="lazy" />
+			</a>
+			<p>
+				{companyName} — mitra software, hardware, dan konsultan IT untuk transformasi digital bisnis
+				di Indonesia.
+			</p>
+		</div>
+
+		<nav class="footer-nav" aria-label="Navigasi footer">
+			<p class="footer-heading">Halaman</p>
+			<ul>
+				{navItems.map((item) => (
+					<li>
+						<a href={item.href}>{item.label}</a>
+					</li>
+				))}
+			</ul>
+		</nav>
+
+		<div class="footer-contact">
+			<p class="footer-heading">Kontak</p>
+			<ul>
+				<li>
+					<a href={contactWhatsAppUrl} target="_blank" rel="noopener noreferrer">
+						WhatsApp: {contactPhone}
+					</a>
+				</li>
+				<li>
+					<a href={`mailto:${contactEmail}`}>Email: {contactEmail}</a>
+				</li>
+				<li class="footer-locations">
+					<span class="footer-location-label">Kantor:</span>
+					<address>
+						{
+							officeLocations.map((office) => (
+								<span class="footer-location-item">{office.label}</span>
+							))
+						}
+					</address>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="container footer-bottom">
+		<p>&copy; {currentYear} {companyName}. Semua hak dilindungi.</p>
 	</div>
 </footer>
