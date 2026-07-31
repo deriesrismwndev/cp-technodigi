@@ -20,15 +20,15 @@ const aboutKeywords = [
 const philosophyItems = [
 	{
 		title: 'Kecerdasan',
-		summary: 'Memanfaatkan data dan AI untuk membantu organisasi mengambil keputusan yang lebih tepat.',
+		summary: 'Memanfaatkan data dan kecerdasan buatan (AI) untuk membantu organisasi mengambil keputusan bisnis secara presisi.',
 	},
 	{
 		title: 'Inovasi',
-		summary: 'Mengubah ide menjadi solusi digital yang relevan, bernilai, dan berdampak nyata.',
+		summary: 'Mengubah ide kompleks menjadi solusi digital interaktif yang bernilai tinggi dan berdampak langsung pada operasional.',
 	},
 	{
 		title: 'Keberlanjutan',
-		summary: 'Membangun teknologi yang adaptif terhadap kebutuhan hari ini dan perkembangan masa depan.',
+		summary: 'Membangun arsitektur perangkat lunak yang adaptif terhadap kebutuhan hari ini dan siap berkembang di masa depan.',
 	},
 ];
 
@@ -40,9 +40,21 @@ const missionItems = [
 ];
 
 const journeyItems = [
-	'Kepercayaan klien menjadi bukti kualitas, konsistensi, dan komitmen kami.',
-	'Eksperimen teknologi berkelanjutan memastikan setiap produk selalu future-ready.',
-	'Kolaborasi lintas sektor menciptakan solusi holistik yang memadukan manusia, data, dan teknologi.',
+	{
+		title: 'Kualitas & Komitmen Klien',
+		summary: 'Kepercayaan dari berbagai instansi dan bisnis menjadi bukti nyata kualitas, konsistensi, dan komitmen eksekusi kami.',
+		tag: 'Komitmen Klien',
+	},
+	{
+		title: 'Riset & Eksperimen Teknologi',
+		summary: 'Pengujian dan penerapan teknologi terbaru memastikan setiap solusi lunak yang dibangun selalu future-ready.',
+		tag: 'Inovasi & AI',
+	},
+	{
+		title: 'Sinergi & Kolaborasi Sektor',
+		summary: 'Kolaborasi strategis yang memadukan keahlian talenta manusia, analitik data, dan efisiensi teknologi modern.',
+		tag: 'Kolaborasi',
+	},
 ];
 
 const strategyItems = [
@@ -83,34 +95,6 @@ const trustItems = [
 	{
 		title: 'Human-Centered Technology',
 		summary: 'Teknologi difokuskan pada kemudahan penggunaan dan pengalaman pengguna.',
-	},
-];
-
-const serviceItems = [
-	{
-		title: 'Sistem Manajemen Digital',
-		summary:
-			'Solusi untuk mengelola dan memantau proses bisnis secara efisien melalui sistem digital yang terintegrasi dan mudah digunakan.',
-	},
-	{
-		title: 'Automation Systems',
-		summary:
-			'Otomatisasi proses bisnis untuk meningkatkan efisiensi, mengurangi kesalahan, dan mempercepat alur kerja perusahaan.',
-	},
-	{
-		title: 'Data Analytics',
-		summary:
-			'Analisis data untuk menghasilkan insight strategis yang membantu pengambilan keputusan lebih cepat dan akurat.',
-	},
-	{
-		title: 'Solusi Berbasis AI',
-		summary:
-			'Penerapan kecerdasan buatan untuk mendukung inovasi, prediksi, dan peningkatan kinerja bisnis.',
-	},
-	{
-		title: 'Support & Pengembangan Lanjutan',
-		summary:
-			'Dukungan teknis dan pembaruan sistem berkelanjutan agar solusi digital tetap optimal dan up to date.',
 	},
 ];
 
@@ -191,44 +175,56 @@ const aboutPageSchema = {
 				</div>
 			</section>
 
+			<!-- Visi & Misi Section -->
 			<section class="about-section vision-section" aria-labelledby="vision-title">
 				<div class="container vision-grid">
 					<div class="vision-panel">
-						<p class="section-kicker">Visi</p>
+						<span class="vision-badge">Visi Perusahaan</span>
 						<h2 id="vision-title">
-							Menjadi perusahaan digital intelligence terdepan yang menyediakan solusi teknologi
-							cerdas dan inovatif.
+							Menjadi perusahaan Digital Intelligence terdepan yang menyediakan solusi teknologi
+							cerdas, scalable, dan inovatif.
 						</h2>
 						<p>
-							Kami ingin mempercepat transformasi di berbagai sektor melalui teknologi yang dapat
-							diandalkan, bernilai, dan siap berkembang bersama kebutuhan bisnis.
+							Kami mempercepat transformasi digital di berbagai sektor melalui teknologi teruji
+							yang dapat diandalkan, bernilai tinggi, dan siap berkembang mengikuti skala bisnis.
 						</p>
 					</div>
 
 					<div class="mission-panel">
-						<p class="section-kicker">Misi</p>
-						<ol class="mission-list">
-							{missionItems.map((item) => <li>{item}</li>)}
-						</ol>
+						<span class="mission-badge">Misi Perusahaan</span>
+						<h2 class="mission-head-title">Pilar Eksekusi & Komitmen Utama</h2>
+						<div class="mission-grid-list">
+							{
+								missionItems.map((item, idx) => (
+									<div class="mission-item-card">
+										<span class="mission-num">0{idx + 1}</span>
+										<p>{item}</p>
+									</div>
+								))
+							}
+						</div>
 					</div>
 				</div>
 			</section>
 
+			<!-- Our Philosophy Section -->
 			<section class="about-section philosophy-section" aria-labelledby="philosophy-title">
-				<div class="container section-heading-left">
-					<p class="section-kicker">Our Philosophy</p>
-					<h2 id="philosophy-title">Kami percaya masa depan ditentukan oleh kemampuan beradaptasi.</h2>
-					<p>
-						"Innovation is not just about technology - it's about reimagining possibilities."
-					</p>
+				<div class="container section-heading-centered">
+					<span class="section-kicker">Our Philosophy</span>
+					<h2 id="philosophy-title">Fondasi Berpikir & Eksekusi Teknologi</h2>
+					<blockquote class="philosophy-quote">
+						"Innovation is not just about technology — it's about reimagining possibilities."
+					</blockquote>
 				</div>
 
-				<div class="container philosophy-grid" aria-label="Fondasi filosofi perusahaan">
+				<div class="container philosophy-cards-grid" aria-label="Fondasi filosofi perusahaan">
 					{
 						philosophyItems.map((item, index) => (
-							<article class="info-card">
-								<span>{String(index + 1).padStart(2, '0')}</span>
-								<h3>{item.title}</h3>
+							<article class="philosophy-card">
+								<div class="philosophy-card-head">
+									<span class="philosophy-num">0{index + 1}</span>
+									<h3>{item.title}</h3>
+								</div>
 								<p>{item.summary}</p>
 							</article>
 						))
@@ -236,23 +232,32 @@ const aboutPageSchema = {
 				</div>
 			</section>
 
+			<!-- Our Journey Section -->
 			<section class="about-section journey-section" aria-labelledby="journey-title">
 				<div class="container journey-grid">
-					<div>
-						<p class="section-kicker">Our Journey</p>
+					<div class="journey-intro">
+						<span class="section-kicker">Our Journey</span>
 						<h2 id="journey-title">Driving Innovation for the Future</h2>
+						<p class="journey-lead">
+							Sejak awal berdirinya, {companyName} hadir untuk menjawab kebutuhan industri di era
+							digital yang bergerak cepat. Kami berkembang dari tim spesialis visioner menjadi mitra
+							terpercaya transformasi digital bagi berbagai lembaga dan perusahaan di Indonesia.
+						</p>
 					</div>
 
-					<div class="rich-copy">
-						<p>
-							Sejak awal berdirinya, {companyName} hadir untuk menjawab kebutuhan industri di era
-							digital yang terus berubah. Kami memulai dari tim kecil yang visioner dan berkembang
-							menjadi partner transformasi digital bagi berbagai lembaga dan perusahaan di
-							Indonesia.
-						</p>
-						<ul class="clean-list">
-							{journeyItems.map((item) => <li>{item}</li>)}
-						</ul>
+					<div class="journey-cards-list">
+						{
+							journeyItems.map((item, index) => (
+								<article class="journey-card">
+									<div class="journey-card-top">
+										<span class="journey-step-num">Milestone 0{index + 1}</span>
+										<span class="subservice-tag">{item.tag}</span>
+									</div>
+									<h3>{item.title}</h3>
+									<p>{item.summary}</p>
+								</article>
+							))
+						}
 					</div>
 				</div>
 			</section>
@@ -269,51 +274,35 @@ const aboutPageSchema = {
 					</div>
 
 					<div class="strategy-list" aria-label="Strategi Technodigi">
-						{strategyItems.map((item) => (
-							<article>
-								<h3>{item.title}</h3>
-								<p>{item.summary}</p>
-							</article>
-						))}
+						{
+							strategyItems.map((item) => (
+								<article>
+									<h3>{item.title}</h3>
+									<p>{item.summary}</p>
+								</article>
+							))
+						}
 					</div>
 				</div>
 			</section>
 
 			<section class="about-section trust-section" aria-labelledby="trust-title">
-				<div class="container section-heading">
+				<div class="container section-heading-centered">
 					<p class="section-kicker">Why Choose Us</p>
 					<h2 id="trust-title">Why Clients Trust Technodigi</h2>
-					<p>"We don't deliver technology. We deliver transformation."</p>
+					<p class="philosophy-quote">"We don't deliver technology. We deliver transformation."</p>
 				</div>
 
 				<div class="container trust-grid">
-					{trustItems.map((item) => (
-						<article class="info-card">
-							<h3>{item.title}</h3>
-							<p>{item.summary}</p>
-						</article>
-					))}
-				</div>
-			</section>
-
-			<section class="about-section service-section" aria-labelledby="services-title">
-				<div class="container services-layout">
-					<div>
-						<p class="section-kicker">Our Service</p>
-						<h2 id="services-title">Layanan utama untuk transformasi digital yang terukur.</h2>
-					</div>
-
-					<div class="service-list">
-						{serviceItems.map((item, index) => (
-							<article>
-								<span>{String(index + 1).padStart(2, '0')}</span>
-								<div>
-									<h3>{item.title}</h3>
-									<p>{item.summary}</p>
-								</div>
+					{
+						trustItems.map((item, index) => (
+							<article class="info-card">
+								<span class="info-card-num">0{index + 1}</span>
+								<h3>{item.title}</h3>
+								<p>{item.summary}</p>
 							</article>
-						))}
-					</div>
+						))
+					}
 				</div>
 			</section>
 

@@ -1,13 +1,21 @@
 import type { APIRoute } from 'astro';
-import { siteUrl } from '../data/site';
+import { serviceCategories, siteUrl } from '../data/site';
 import { absoluteUrl } from '../lib/seo';
 
-const routes = [
+const baseRoutes = [
 	{ path: '/', priority: '1.0', changefreq: 'weekly' },
+	{ path: '/layanan', priority: '0.9', changefreq: 'weekly' },
 	{ path: '/tentang-kami', priority: '0.8', changefreq: 'monthly' },
-	{ path: '/produk', priority: '0.9', changefreq: 'weekly' },
 	{ path: '/kontak', priority: '0.8', changefreq: 'monthly' },
 ];
+
+const serviceRoutes = serviceCategories.map((service) => ({
+	path: `/layanan/${service.slug}`,
+	priority: '0.9',
+	changefreq: 'weekly',
+}));
+
+const routes = [...baseRoutes, ...serviceRoutes];
 
 const escapeXml = (value: string) =>
 	value

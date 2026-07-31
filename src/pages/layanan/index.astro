@@ -1,0 +1,231 @@
+---
+import '../../styles/pages/services.css';
+import SiteFooter from '../../components/layout/SiteFooter.astro';
+import SiteHeader from '../../components/layout/SiteHeader.astro';
+import { brandName, contactWhatsAppUrl, defaultKeywords, serviceCategories, workSteps } from '../../data/site';
+import Layout from '../../layouts/Layout.astro';
+import { absoluteUrl, buildBreadcrumbSchema } from '../../lib/seo';
+
+const pageTitle = `Layanan Software, AI, Data & IT Infrastructure | ${brandName}`;
+const pageDescription = `Layanan lengkap Technodigi: Software Development, Business Automation & AI Solutions, Data Analytics & Reporting, serta IT Infrastructure & Technical Support.`;
+const pageKeywords = [
+	...defaultKeywords,
+	'layanan software development',
+	'business automation ai indonesia',
+	'data analytics reporting system',
+	'it infrastructure support kantor',
+];
+
+const offerCatalogSchema = {
+	'@type': 'OfferCatalog',
+	'@id': absoluteUrl('/layanan#catalog'),
+	name: `Katalog Layanan ${brandName}`,
+	itemListElement: serviceCategories.map((service, index) => ({
+		'@type': 'Offer',
+		position: index + 1,
+		itemOffered: {
+			'@type': 'Service',
+			'@id': absoluteUrl(`/layanan/${service.slug}`),
+			name: service.title,
+			description: service.description,
+			provider: {
+				'@id': absoluteUrl('#organization'),
+			},
+			areaServed: 'Indonesia',
+		},
+	})),
+};
+
+const breadcrumbSchema = buildBreadcrumbSchema(
+	[
+		{ name: 'Beranda', path: '/' },
+		{ name: 'Layanan', path: '/layanan' },
+	],
+	'/layanan#breadcrumb',
+);
+
+const getServiceIconPath = (icon: string) => {
+	switch (icon) {
+		case 'software':
+			return 'M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v8a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 14.5v-8Z M8 20h8 M12 17v3 M8.5 9.5 10.5 11.5 8.5 13.5';
+		case 'automation':
+			return 'M12 2v4 M12 18v4 M4.93 4.93l2.83 2.83 M16.24 16.24l2.83 2.83 M2 12h4 M18 12h4 M4.93 19.07l2.83-2.83 M16.24 7.76l2.83-2.83';
+		case 'analytics':
+			return 'M18 20V10 M12 20V4 M6 20v-6';
+		case 'infrastructure':
+			return 'M6 4h12a2 2 0 0 1 2 2v5H4V6a2 2 0 0 1 2-2Z M4 11h16v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-7Z M8 15h.01 M12 15h4';
+		default:
+			return 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5';
+	}
+};
+---
+
+<Layout
+	title={pageTitle}
+	description={pageDescription}
+	keywords={pageKeywords}
+	canonical="/layanan"
+	pageType="CollectionPage"
+	structuredData={[offerCatalogSchema, breadcrumbSchema]}
+>
+	<div class="page-shell">
+		<SiteHeader active="services" />
+
+		<main id="main-content">
+			<!-- Hero Banner Section -->
+			<section class="services-hero" aria-labelledby="services-hero-title">
+				<div class="container services-hero-inner">
+					<div>
+						<nav class="services-breadcrumb" aria-label="Breadcrumb">
+							<a href="/">Beranda</a>
+							<span class="sep">/</span>
+							<span aria-current="page">Layanan</span>
+						</nav>
+
+						<span class="service-badge-pill">Ekosistem Solusi Digital</span>
+						<h1 id="services-hero-title">Solusi Teknologi Terintegrasi untuk Akselerasi Bisnis.</h1>
+						<p class="hero-lead">
+							Technodigi menghadirkan 4 pilar layanan utama yang dirancang khusus untuk memetakan,
+							membangun, mengotomatisasi, dan menjaga keandalan infrastruktur IT perusahaan Anda.
+						</p>
+
+						<div class="hero-highlights-row" aria-label="Keunggulan Ekosistem Layanan">
+							<div class="hero-highlight-chip">
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+									<polyline points="20 6 9 17 4 12"></polyline>
+								</svg>
+								End-to-End Execution
+							</div>
+							<div class="hero-highlight-chip">
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+									<polyline points="20 6 9 17 4 12"></polyline>
+								</svg>
+								Skalabilitas Sesuai Kebutuhan
+							</div>
+							<div class="hero-highlight-chip">
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+									<polyline points="20 6 9 17 4 12"></polyline>
+								</svg>
+								Dukungan Tim Ahli & Responsif
+							</div>
+						</div>
+
+						<div class="hero-actions">
+							<a class="button button-primary" href="#katalog-layanan">
+								Jelajahi Layanan
+								<svg aria-hidden="true" viewBox="0 0 24 24">
+									<path d="M5 12h14"></path>
+									<path d="m13 6 6 6-6 6"></path>
+								</svg>
+							</a>
+							<a class="button button-secondary" href="/kontak">Konsultasi Kebutuhan</a>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Services List Section -->
+			<section class="services-main-section" id="katalog-layanan" aria-label="Katalog 4 Layanan Utama">
+				<div class="container services-grid">
+					{
+						serviceCategories.map((service) => (
+							<article class="service-card-block" id={service.slug}>
+								<div class="service-card-header">
+									<div class="service-card-header-left">
+										<div class="service-icon-box" aria-hidden="true">
+											<svg viewBox="0 0 24 24" fill="none">
+												<path d={getServiceIconPath(service.icon)} />
+											</svg>
+										</div>
+										<div class="service-card-header-titles">
+											<span class="subservice-tag">{service.badge}</span>
+											<h2>
+												<a href={`/layanan/${service.slug}`}>{service.title}</a>
+											</h2>
+										</div>
+									</div>
+								</div>
+
+								<p class="service-card-description">{service.description}</p>
+
+								<div class="subservices-list-title">Sub-Layanan Cakupan:</div>
+								<div class="subservices-grid">
+									{service.subServices.map((sub) => (
+										<div class="subservice-item-card">
+											<div class="subservice-item-head">
+												<h3>{sub.title}</h3>
+												<span class="subservice-tag">{sub.tag}</span>
+											</div>
+											<p>{sub.description}</p>
+										</div>
+									))}
+								</div>
+
+								<div class="service-card-footer">
+									<a class="button button-primary" href={`/layanan/${service.slug}`}>
+										Detail Layanan {service.shortTitle}
+										<svg aria-hidden="true" viewBox="0 0 24 24">
+											<path d="M5 12h14" />
+											<path d="m13 6 6 6-6 6" />
+										</svg>
+									</a>
+								</div>
+							</article>
+						))
+					}
+				</div>
+			</section>
+
+			<!-- Workflow Section -->
+			<section class="workflow-section" aria-labelledby="workflow-title">
+				<div class="container">
+					<div class="section-header-centered">
+						<span class="section-kicker">Metodologi Kerja</span>
+						<h2 id="workflow-title">Proses Implementasi yang Terstruktur & Transparan.</h2>
+						<p>
+							Setiap layanan dieksekusi dengan langkah-langkah yang jelas agar hasil akhir sesuai target
+							bisnis dan siap digunakan secara berkelanjutan.
+						</p>
+					</div>
+
+					<div class="workflow-grid">
+						{
+							workSteps.map((step, idx) => (
+								<div class="workflow-card">
+									<span class="workflow-number">Fase 0{idx + 1}</span>
+									<h3>{step.title}</h3>
+									<p>{step.summary}</p>
+								</div>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<!-- Consultation Banner CTA -->
+			<section class="container" aria-label="Konsultasi Layanan">
+				<div class="service-cta-card">
+					<div class="service-cta-content">
+						<h2>Bingung Memilih Layanan yang Tepat?</h2>
+						<p>
+							Tim konsultan Technodigi siap membantu menganalisis alur kerja bisnis Anda dan
+							merekomendasikan paket solusi yang paling efektif dan efisien.
+						</p>
+					</div>
+					<div class="service-cta-actions">
+						<a
+							class="button button-primary"
+							href={contactWhatsAppUrl}
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							Konsultasi Gratis via WhatsApp
+						</a>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<SiteFooter />
+	</div>
+</Layout>

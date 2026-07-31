@@ -1,0 +1,286 @@
+---
+import '../../styles/pages/services.css';
+import SiteFooter from '../../components/layout/SiteFooter.astro';
+import SiteHeader from '../../components/layout/SiteHeader.astro';
+import {
+	brandName,
+	contactEmail,
+	contactPhone,
+	contactWhatsAppUrl,
+	defaultKeywords,
+	serviceCategories,
+	workSteps,
+	type ServiceCategory,
+} from '../../data/site';
+import Layout from '../../layouts/Layout.astro';
+import { absoluteUrl, buildBreadcrumbSchema } from '../../lib/seo';
+
+export function getStaticPaths() {
+	return serviceCategories.map((service) => ({
+		params: { slug: service.slug },
+		props: { service },
+	}));
+}
+
+interface Props {
+	service: ServiceCategory;
+}
+
+const { service } = Astro.props;
+
+const pageTitle = `${service.title} | ${brandName}`;
+const pageDescription = `${service.description} Konsultasi gratis dengan tim ${brandName} untuk implementasi terukur.`;
+const pageKeywords = [
+	...defaultKeywords,
+	service.title.toLowerCase(),
+	service.badge.toLowerCase(),
+	...service.subServices.map((sub) => sub.title.toLowerCase()),
+];
+
+const serviceSchema = {
+	'@type': 'Service',
+	'@id': absoluteUrl(`/layanan/${service.slug}#service`),
+	name: service.title,
+	description: service.description,
+	provider: {
+		'@id': absoluteUrl('#organization'),
+	},
+	areaServed: 'Indonesia',
+	hasOfferCatalog: {
+		'@type': 'OfferCatalog',
+		name: `Sub-Layanan ${service.shortTitle}`,
+		itemListElement: service.subServices.map((sub, idx) => ({
+			'@type': 'Offer',
+			position: idx + 1,
+			itemOffered: {
+				'@type': 'Service',
+				name: sub.title,
+				description: sub.description,
+			},
+		})),
+	},
+};
+
+const breadcrumbSchema = buildBreadcrumbSchema(
+	[
+		{ name: 'Beranda', path: '/' },
+		{ name: 'Layanan', path: '/layanan' },
+		{ name: service.shortTitle, path: `/layanan/${service.slug}` },
+	],
+	`/layanan/${service.slug}#breadcrumb`,
+);
+
+const getServiceIconPath = (icon: string) => {
+	switch (icon) {
+		case 'software':
+			return 'M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v8a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 14.5v-8Z M8 20h8 M12 17v3 M8.5 9.5 10.5 11.5 8.5 13.5';
+		case 'automation':
+			return 'M12 2v4 M12 18v4 M4.93 4.93l2.83 2.83 M16.24 16.24l2.83 2.83 M2 12h4 M18 12h4 M4.93 19.07l2.83-2.83 M16.24 7.76l2.83-2.83';
+		case 'analytics':
+			return 'M18 20V10 M12 20V4 M6 20v-6';
+		case 'infrastructure':
+			return 'M6 4h12a2 2 0 0 1 2 2v5H4V6a2 2 0 0 1 2-2Z M4 11h16v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-7Z M8 15h.01 M12 15h4';
+		default:
+			return 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5';
+	}
+};
+
+const otherServices = serviceCategories.filter((item) => item.slug !== service.slug);
+---
+
+<Layout
+	title={pageTitle}
+	description={pageDescription}
+	keywords={pageKeywords}
+	canonical={`/layanan/${service.slug}`}
+	pageType="ItemPage"
+	structuredData={[serviceSchema, breadcrumbSchema]}
+>
+	<div class="page-shell">
+		<SiteHeader active="services" />
+
+		<main id="main-content">
+			<!-- Hero Header -->
+			<section class="services-hero" aria-labelledby="service-detail-title">
+				<div class="container services-hero-inner">
+					<div>
+						<nav class="services-breadcrumb" aria-label="Breadcrumb">
+							<a href="/">Beranda</a>
+							<span class="sep">/</span>
+							<a href="/layanan">Layanan</a>
+							<span class="sep">/</span>
+							<span aria-current="page">{service.shortTitle}</span>
+						</nav>
+
+						<span class="service-badge-pill">{service.badge}</span>
+						<h1 id="service-detail-title">{service.title}</h1>
+						<p class="hero-lead">{service.heroSummary}</p>
+
+						<div class="hero-highlights-row" aria-label="Highlight Layanan">
+							{
+								service.highlights.map((item) => (
+									<div class="hero-highlight-chip">
+										<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+											<polyline points="20 6 9 17 4 12" />
+										</svg>
+										{item}
+									</div>
+								))
+							}
+						</div>
+
+						<div class="hero-actions">
+							<a
+								class="button button-primary"
+								href={`${contactWhatsAppUrl}&text=Halo%20Technodigi%2C%20saya%20tertarik%20dengan%20layanan%20${encodeURIComponent(service.title)}`}
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								Konsultasi Layanan Ini
+								<svg aria-hidden="true" viewBox="0 0 24 24">
+									<path d="M5 12h14"></path>
+									<path d="m13 6 6 6-6 6"></path>
+								</svg>
+							</a>
+							<a class="button button-secondary" href="/layanan">Lihat Layanan Lain</a>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Detailed Subservices Section -->
+			<section class="detail-section" id="sublayanan" aria-labelledby="subservice-title">
+				<div class="container">
+					<div class="section-header-centered">
+						<span class="section-kicker">Cakupan Layanan</span>
+						<h2 id="subservice-title">Sub-Layanan & Spesifikasi Solusi</h2>
+						<p>
+							Berikut adalah bidang spesialisasi yang dapat kami sesuaikan dan kerjakan dalam paket
+							layanan {service.shortTitle}.
+						</p>
+					</div>
+
+					<div class="subservices-detail-grid">
+						{
+							service.subServices.map((sub, index) => (
+								<article class="subservice-detail-card" id={sub.id}>
+									<div class="subservice-detail-card-top">
+										<div class="service-card-header-left">
+											<div class="service-icon-box" aria-hidden="true">
+												<svg viewBox="0 0 24 24" fill="none">
+													<path d={getServiceIconPath(service.icon)} />
+												</svg>
+											</div>
+											<div>
+												<span class="subservice-tag">{sub.tag}</span>
+												<span
+													style="margin-left: 8px; font-size: 0.78rem; font-weight: 700; color: var(--color-muted);"
+												>
+													0{index + 1}
+												</span>
+											</div>
+										</div>
+
+										<h3>{sub.title}</h3>
+										<p>{sub.description}</p>
+									</div>
+
+									<div class="subservice-detail-card-bottom">
+										<a
+											class="button button-secondary"
+											style="width: 100%; justify-content: center;"
+											href={`${contactWhatsAppUrl}&text=Halo%20Technodigi%2C%20saya%20ingin%20konsultasi%20mengenai%20${encodeURIComponent(sub.title)}`}
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											Tanyakan Kebutuhan
+										</a>
+									</div>
+								</article>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<!-- Workflow Section -->
+			<section class="workflow-section" aria-labelledby="workflow-detail-title">
+				<div class="container">
+					<div class="section-header-centered">
+						<span class="section-kicker">Alur Kerja Solusi</span>
+						<h2 id="workflow-detail-title">Tahapan Eksekusi Layanan</h2>
+						<p>
+							Metodologi kami menjamin setiap tahap implementasi berjalan dengan terukur, aman, dan
+							bebas kendala.
+						</p>
+					</div>
+
+					<div class="workflow-grid">
+						{
+							workSteps.map((step, idx) => (
+								<div class="workflow-card">
+									<span class="workflow-number">Tahap 0{idx + 1}</span>
+									<h3>{step.title}</h3>
+									<p>{step.summary}</p>
+								</div>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<!-- Consultation Banner CTA -->
+			<section class="container" aria-label="Diskusi Proyek">
+				<div class="service-cta-card">
+					<div class="service-cta-content">
+						<h2>Siap Mengembangkan {service.shortTitle}?</h2>
+						<p>
+							Diskusikan kebutuhan, ruang lingkup, dan skema implementasi solusi dengan tim ahli
+							Technodigi. Dapatkan rekomendasi terbaik tanpa biaya konsultasi awal.
+						</p>
+					</div>
+					<div class="service-cta-actions">
+						<a
+							class="button button-primary"
+							href={`${contactWhatsAppUrl}&text=Halo%20Technodigi%2C%20saya%20ingin%20diskusi%20proyek%20${encodeURIComponent(service.title)}`}
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							Hubungi via WhatsApp
+						</a>
+						<a class="button button-secondary" href={`mailto:${contactEmail}`}> Kirim Email </a>
+					</div>
+				</div>
+			</section>
+
+			<!-- Related Services Bottom Section -->
+			<section class="related-services-section" aria-labelledby="related-title">
+				<div class="container">
+					<div style="display: flex; justify-content: space-between; align-items: center;">
+						<div>
+							<span class="section-kicker">Ekosistem Lain</span>
+							<h2 id="related-title" style="margin: 4px 0 0; font-size: 1.6rem; font-weight: 800;">
+								Layanan Technodigi Lainnya
+							</h2>
+						</div>
+						<a href="/layanan" class="button button-secondary">Lihat Semua Layanan</a>
+					</div>
+
+					<div class="related-grid">
+						{
+							otherServices.map((item) => (
+								<a class="related-card" href={`/layanan/${item.slug}`}>
+									<span class="badge">{item.badge}</span>
+									<h3>{item.title}</h3>
+									<p>{item.description}</p>
+								</a>
+							))
+						}
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<SiteFooter />
+	</div>
+</Layout>

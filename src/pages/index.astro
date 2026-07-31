@@ -2,33 +2,33 @@
 import Home from '../components/home.astro';
 import SiteFooter from '../components/layout/SiteFooter.astro';
 import SiteHeader from '../components/layout/SiteHeader.astro';
-import { brandName, companyName, defaultKeywords, faqItems, products } from '../data/site';
+import { brandName, companyName, defaultKeywords, faqItems, serviceCategories } from '../data/site';
 import Layout from '../layouts/Layout.astro';
 import { absoluteUrl, buildFaqSchema } from '../lib/seo';
 
-const homeTitle = `${brandName} | Jasa Software, Hardware & Konsultan IT Indonesia`;
-const homeDescription = `${companyName} membantu bisnis di Indonesia membangun software custom, pengadaan hardware, dan konsultasi IT. Konsultasi gratis via WhatsApp untuk transformasi digital yang terukur.`;
+const homeTitle = `${brandName} | Solusi Software, AI, Data & IT Infrastructure Indonesia`;
+const homeDescription = `${companyName} membantu bisnis di Indonesia membangun software custom, business automation & AI, data analytics, dan pengadaan infrastruktur IT. Konsultasi gratis via WhatsApp.`;
 const homeKeywords = [
 	...defaultKeywords,
 	'technodigi indonesia',
-	'jasa pembuatan aplikasi',
-	'konsultasi it gratis',
-	'mitra transformasi digital',
+	'jasa software indonesia',
+	'business automation ai',
+	'data analytics reporting',
+	'it infrastructure support',
 ];
 
 const offerCatalogSchema = {
 	'@type': 'OfferCatalog',
 	'@id': absoluteUrl('#offer-catalog'),
 	name: `Katalog Layanan ${brandName}`,
-	itemListElement: products.map((product, index) => ({
+	itemListElement: serviceCategories.map((service, index) => ({
 		'@type': 'Offer',
 		position: index + 1,
 		itemOffered: {
 			'@type': 'Service',
-			'@id': absoluteUrl(`/produk#${product.id}`),
-			name: product.title,
-			description: product.summary,
-			serviceType: product.category,
+			'@id': absoluteUrl(`/layanan/${service.slug}`),
+			name: service.title,
+			description: service.description,
 			provider: {
 				'@id': absoluteUrl('#organization'),
 			},

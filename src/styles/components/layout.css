@@ -135,12 +135,19 @@
 }
 
 .header-action {
-	border: 1px solid rgba(35, 180, 165, 0.34);
-	background: transparent;
+	border: 1px solid rgba(35, 180, 165, 0.4);
+	background: rgba(35, 180, 165, 0.12);
 	color: var(--color-primary);
 	cursor: pointer;
 	font-weight: 750;
 	white-space: nowrap;
+	transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease;
+}
+
+.header-action:hover {
+	background: var(--color-primary);
+	border-color: var(--color-primary);
+	color: #ffffff;
 }
 
 .consultation-modal {

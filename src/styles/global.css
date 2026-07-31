@@ -150,13 +150,37 @@ textarea {
 }
 
 .button-secondary {
-	border: 1px solid rgba(255, 255, 255, 0.34);
-	background: rgba(255, 255, 255, 0.08);
-	color: #ffffff;
+	border: 1.5px solid rgba(27, 47, 97, 0.22);
+	background: #ffffff;
+	color: var(--color-ink);
+	box-shadow: 0 4px 14px rgba(27, 47, 97, 0.06);
 }
 
 .button-secondary:hover {
-	background: rgba(255, 255, 255, 0.16);
+	background: #f1f5f9;
+	border-color: var(--color-secondary);
+	color: var(--color-primary);
+	box-shadow: 0 6px 18px rgba(27, 47, 97, 0.1);
+}
+
+/* Dark context override for buttons inside dark banners/heroes */
+.hero .button-secondary,
+.services-hero .button-secondary,
+.product-hero .button-secondary,
+.service-cta-card .button-secondary {
+	border: 1.5px solid rgba(255, 255, 255, 0.35);
+	background: rgba(255, 255, 255, 0.12);
+	color: #ffffff;
+	box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+.hero .button-secondary:hover,
+.services-hero .button-secondary:hover,
+.product-hero .button-secondary:hover,
+.service-cta-card .button-secondary:hover {
+	background: rgba(255, 255, 255, 0.24);
+	border-color: rgba(255, 255, 255, 0.65);
+	color: #ffffff;
 }
 
 :focus-visible {

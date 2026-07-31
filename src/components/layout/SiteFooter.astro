@@ -8,6 +8,7 @@ import {
 	contactWhatsAppUrl,
 	officeLocations,
 	navItems,
+	serviceCategories,
 } from '../../data/site';
 
 const currentYear = new Date().getFullYear();
@@ -20,7 +21,7 @@ const currentYear = new Date().getFullYear();
 				<img src="/images/technodigi_logo.svg" alt={brandName} width="2480" height="1906" loading="lazy" />
 			</a>
 			<p>
-				{companyName} — mitra software, hardware, dan konsultan IT untuk transformasi digital bisnis
+				{companyName} — mitra software, automasi AI, data analytics, dan infrastruktur IT untuk transformasi digital bisnis
 				di Indonesia.
 			</p>
 		</div>
@@ -35,6 +36,17 @@ const currentYear = new Date().getFullYear();
 				))}
 			</ul>
 		</nav>
+
+		<div class="footer-nav" aria-label="Layanan footer">
+			<p class="footer-heading">Layanan Utama</p>
+			<ul>
+				{serviceCategories.map((service) => (
+					<li>
+						<a href={`/layanan/${service.slug}`}>{service.shortTitle}</a>
+					</li>
+				))}
+			</ul>
+		</div>
 
 		<div class="footer-contact">
 			<p class="footer-heading">Kontak</p>

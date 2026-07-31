@@ -2,11 +2,11 @@
 import '../styles/pages/home.css';
 import {
 	companyName,
+	contactWhatsAppUrl,
 	faqItems,
-	featuredProducts,
+	serviceCategories,
 	valueItems,
 } from '../data/site';
-import ProductCard from './product/ProductCard.astro';
 ---
 
 <main id="main-content">
@@ -22,26 +22,31 @@ import ProductCard from './product/ProductCard.astro';
 		</div>
 
 		<div class="hero-content">
-			<p class="eyebrow">Software | Hardware | Konsultan IT</p>
+			<p class="eyebrow">Software | AI | Data Analytics | IT Support</p>
 			<h1 id="hero-title">Bangun sistem digital yang membantu bisnis Anda bergerak lebih cepat.</h1>
 			<p class="hero-copy">
 				{companyName} membantu perusahaan memetakan kebutuhan teknologi, membangun solusi yang tepat,
 				dan menjaga operasi tetap aman saat bisnis tumbuh.
 			</p>
 			<div class="hero-actions" aria-label="Aksi utama">
-				<a class="button button-primary" href="/kontak">
+				<a
+					class="button button-primary"
+					href={contactWhatsAppUrl}
+					target="_blank"
+					rel="noopener noreferrer"
+				>
 					Konsultasi Gratis
 					<svg aria-hidden="true" viewBox="0 0 24 24">
 						<path d="M5 12h14" />
 						<path d="m13 6 6 6-6 6" />
 					</svg>
 				</a>
-				<a class="button button-secondary" href="/produk">Lihat Solusi Kami</a>
+				<a class="button button-secondary" href="/layanan">Lihat Layanan Kami</a>
 			</div>
 			<div class="hero-highlights" aria-label="Keunggulan layanan">
 				<div class="hero-highlight">Solusi yang disesuaikan dengan proses bisnis</div>
 				<div class="hero-highlight">Dari audit, desain, hingga implementasi</div>
-				<div class="hero-highlight">Dukungan yang jelas dan mudah dipahami</div>
+				<div class="hero-highlight">Dukungan teknis terpercaya</div>
 			</div>
 		</div>
 	</section>
@@ -84,23 +89,55 @@ import ProductCard from './product/ProductCard.astro';
 		</div>
 	</section>
 
-	<section class="section section-muted" id="produk" aria-labelledby="products-title">
+	<section class="section section-muted" id="layanan" aria-labelledby="services-title">
 		<div class="container section-heading">
-			<p class="section-kicker">Produk dan Layanan</p>
-			<h2 id="products-title">Layanan inti untuk kebutuhan teknologi perusahaan.</h2>
+			<p class="section-kicker">Layanan Utama</p>
+			<h2 id="services-title">4 Ekosistem Layanan Solusi Digital & IT Technodigi</h2>
 			<p>
-				Paket dapat disesuaikan untuk proyek baru, modernisasi sistem lama, atau penguatan
-				infrastruktur IT yang sedang berjalan.
+				Dapat disesuaikan untuk pengembangan proyek baru, otomatisasi alur kerja, pengolahan data,
+				maupun pengadaan & pemeliharaan infrastruktur teknologi perusahaan.
 			</p>
 		</div>
 
-		<div class="container product-grid">
-			{featuredProducts.map((product) => <ProductCard product={product} variant="compact" />)}
+		<div class="container home-services-grid">
+			{
+				serviceCategories.map((service) => (
+					<article class="home-service-card">
+						<div class="home-service-card-top">
+							<span class="home-service-badge">{service.badge}</span>
+							<h3>
+								<a href={`/layanan/${service.slug}`}>{service.title}</a>
+							</h3>
+							<p>{service.description}</p>
+
+							<div class="home-service-chips">
+								{service.subServices.map((sub) => (
+									<span class="home-service-chip">{sub.title}</span>
+								))}
+							</div>
+						</div>
+
+						<div>
+							<a
+								class="button button-primary"
+								style="width: 100%; justify-content: center; font-size: 0.9rem;"
+								href={`/layanan/${service.slug}`}
+							>
+								Lihat Detail Layanan
+								<svg aria-hidden="true" viewBox="0 0 24 24">
+									<path d="M5 12h14" />
+									<path d="m13 6 6 6-6 6" />
+								</svg>
+							</a>
+						</div>
+					</article>
+				))
+			}
 		</div>
 
-		<div class="container product-action">
-			<a class="button button-primary" href="/produk">
-				Lihat Semua Produk
+		<div class="container" style="text-align: center; margin-top: 40px;">
+			<a class="button button-secondary" href="/layanan">
+				Jelajahi Semua Katalog Layanan
 				<svg aria-hidden="true" viewBox="0 0 24 24">
 					<path d="M5 12h14" />
 					<path d="m13 6 6 6-6 6" />
