@@ -45,7 +45,7 @@ const {
 const baseUrl = Astro.site ?? new URL(siteUrl);
 const canonicalUrl = new URL(canonical ?? Astro.url.pathname, baseUrl).toString();
 const imageUrl = new URL(image, baseUrl).toString();
-const logoUrl = new URL('/images/technodigi_logo.svg', baseUrl).toString();
+const logoUrl = new URL('/images/technodigi_logo.png', baseUrl).toString();
 const keywordsContent = keywords.join(', ');
 
 const organizationSchema = buildOrganizationSchema({
@@ -76,9 +76,9 @@ const schema = {
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="icon" type="image/svg+xml" href="/images/technodigi_logo.svg" />
+		<link rel="icon" type="image/png" href="/images/technodigi_logo.png" />
 		<link rel="icon" href="/images/technodigi_logo.ico" />
-		<link rel="apple-touch-icon" href="/images/technodigi_logo.svg" />
+		<link rel="apple-touch-icon" href="/images/technodigi_logo.png" />
 		<link rel="manifest" href="/manifest.webmanifest" />
 		<link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 		<meta name="generator" content={Astro.generator} />
