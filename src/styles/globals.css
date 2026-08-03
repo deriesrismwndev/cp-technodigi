@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+@theme inline {
+    --font-sans: 'Geist', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* === APPLE LIQUID GLASS CANVAS & SYSTEM === */
+
+:root {
+    --color-bg-deep: #030712;
+    --color-glass-bg: rgba(255, 255, 255, 0.035);
+    --color-glass-border: rgba(255, 255, 255, 0.08);
+    --color-glass-top: rgba(255, 255, 255, 0.22);
+    --color-accent-teal: #22b4a6;
+    --color-accent-cyan: #06b6d4;
+}
+
+body {
+    background-color: var(--color-bg-deep);
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+/* Liquid Glass Container */
+.liquid-glass {
+    background: rgba(255, 255, 255, 0.035);
+    backdrop-filter: blur(24px) saturate(190%);
+    -webkit-backdrop-filter: blur(24px) saturate(190%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid rgba(255, 255, 255, 0.22);
+    box-shadow: 
+        0 20px 50px -10px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+}
+
+/* Liquid Glass Accent Tint */
+.liquid-glass-accent {
+    background: linear-gradient(135deg, rgba(34, 180, 166, 0.08) 0%, rgba(6, 182, 212, 0.03) 100%);
+    backdrop-filter: blur(24px) saturate(200%);
+    -webkit-backdrop-filter: blur(24px) saturate(200%);
+    border: 1px solid rgba(34, 180, 166, 0.25);
+    border-top: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 
+        0 20px 50px -10px rgba(0, 0, 0, 0.6),
+        0 0 35px rgba(34, 180, 166, 0.18),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Liquid Pill Badge */
+.liquid-pill {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-top: 1px solid rgba(255, 255, 255, 0.28);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #030712;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+    border: 2px solid #030712;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(34, 180, 166, 0.4);
+}
+
+/* Selection */
+::selection {
+    background-color: rgba(34, 180, 166, 0.3);
+    color: #ffffff;
+}
+
+/* Liquid Glow Keyframes */
+@keyframes liquid-float {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-25px) scale(1.05);
+    }
+}
+
+@keyframes liquid-pulse {
+    0%, 100% {
+        opacity: 0.4;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.1);
+    }
+}
+
+@keyframes shimmer-sweep {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.animate-liquid-float {
+    animation: liquid-float 8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+.animate-liquid-pulse {
+    animation: liquid-pulse 6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+.animate-shimmer {
+    animation: shimmer-sweep 3s ease-in-out infinite;
+}

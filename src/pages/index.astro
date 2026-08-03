@@ -1,56 +1,16 @@
 ---
-import Home from '../components/home.astro';
-import SiteFooter from '../components/layout/SiteFooter.astro';
-import SiteHeader from '../components/layout/SiteHeader.astro';
-import { brandName, companyName, defaultKeywords, faqItems, serviceCategories } from '../data/site';
-import Layout from '../layouts/Layout.astro';
-import { absoluteUrl, buildFaqSchema } from '../lib/seo';
-
-const homeTitle = `${brandName} | Solusi Software, AI, Data & IT Infrastructure Indonesia`;
-const homeDescription = `${companyName} membantu bisnis di Indonesia membangun software custom, business automation & AI, data analytics, dan pengadaan infrastruktur IT. Konsultasi gratis via WhatsApp.`;
-const homeKeywords = [
-	...defaultKeywords,
-	'technodigi indonesia',
-	'jasa software indonesia',
-	'business automation ai',
-	'data analytics reporting',
-	'it infrastructure support',
-];
-
-const offerCatalogSchema = {
-	'@type': 'OfferCatalog',
-	'@id': absoluteUrl('#offer-catalog'),
-	name: `Katalog Layanan ${brandName}`,
-	itemListElement: serviceCategories.map((service, index) => ({
-		'@type': 'Offer',
-		position: index + 1,
-		itemOffered: {
-			'@type': 'Service',
-			'@id': absoluteUrl(`/layanan/${service.slug}`),
-			name: service.title,
-			description: service.description,
-			provider: {
-				'@id': absoluteUrl('#organization'),
-			},
-			areaServed: 'Indonesia',
-		},
-	})),
-};
-
-const faqSchema = buildFaqSchema(faqItems, '/#faq');
+import Layout from "@/layouts/Layout.astro";
+import { Hero } from "@/components/sections/Hero";
+import { AboutAndWhyUs } from "@/components/sections/AboutAndWhyUs";
+import { ServicesOverview } from "@/components/sections/ServicesOverview";
+import { FAQ } from "@/components/sections/FAQ";
+import { CTA } from "@/components/sections/CTA";
 ---
 
-<Layout
-	title={homeTitle}
-	description={homeDescription}
-	keywords={homeKeywords}
-	canonical="/"
-	pageType="WebPage"
-	structuredData={[offerCatalogSchema, faqSchema]}
->
-	<div class="page-shell">
-		<SiteHeader active="home" />
-		<Home />
-		<SiteFooter />
-	</div>
+<Layout title="Technodigi Mandiri Solusi — IT Solutions Partner">
+  <Hero client:load />
+  <AboutAndWhyUs client:visible />
+  <ServicesOverview client:visible />
+  <FAQ client:visible />
+  <CTA client:visible />
 </Layout>

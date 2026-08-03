@@ -1,135 +1,47 @@
 ---
-import '../styles/global.css';
-import { ClientRouter } from 'astro:transitions';
-import {
-	brandName,
-	companyName,
-	defaultKeywords,
-	geo,
-	siteUrl,
-} from '../data/site';
-import {
-	buildOrganizationSchema,
-	buildWebPageSchema,
-	buildWebsiteSchema,
-} from '../lib/seo';
+import { Navbar } from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer.astro";
+import "@/styles/globals.css";
 
-export interface Props {
-	title?: string;
-	description?: string;
-	keywords?: string[];
-	image?: string;
-	imageAlt?: string;
-	canonical?: string;
-	lang?: string;
-	ogType?: 'website' | 'article';
-	pageType?: string;
-	noindex?: boolean;
-	structuredData?: Record<string, unknown> | Record<string, unknown>[];
+interface Props {
+  title?: string;
+  description?: string;
 }
 
 const {
-	title = `${brandName} | ${companyName.replace('CV. ', '')} — Software, Hardware & Konsultan IT`,
-	description = `${companyName} membantu bisnis di Indonesia membangun software custom, pengadaan hardware, dan konsultasi IT untuk operasional yang aman, terukur, dan siap berkembang.`,
-	keywords = defaultKeywords,
-	image = '/images/it-hero.png',
-	imageAlt = 'Layanan software, hardware, dan konsultan IT Technodigi untuk transformasi digital bisnis.',
-	canonical,
-	lang = 'id-ID',
-	ogType = 'website',
-	pageType,
-	noindex = false,
-	structuredData = [],
+  title = "Technodigi Mandiri Solusi — IT Solutions Partner",
+  description = "Mitra teknologi end-to-end Anda — dari custom software, infrastruktur jaringan, hingga solusi cloud yang siap skala. IT consulting, software development, cybersecurity, dan IT support.",
 } = Astro.props;
 
-const baseUrl = Astro.site ?? new URL(siteUrl);
-const canonicalUrl = new URL(canonical ?? Astro.url.pathname, baseUrl).toString();
-const imageUrl = new URL(image, baseUrl).toString();
-const logoUrl = new URL('/images/technodigi_logo.png', baseUrl).toString();
-const keywordsContent = keywords.join(', ');
-
-const organizationSchema = buildOrganizationSchema({
-	description,
-	logoUrl: logoUrl,
-	imageUrl: imageUrl,
-});
-const websiteSchema = buildWebsiteSchema(lang);
-const webPageSchema = buildWebPageSchema({
-	title,
-	description,
-	canonicalUrl,
-	imageUrl,
-	imageAlt,
-	lang,
-	pageType,
-});
-
-const extraStructuredData = Array.isArray(structuredData) ? structuredData : [structuredData];
-const schema = {
-	'@context': 'https://schema.org',
-	'@graph': [organizationSchema, websiteSchema, webPageSchema, ...extraStructuredData],
-};
+const currentPath = Astro.url.pathname;
 ---
 
 <!doctype html>
-<html lang={lang}>
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="icon" type="image/png" href="/images/technodigi_logo.png" />
-		<link rel="icon" href="/images/technodigi_logo.ico" />
-		<link rel="apple-touch-icon" href="/images/technodigi_logo.png" />
-		<link rel="manifest" href="/manifest.webmanifest" />
-		<link rel="sitemap" type="application/xml" href="/sitemap.xml" />
-		<meta name="generator" content={Astro.generator} />
-		<meta name="description" content={description} />
-		<meta name="keywords" content={keywordsContent} />
-		<meta name="author" content={companyName} />
-		<meta name="publisher" content={companyName} />
-		<meta name="copyright" content={companyName} />
-		<meta name="application-name" content={brandName} />
-		<meta name="apple-mobile-web-app-title" content={brandName} />
-		<meta name="format-detection" content="telephone=no" />
-		<meta
-			name="robots"
-			content={noindex
-				? 'noindex, nofollow'
-				: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'}
-		/>
-		<meta name="googlebot" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
-		<meta name="theme-color" content="#1B2F61" />
-		<meta name="geo.region" content={geo.region} />
-		<meta name="geo.placename" content={geo.placename} />
-		<meta name="geo.position" content={`${geo.latitude};${geo.longitude}`} />
-		<meta name="ICBM" content={`${geo.latitude}, ${geo.longitude}`} />
-		<link rel="canonical" href={canonicalUrl} />
-		<link rel="alternate" hreflang="id-ID" href={canonicalUrl} />
-		<link rel="alternate" hreflang="x-default" href={canonicalUrl} />
+<html lang="id" class="bg-[#030712]">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="flex min-h-screen flex-col bg-[#030712] text-white antialiased selection:bg-[#22b4a6]/30 selection:text-white overflow-x-hidden relative">
+    {/* Global Unified Ambient Light Orbs (Seamless across all sections) */}
+    <div class="fixed top-[-10%] left-[-10%] w-[750px] h-[750px] bg-[#22b4a6]/10 rounded-full blur-[220px] pointer-events-none z-0" />
+    <div class="fixed bottom-[-10%] right-[-10%] w-[750px] h-[750px] bg-[#06b6d4]/08 rounded-full blur-[220px] pointer-events-none z-0" />
 
-		<meta property="og:type" content={ogType} />
-		<meta property="og:locale" content="id_ID" />
-		<meta property="og:site_name" content={brandName} />
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
-		<meta property="og:url" content={canonicalUrl} />
-		<meta property="og:image" content={imageUrl} />
-		<meta property="og:image:secure_url" content={imageUrl} />
-		<meta property="og:image:alt" content={imageAlt} />
-		<meta property="og:image:width" content="1672" />
-		<meta property="og:image:height" content="941" />
-
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content={title} />
-		<meta name="twitter:description" content={description} />
-		<meta name="twitter:image" content={imageUrl} />
-		<meta name="twitter:image:alt" content={imageAlt} />
-
-		<script type="application/ld+json" set:html={JSON.stringify(schema)} />
-		<title>{title}</title>
-		<ClientRouter />
-	</head>
-	<body>
-		<a class="skip-link" href="#main-content">Langsung ke konten utama</a>
-		<slot />
-	</body>
+    <Navbar currentPath={currentPath} client:load />
+    <main class="flex-1 w-full overflow-x-hidden relative z-10">
+      <slot />
+    </main>
+    <Footer />
+  </body>
 </html>
