@@ -14,7 +14,6 @@ const services = [
   {
     id: "software",
     icon: Code2,
-    number: "01",
     title: "Software & Mobile App Development",
     subtitle: "Aplikasi Web & Mobile Custom",
     bgImage: "/home_services_one.jpeg",
@@ -30,7 +29,6 @@ const services = [
   {
     id: "automation",
     icon: Bot,
-    number: "02",
     title: "Business Automation & AI Solutions",
     subtitle: "Otomatisasi Workflow & Integrasi AI",
     bgImage: "/home_services_two.jpeg",
@@ -46,7 +44,6 @@ const services = [
   {
     id: "analytics",
     icon: BarChart3,
-    number: "03",
     title: "Data Analytics & Executive Dashboard",
     subtitle: "Dasbor Analytics Real-Time & BI",
     bgImage: "/home_services_three.jpeg",
@@ -62,7 +59,6 @@ const services = [
   {
     id: "infrastructure",
     icon: Network,
-    number: "04",
     title: "IT Infrastructure, Hardware & Support",
     subtitle: "Jaringan Enterprise & Perawatan 24/7",
     bgImage: "/home_services_four.jpeg",
@@ -84,7 +80,13 @@ export function ServicesOverview() {
     <section className="py-16 sm:py-20 bg-transparent relative">
       <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8 space-y-12 sm:space-y-16">
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true, margin: "-40px" }}
+          className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6"
+        >
           <div>
             <SectionLabel>LAYANAN UTAMA</SectionLabel>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight tracking-tight max-w-3xl">
@@ -96,12 +98,12 @@ export function ServicesOverview() {
           </div>
           <a
             href="/services"
-            className="inline-flex items-center gap-2 font-mono text-xs font-semibold text-[#22b4a6] hover:text-white transition-colors duration-200 py-1 shrink-0 group self-start sm:self-auto"
+            className="inline-flex items-center gap-2 font-mono text-xs font-semibold text-[#22b4a6] hover:text-white transition-colors duration-300 py-1 shrink-0 group self-start sm:self-auto"
           >
             <span>Jelajahi Semua Layanan</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
           </a>
-        </div>
+        </motion.div>
 
         {/* DESKTOP (>= 1024px): Expanding Horizontal Glass Accordion Deck */}
         <div className="hidden lg:flex gap-4 h-[520px] w-full">
@@ -113,7 +115,7 @@ export function ServicesOverview() {
               <div
                 key={service.id}
                 onMouseEnter={() => setActiveHover(index)}
-                className={`relative rounded-3xl border border-white/12 border-t-white/25 bg-white/[0.035] backdrop-blur-3xl p-8 transition-all duration-700 ease-out cursor-pointer overflow-hidden flex flex-col justify-between group ${
+                className={`relative rounded-3xl border border-white/12 border-t-white/25 bg-white/[0.035] backdrop-blur-3xl p-8 transition-all duration-700 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] cursor-pointer overflow-hidden flex flex-col justify-between group ${
                   isExpanded
                     ? "flex-[3.5] bg-gradient-to-br " + service.color + " border-white/30"
                     : "flex-1 hover:bg-white/[0.06] hover:border-white/20"
@@ -129,18 +131,23 @@ export function ServicesOverview() {
                 {/* Top Bar */}
                 <div className="relative z-10 flex items-center justify-between">
                   <div
-                    className={`w-14 h-14 rounded-2xl border border-white/15 flex items-center justify-center transition-all duration-500 shrink-0 ${
+                    className={`w-14 h-14 rounded-2xl border border-white/15 flex items-center justify-center transition-all duration-500 ease-out shrink-0 ${
                       isExpanded
-                        ? "bg-[#22b4a6] text-black"
+                        ? "bg-[#22b4a6] text-black scale-105"
                         : "bg-white/[0.05] text-[#22b4a6]"
                     }`}
                   >
                     <Icon className="w-7 h-7" />
                   </div>
                   {isExpanded && (
-                    <span className="font-mono text-xs text-[#22b4a6] font-semibold tracking-wider px-3 py-1 rounded-full bg-white/[0.05] border border-white/10">
+                    <motion.span
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                      className="font-mono text-xs text-[#22b4a6] font-semibold tracking-wider px-3 py-1 rounded-full bg-white/[0.05] border border-white/10"
+                    >
                       {service.subtitle}
-                    </span>
+                    </motion.span>
                   )}
                 </div>
 
@@ -149,7 +156,7 @@ export function ServicesOverview() {
                   <motion.div
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4 }}
+                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                     className="relative z-10 space-y-4 my-auto"
                   >
                     <h3 className="text-2xl lg:text-3xl font-extrabold text-white tracking-tight leading-snug">
@@ -185,13 +192,16 @@ export function ServicesOverview() {
                 {/* Bottom Bar */}
                 <div className="relative z-10 flex items-center justify-end pt-4 border-t border-white/10">
                   {isExpanded && (
-                    <a
+                    <motion.a
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.4, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
                       href="/services"
-                      className="inline-flex items-center gap-2 font-mono text-xs font-semibold text-white hover:text-[#22b4a6] transition-colors"
+                      className="inline-flex items-center gap-2 font-mono text-xs font-semibold text-white hover:text-[#22b4a6] transition-colors duration-300"
                     >
                       <span>Lihat Detail</span>
                       <ArrowRight className="w-4 h-4" />
-                    </a>
+                    </motion.a>
                   )}
                 </div>
               </div>
@@ -206,13 +216,13 @@ export function ServicesOverview() {
             return (
               <motion.div
                 key={service.id}
-                initial={{ opacity: 0, y: 25 }}
+                initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+                viewport={{ once: true, margin: "-30px" }}
                 className="h-full"
               >
-                <div className="h-full relative overflow-hidden rounded-3xl border border-white/12 border-t-white/25 bg-white/[0.035] backdrop-blur-3xl p-6 sm:p-8 flex flex-col justify-between group hover:border-white/30 hover:bg-white/[0.06] transition-all duration-300">
+                <div className="h-full relative overflow-hidden rounded-3xl border border-white/12 border-t-white/25 bg-white/[0.035] backdrop-blur-3xl p-6 sm:p-8 flex flex-col justify-between group hover:border-white/30 hover:bg-white/[0.06] transition-all duration-500 ease-out hover:-translate-y-1 hover:shadow-[0_15px_30px_rgba(0,0,0,0.4)]">
                   {/* Blended Background Overlay */}
                   <div
                     className="absolute inset-0 bg-cover bg-center mix-blend-overlay opacity-45 group-hover:opacity-60 transition-opacity duration-500 pointer-events-none"
@@ -223,7 +233,7 @@ export function ServicesOverview() {
                   <div>
                     {/* Top Row: Icon Sphere */}
                     <div className="relative z-10 flex items-center justify-between mb-6">
-                      <div className="w-12 h-12 rounded-2xl bg-[#22b4a6]/15 border border-white/15 flex items-center justify-center">
+                      <div className="w-12 h-12 rounded-2xl bg-[#22b4a6]/15 border border-white/15 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 ease-out">
                         <Icon className="w-6 h-6 text-[#22b4a6]" />
                       </div>
                     </div>
@@ -231,7 +241,7 @@ export function ServicesOverview() {
                     <span className="relative z-10 font-mono text-[10px] text-[#22b4a6] tracking-wider uppercase font-semibold block mb-1">
                       {service.subtitle}
                     </span>
-                    <h3 className="relative z-10 text-xl font-extrabold text-white tracking-tight leading-snug mb-3 group-hover:text-[#a5f3fc] transition-colors">
+                    <h3 className="relative z-10 text-xl font-extrabold text-white tracking-tight leading-snug mb-3 group-hover:text-[#a5f3fc] transition-colors duration-300">
                       {service.title}
                     </h3>
                     <p className="relative z-10 text-xs text-[#a3a3a3] leading-relaxed mb-6">
@@ -256,10 +266,10 @@ export function ServicesOverview() {
                     {/* Bottom CTA Link */}
                     <a
                       href="/services"
-                      className="relative z-10 inline-flex items-center gap-2 font-mono text-xs font-semibold text-[#22b4a6] group-hover:text-white transition-colors"
+                      className="relative z-10 inline-flex items-center gap-2 font-mono text-xs font-semibold text-[#22b4a6] group-hover:text-white transition-colors duration-300"
                     >
                       <span>Lihat Detail Layanan</span>
-                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-300" />
                     </a>
                   </div>
                 </div>

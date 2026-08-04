@@ -18,7 +18,7 @@ export function Hero() {
         muted
         loop
         playsInline
-        poster="/home_about_card.jpeg"
+        preload="auto"
         aria-hidden="true"
         tabIndex={-1}
         className="absolute inset-0 w-full h-full object-cover object-center opacity-35 mix-blend-screen pointer-events-none select-none [&::-webkit-media-controls]:!hidden [&::-webkit-media-controls-panel]:!hidden [&::-webkit-media-controls-play-button]:!hidden [&::-webkit-media-controls-start-playback-button]:!hidden [&::-webkit-media-controls-container]:!hidden"
@@ -39,9 +39,9 @@ export function Hero() {
         <div className="max-w-4xl lg:max-w-3xl w-full text-center lg:text-left flex flex-col items-center lg:items-start">
           {/* Main Headline (H1) */}
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.08] tracking-tight text-white mb-6 text-center lg:text-left max-w-4xl"
           >
             Solusi Software & Sistem Terintegrasi.
@@ -53,23 +53,23 @@ export function Hero() {
 
           {/* Subtitle / Description with Highlights */}
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="text-base sm:text-lg text-[#a3a3a3] leading-relaxed mb-10 max-w-2xl text-center lg:text-left mx-auto lg:mx-0"
           >
             Technodigi Mandiri Solusi menghadirkan{" "}
-            <span className="text-white font-semibold">perangkat lunak kustom</span>,{" "}
-            <span className="text-white font-semibold">otomatisasi alur kerja</span>, dan{" "}
+            <span className="text-[#22b4a6] font-semibold">perangkat lunak kustom</span>,{" "}
+            <span className="text-[#22b4a6] font-semibold">otomatisasi alur kerja</span>, dan{" "}
             <span className="text-[#22b4a6] font-semibold">sistem analitik data</span>{" "}
             yang dirancang khusus untuk memangkas proses manual serta mempercepat skala operasional perusahaan Anda.
           </motion.p>
 
           {/* CTA Buttons */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: 0.9, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4 w-full sm:w-auto"
           >
             <Button href="/contact" size="lg" variant="primary">
@@ -87,23 +87,28 @@ export function Hero() {
       {/* Client Logos Section */}
       <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8 w-full pt-16">
         <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-between text-center lg:text-left gap-6">
-          <p className="font-mono text-[10px] tracking-[0.3em] text-[#22b4a6] uppercase font-semibold shrink-0">
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="font-mono text-[10px] tracking-[0.3em] text-[#22b4a6] uppercase font-semibold shrink-0"
+          >
             DIPERCAYA OLEH PERUSAHAAN & INSTANSI
-          </p>
+          </motion.p>
 
           <div className="flex flex-wrap items-center justify-center lg:justify-end gap-8 md:gap-14">
             {clientLogos.map((client, i) => (
               <motion.div
                 key={client.src}
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.8 + i * 0.1 }}
-                className="group cursor-pointer transition-transform duration-300 hover:scale-105"
+                transition={{ duration: 0.7, delay: 0.7 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="group cursor-pointer transition-transform duration-500 ease-out hover:scale-105"
               >
                 <img
                   src={client.src}
                   alt={client.alt}
-                  className="h-10 md:h-12 w-auto max-w-[170px] object-contain transition-all duration-400 ease-out opacity-70 group-hover:opacity-100 [filter:sepia(1)_hue-rotate(130deg)_saturate(1.8)_brightness(0.65)] group-hover:[filter:none]"
+                  className="h-10 md:h-12 w-auto max-w-[170px] object-contain transition-all duration-500 ease-out opacity-70 group-hover:opacity-100 [filter:sepia(1)_hue-rotate(130deg)_saturate(1.8)_brightness(0.65)] group-hover:[filter:none]"
                 />
               </motion.div>
             ))}

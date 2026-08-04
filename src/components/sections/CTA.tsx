@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Button } from "@/components/ui/Button";
 import { MessagesSquare } from "lucide-react";
 
@@ -8,11 +7,17 @@ export function CTA() {
     <section className="py-20 bg-transparent relative px-4">
       <div className="relative z-10 mx-auto max-w-5xl text-center">
         {/* Main CTA Card — Pure Frosted Liquid Glass */}
-        <div className="rounded-3xl border border-white/15 border-t-white/35 bg-white/[0.035] backdrop-blur-3xl p-10 sm:p-14 md:p-20 shadow-[0_30px_90px_rgba(0,0,0,0.6)] relative overflow-hidden group transition-all duration-500 hover:border-white/40">
+        <motion.div
+          initial={{ opacity: 0, y: 24, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true, margin: "-40px" }}
+          className="rounded-3xl border border-white/15 border-t-white/35 bg-white/[0.035] backdrop-blur-3xl p-10 sm:p-14 md:p-20 shadow-[0_30px_90px_rgba(0,0,0,0.6)] relative overflow-hidden group transition-all duration-500 hover:border-white/40"
+        >
           {/* Blended Background Image Overlay */}
           <div
             className="absolute inset-0 bg-cover bg-center mix-blend-overlay opacity-40 group-hover:opacity-55 transition-opacity duration-700 pointer-events-none"
-            style={{ backgroundImage: "url('/home_about_card.jpeg')" }}
+            style={{ backgroundImage: "url('/home_cta_card.jpeg')" }}
           />
           {/* Subtle Soft Vignette Overlay */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#030712]/60 via-transparent to-[#030712]/70 pointer-events-none" />
@@ -22,14 +27,11 @@ export function CTA() {
 
           {/* CTA Content */}
           <div className="relative z-10 space-y-6">
-            {/* Unified Section Label */}
-            <SectionLabel className="justify-center">MULAI KOLABORASI</SectionLabel>
-
             {/* Headline — Direct & Natural */}
             <motion.h2
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+              transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] max-w-4xl mx-auto"
             >
@@ -41,9 +43,9 @@ export function CTA() {
 
             {/* Subtitle */}
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
               viewport={{ once: true }}
               className="max-w-2xl mx-auto text-[#a3a3a3] text-base sm:text-lg leading-relaxed font-sans"
             >
@@ -52,9 +54,9 @@ export function CTA() {
 
             {/* Single Action Button with MessagesSquare */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              transition={{ duration: 0.8, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
               viewport={{ once: true }}
               className="pt-4"
             >
@@ -64,7 +66,7 @@ export function CTA() {
               </Button>
             </motion.div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

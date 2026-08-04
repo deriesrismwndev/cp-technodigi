@@ -44,10 +44,10 @@ export function AboutAndWhyUs() {
           <div className="relative z-10">
             {/* Headline Statement — Natural & Human */}
             <motion.h2
-              initial={{ opacity: 0, y: 25 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              viewport={{ once: true, margin: "-40px" }}
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-[1.12] tracking-tight mb-8 max-w-4xl"
             >
               Bukan cuma bikin aplikasi, kami pastikan sistemnya{" "}
@@ -60,8 +60,8 @@ export function AboutAndWhyUs() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.15 }}
-              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              viewport={{ once: true, margin: "-40px" }}
               className="max-w-3xl space-y-4 text-base sm:text-lg text-[#a3a3a3] leading-relaxed mb-12"
             >
               <p>
@@ -82,7 +82,13 @@ export function AboutAndWhyUs() {
 
             {/* Bridging Element to 3 Pillars */}
             <div className="pt-10 border-t border-white/10">
-              <div className="flex items-center gap-3 mb-8">
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                viewport={{ once: true }}
+                className="flex items-center gap-3 mb-8"
+              >
                 <div className="w-8 h-8 rounded-full bg-[#22b4a6]/15 border border-white/15 flex items-center justify-center shrink-0">
                   <Compass className="w-4 h-4 text-[#22b4a6]" />
                 </div>
@@ -94,7 +100,7 @@ export function AboutAndWhyUs() {
                     3 Langkah Memastikan Proyek Anda Sukses
                   </h3>
                 </div>
-              </div>
+              </motion.div>
 
               {/* 3 Integrated Approach Cards */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -103,19 +109,19 @@ export function AboutAndWhyUs() {
                     key={pillar.title}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                    transition={{ duration: 0.7, delay: 0.25 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
                     viewport={{ once: true }}
-                    className="rounded-2xl border border-white/10 hover:border-white/25 bg-white/[0.03] hover:bg-white/[0.07] backdrop-blur-2xl p-6 transition-all duration-300 group/item flex flex-col justify-between"
+                    className="rounded-2xl border border-white/10 hover:border-white/25 bg-white/[0.03] hover:bg-white/[0.07] backdrop-blur-2xl p-6 transition-all duration-500 ease-out group/item flex flex-col justify-between hover:-translate-y-1 hover:shadow-[0_15px_30px_rgba(0,0,0,0.4)]"
                   >
                     <div>
-                      <div className="w-12 h-12 rounded-2xl bg-[#22b4a6]/15 border border-white/15 flex items-center justify-center mb-5 group-hover/item:scale-110 transition-transform duration-300">
+                      <div className="w-12 h-12 rounded-2xl bg-[#22b4a6]/15 border border-white/15 flex items-center justify-center mb-5 group-hover/item:scale-110 transition-transform duration-500 ease-out">
                         <pillar.icon className="w-6 h-6 text-[#22b4a6]" />
                       </div>
 
                       <span className="font-mono text-[10px] text-[#22b4a6] tracking-wider uppercase font-semibold block mb-1">
                         {pillar.subtitle}
                       </span>
-                      <h4 className="text-lg font-bold text-white mb-2 tracking-tight group-hover/item:text-[#a5f3fc] transition-colors">
+                      <h4 className="text-lg font-bold text-white mb-2 tracking-tight group-hover/item:text-[#a5f3fc] transition-colors duration-300">
                         {pillar.title}
                       </h4>
                       <p className="text-xs text-[#a3a3a3] leading-relaxed">

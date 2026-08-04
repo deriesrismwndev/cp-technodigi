@@ -38,7 +38,13 @@ export function FAQ() {
     <section className="py-20 bg-transparent relative">
       <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8">
         {/* Header Centered */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true, margin: "-40px" }}
+          className="text-center max-w-3xl mx-auto mb-16"
+        >
           <SectionLabel className="justify-center">PERTANYAAN UMUM</SectionLabel>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight">
             Segala Hal yang Perlu Anda Ketahui{" "}
@@ -49,7 +55,7 @@ export function FAQ() {
           <p className="mt-4 text-sm text-[#a3a3a3] leading-relaxed">
             Jawaban langsung seputar layanan, alur eksekusi teknis, hingga pengawalan purna jual Technodigi.
           </p>
-        </div>
+        </motion.div>
 
         {/* FAQ Accordion List — Pure Liquid Glass */}
         <div className="max-w-3xl mx-auto space-y-4">
@@ -58,9 +64,9 @@ export function FAQ() {
               key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: i * 0.08 }}
-              viewport={{ once: true }}
-              className={`rounded-2xl transition-all duration-300 overflow-hidden ${
+              transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              viewport={{ once: true, margin: "-30px" }}
+              className={`rounded-2xl transition-all duration-500 ease-out overflow-hidden ${
                 openIndex === i
                   ? "bg-white/[0.08] border border-white/20 backdrop-blur-2xl shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
                   : "bg-white/[0.035] border border-white/10 hover:border-white/20 backdrop-blur-xl"
@@ -72,32 +78,32 @@ export function FAQ() {
               >
                 <div className="flex items-center gap-3">
                   <HelpCircle className="w-5 h-5 text-[#22b4a6] shrink-0" />
-                  <span className="text-base md:text-lg font-bold text-white group-hover:text-[#22b4a6] transition-colors leading-snug">
+                  <span className="text-base md:text-lg font-bold text-white group-hover:text-[#22b4a6] transition-colors duration-300 leading-snug">
                     {faq.question}
                   </span>
                 </div>
                 {/* Clean Liquid Glass Chevron Dropdown Button */}
                 <div
-                  className={`shrink-0 p-2 rounded-full border border-white/15 backdrop-blur-xl transition-all duration-300 ${
+                  className={`shrink-0 p-2 rounded-full border border-white/15 backdrop-blur-xl transition-all duration-500 ease-out ${
                     openIndex === i
                       ? "bg-[#22b4a6]/20 text-[#22b4a6] border-white/30"
                       : "bg-white/[0.05] text-white/60 group-hover:text-white"
                   }`}
                 >
                   <ChevronDown
-                    className={`w-4 h-4 transition-transform duration-300 ${
+                    className={`w-4 h-4 transition-transform duration-500 ease-out ${
                       openIndex === i ? "rotate-180 text-[#22b4a6]" : ""
                     }`}
                   />
                 </div>
               </button>
-              <AnimatePresence>
+              <AnimatePresence initial={false}>
                 {openIndex === i && (
                   <motion.div
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: "auto" }}
                     exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                     className="overflow-hidden"
                   >
                     <p className="text-sm md:text-base text-[#a3a3a3] leading-relaxed px-6 pb-6 pl-14">
