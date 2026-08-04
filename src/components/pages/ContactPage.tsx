@@ -1,223 +1,253 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Button } from "@/components/ui/Button";
-import { Mail, Phone, MapPin, Send, MessageSquare, Building2 } from "lucide-react";
-
-const locations = [
-  {
-    city: "Bogor",
-    province: "Jawa Barat, Indonesia",
-    detail: "Kantor Operasional & Pengembangan Software",
-  },
-  {
-    city: "Lubuklinggau",
-    province: "Sumatera Selatan, Indonesia",
-    detail: "Kantor Cabang & Infrastruktur Teknis",
-  },
-];
+import {
+  Send,
+  Mail,
+  MapPin,
+  Clock,
+  Sparkles,
+  MessageSquare,
+} from "lucide-react";
 
 export function ContactPage() {
+  const [submitted, setSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitted(true);
+  };
+
+  const locations = [
+    {
+      city: "Bogor",
+      region: "Jawa Barat, Indonesia",
+      address: "Kota Bogor, Jawa Barat 16111",
+    },
+    {
+      city: "Lubuklinggau",
+      region: "Sumatera Selatan, Indonesia",
+      address: "Kota Lubuklinggau, Sumatera Selatan 31626",
+    },
+  ];
+
   return (
-    <div className="bg-transparent font-sans">
-      {/* Hero */}
-      <section className="pt-36 md:pt-44 pb-16 relative">
-        <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8">
-          <SectionLabel>Hubungi Kami</SectionLabel>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-6 leading-tight tracking-tight">
-              Mari Bicara tentang{" "}
-              <span className="bg-gradient-to-r from-white via-[#a5f3fc] to-[#22b4a6] bg-clip-text text-transparent">
-                Proyek & Solusi Anda.
-              </span>
-            </h1>
-            <p className="max-w-2xl text-lg md:text-xl text-[#a3a3a3] leading-relaxed">
-              Tim spesialis kami siap menjawab pertanyaan dan mendiskusikan
-              kebutuhan sistem perusahaan Anda secara langsung.
-            </p>
-          </motion.div>
+    <div className="pt-32 pb-24 relative overflow-hidden bg-transparent">
+      {/* Background Halo Blobs */}
+      <div className="absolute top-1/4 left-10 w-[550px] h-[550px] bg-[#22b4a6]/15 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/3 right-10 w-[550px] h-[550px] bg-[#06b6d4]/15 rounded-full blur-[170px] pointer-events-none" />
+
+      <div className="mx-auto max-w-6xl px-6 lg:px-8 relative z-10">
+        {/* Header Section */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <SectionLabel className="justify-center">HUBUNGI KAMI</SectionLabel>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight leading-tight mb-4">
+            Mari Bicara tentang{" "}
+            <span className="bg-gradient-to-r from-white via-[#a5f3fc] to-[#22b4a6] bg-clip-text text-transparent">
+              Proyek IT Anda.
+            </span>
+          </h1>
+          <p className="text-base sm:text-lg text-[#a3a3a3] leading-relaxed">
+            Tim pakar Technodigi siap membantu menganalisis kebutuhan sistem,
+            memberikan konsultasi gratis, serta merancang solusi terbaik untuk bisnis Anda.
+          </p>
         </div>
-      </section>
 
-      {/* Main Contact Section — Aligned 2-Column Grid */}
-      <section className="pb-28 relative">
-        <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-            {/* Left: Contact Form (7 cols) */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="lg:col-span-7 rounded-3xl border border-white/12 border-t-white/30 bg-white/[0.035] backdrop-blur-3xl p-8 md:p-10 shadow-[0_30px_70px_rgba(0,0,0,0.6)] flex flex-col justify-between relative overflow-hidden group"
-            >
-              {/* Blended Background Overlay */}
-              <div
-                className="absolute inset-0 bg-cover bg-center mix-blend-overlay opacity-20 pointer-events-none"
-                style={{ backgroundImage: "url('/hero_about_card.jpeg')" }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-b from-[#030712]/95 via-[#030712]/85 to-[#030712]/95 pointer-events-none" />
+        {/* 2-Column Layout — Frosted Liquid Glass */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          {/* Left Column: Form Card */}
+          <div className="lg:col-span-7 rounded-3xl border border-white/12 border-t-white/25 bg-white/[0.035] backdrop-blur-3xl p-8 md:p-10 flex flex-col justify-between relative overflow-hidden group">
+            <div className="relative z-10">
+              <h2 className="text-2xl font-extrabold text-white tracking-tight mb-2">
+                Kirim Pesan atau Konsultasi
+              </h2>
+              <p className="text-xs text-[#a3a3a3] mb-8 leading-relaxed">
+                Isi formulir di bawah ini dan tim teknis kami akan menghubungi Anda dalam waktu 1x24 jam kerja.
+              </p>
 
-              <div className="relative z-10">
-                <h2 className="text-2xl font-extrabold text-white mb-2 tracking-tight">
-                  Kirim Pesan Langsung
-                </h2>
-                <p className="text-sm text-[#a3a3a3] mb-8">
-                  Isi formulir di bawah ini dan tim kami akan merespon dalam waktu kurang dari 2 jam.
-                </p>
-
-                <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {submitted ? (
+                <div className="p-8 text-center rounded-2xl bg-white/[0.04] border border-white/10 space-y-4">
+                  <div className="w-14 h-14 rounded-full bg-[#22b4a6]/20 border border-white/15 text-[#22b4a6] flex items-center justify-center mx-auto">
+                    <Sparkles className="w-7 h-7" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white">Pesan Berhasil Terkirim!</h3>
+                  <p className="text-xs text-[#a3a3a3] max-w-md mx-auto leading-relaxed">
+                    Terima kasih telah menghubungi Technodigi. Tim spesialis kami akan segera meninjau pesan Anda.
+                  </p>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
-                      <label className="block font-mono text-[10px] text-[#22b4a6] mb-2 tracking-[0.2em] font-semibold">
-                        NAMA LENGKAP
+                      <label className="block text-xs font-mono text-white/80 mb-2 font-medium">
+                        NAMA LENGKAP *
                       </label>
                       <input
                         type="text"
-                        placeholder="Masukkan nama Anda"
-                        className="w-full bg-white/[0.04] border border-white/12 rounded-2xl px-5 py-3.5 text-sm text-white placeholder-white/30 focus:border-[#22b4a6] focus:bg-white/[0.07] focus:outline-none transition-all duration-300 shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)]"
+                        required
+                        placeholder="John Doe"
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        className="w-full bg-white/[0.04] border border-white/10 rounded-2xl px-5 py-3.5 text-sm text-white placeholder-white/30 focus:border-white/25 focus:bg-white/[0.08] focus:outline-none transition-all duration-300"
                       />
                     </div>
                     <div>
-                      <label className="block font-mono text-[10px] text-[#22b4a6] mb-2 tracking-[0.2em] font-semibold">
-                        EMAIL PERUSAHAAN
+                      <label className="block text-xs font-mono text-white/80 mb-2 font-medium">
+                        ALAMAT EMAIL *
                       </label>
                       <input
                         type="email"
-                        placeholder="nama@perusahaan.com"
-                        className="w-full bg-white/[0.04] border border-white/12 rounded-2xl px-5 py-3.5 text-sm text-white placeholder-white/30 focus:border-[#22b4a6] focus:bg-white/[0.07] focus:outline-none transition-all duration-300 shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)]"
+                        required
+                        placeholder="john@company.com"
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        className="w-full bg-white/[0.04] border border-white/10 rounded-2xl px-5 py-3.5 text-sm text-white placeholder-white/30 focus:border-white/25 focus:bg-white/[0.08] focus:outline-none transition-all duration-300"
                       />
                     </div>
                   </div>
-                  <div>
-                    <label className="block font-mono text-[10px] text-[#22b4a6] mb-2 tracking-[0.2em] font-semibold">
-                      SUBJEK / KATEGORI LAYANAN
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="Contoh: Otomatisasi AI / Software Custom / IT Infrastructure"
-                      className="w-full bg-white/[0.04] border border-white/12 rounded-2xl px-5 py-3.5 text-sm text-white placeholder-white/30 focus:border-[#22b4a6] focus:bg-white/[0.07] focus:outline-none transition-all duration-300 shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)]"
-                    />
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div>
+                      <label className="block text-xs font-mono text-white/80 mb-2 font-medium">
+                        NOMOR WHATSAPP *
+                      </label>
+                      <input
+                        type="tel"
+                        required
+                        placeholder="+62 812-3456-7890"
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        className="w-full bg-white/[0.04] border border-white/10 rounded-2xl px-5 py-3.5 text-sm text-white placeholder-white/30 focus:border-white/25 focus:bg-white/[0.08] focus:outline-none transition-all duration-300"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-mono text-white/80 mb-2 font-medium">
+                        TOPIK / KEBUTUHAN *
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="Pengembangan Web, AI, IT Support..."
+                        value={formData.subject}
+                        onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                        className="w-full bg-white/[0.04] border border-white/10 rounded-2xl px-5 py-3.5 text-sm text-white placeholder-white/30 focus:border-white/25 focus:bg-white/[0.08] focus:outline-none transition-all duration-300"
+                      />
+                    </div>
                   </div>
+
                   <div>
-                    <label className="block font-mono text-[10px] text-[#22b4a6] mb-2 tracking-[0.2em] font-semibold">
-                      PESAN & DETAIL KEBUTUHAN
+                    <label className="block text-xs font-mono text-white/80 mb-2 font-medium">
+                      DETAIL PESAN ATAU PROYEK *
                     </label>
                     <textarea
+                      required
                       rows={4}
-                      placeholder="Jelaskan kebutuhan atau tantangan bisnis yang ingin Anda selesaikan..."
-                      className="w-full bg-white/[0.04] border border-white/12 rounded-2xl px-5 py-3.5 text-sm text-white placeholder-white/30 focus:border-[#22b4a6] focus:bg-white/[0.07] focus:outline-none transition-all duration-300 resize-none shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)]"
+                      placeholder="Jelaskan secara singkat mengenai sistem atau permasalahan IT yang ingin Anda selesaikan..."
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      className="w-full bg-white/[0.04] border border-white/10 rounded-2xl px-5 py-3.5 text-sm text-white placeholder-white/30 focus:border-white/25 focus:bg-white/[0.08] focus:outline-none transition-all duration-300 resize-none"
                     />
                   </div>
-                  <Button type="submit" size="lg" variant="primary">
+
+                  <Button type="submit" size="lg" variant="primary" className="w-full">
                     <Send className="w-4 h-4 text-[#22b4a6]" />
                     Kirim Pesan Sekarang
                   </Button>
                 </form>
-              </div>
-            </motion.div>
+              )}
+            </div>
+          </div>
 
-            {/* Right: Single Unified Contact Info & Locations Card (5 cols) */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="lg:col-span-5 rounded-3xl border border-white/12 border-t-white/30 bg-white/[0.035] backdrop-blur-3xl p-8 md:p-10 shadow-[0_30px_70px_rgba(0,0,0,0.6)] flex flex-col justify-between relative overflow-hidden"
-            >
-              <div className="space-y-8">
-                <div>
-                  <h2 className="text-2xl font-extrabold text-white mb-6 tracking-tight">
-                    Informasi & Lokasi
-                  </h2>
-                  <div className="space-y-5">
-                    {/* Email */}
-                    <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 rounded-2xl bg-[#22b4a6]/15 border border-[#22b4a6]/30 flex items-center justify-center shrink-0">
-                        <Mail className="w-5 h-5 text-[#22b4a6]" />
-                      </div>
-                      <div>
-                        <p className="font-mono text-[10px] text-[#22b4a6] tracking-[0.2em] font-semibold">
-                          EMAIL SUPPORT
-                        </p>
-                        <a
-                          href="mailto:support@technodigi.co.id"
-                          className="text-sm font-semibold text-white hover:text-[#22b4a6] transition-colors"
-                        >
-                          support@technodigi.co.id
-                        </a>
-                      </div>
+          {/* Right Column: Contact Info & Locations Card */}
+          <div className="lg:col-span-5 rounded-3xl border border-white/12 border-t-white/25 bg-white/[0.035] backdrop-blur-3xl p-8 md:p-10 flex flex-col justify-between relative overflow-hidden">
+            <div className="space-y-8">
+              <div>
+                <h2 className="text-2xl font-extrabold text-white tracking-tight mb-6">
+                  Informasi Kontak
+                </h2>
+
+                <div className="space-y-6">
+                  {/* WhatsApp */}
+                  <a
+                    href="https://wa.me/6285353615220"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-start gap-4 p-4 rounded-2xl bg-white/[0.03] hover:bg-white/[0.07] border border-white/10 transition-colors group"
+                  >
+                    <div className="w-10 h-10 rounded-2xl bg-[#22b4a6]/15 border border-white/15 flex items-center justify-center shrink-0">
+                      <MessageSquare className="w-5 h-5 text-[#22b4a6]" />
                     </div>
-
-                    {/* WhatsApp */}
-                    <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 rounded-2xl bg-[#22b4a6]/15 border border-[#22b4a6]/30 flex items-center justify-center shrink-0">
-                        <Phone className="w-5 h-5 text-[#22b4a6]" />
-                      </div>
-                      <div>
-                        <p className="font-mono text-[10px] text-[#22b4a6] tracking-[0.2em] font-semibold">
-                          WHATSAPP / TELEPON
-                        </p>
-                        <a
-                          href="https://wa.me/6285353615220"
-                          className="text-sm font-semibold text-white hover:text-[#22b4a6] transition-colors block mb-2"
-                        >
-                          +62 853-5361-5220
-                        </a>
-                      </div>
+                    <div>
+                      <span className="font-mono text-[10px] text-[#22b4a6] tracking-wider uppercase font-semibold block">
+                        WHATSAPP / TELEPON
+                      </span>
+                      <span className="text-sm font-bold text-white group-hover:text-[#a5f3fc] transition-colors">
+                        +62 853-5361-5220
+                      </span>
+                      <p className="text-xs text-[#a3a3a3]">Respon Cepat Jam Kerja</p>
                     </div>
-                  </div>
-                </div>
+                  </a>
 
-                {/* Office Locations */}
-                <div className="pt-6 border-t border-white/10 space-y-4">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Building2 className="w-4 h-4 text-[#22b4a6]" />
-                    <h3 className="text-sm font-bold text-white tracking-wide uppercase font-mono">
-                      LOKASI KANTOR RESMI
-                    </h3>
-                  </div>
-
-                  <div className="space-y-3">
-                    {locations.map((loc) => (
-                      <div
-                        key={loc.city}
-                        className="p-3.5 rounded-2xl border border-white/10 bg-white/[0.025]"
-                      >
-                        <div className="flex items-center gap-2 mb-1">
-                          <MapPin className="w-4 h-4 text-[#22b4a6] shrink-0" />
-                          <h4 className="font-bold text-white text-sm">
-                            {loc.city},{" "}
-                            <span className="text-[#a3a3a3] font-normal">
-                              {loc.province}
-                            </span>
-                          </h4>
-                        </div>
-                        <p className="text-xs text-white/60 pl-6">{loc.detail}</p>
-                      </div>
-                    ))}
-                  </div>
+                  {/* Email */}
+                  <a
+                    href="mailto:support@technodigi.co.id"
+                    className="flex items-start gap-4 p-4 rounded-2xl bg-white/[0.03] hover:bg-white/[0.07] border border-white/10 transition-colors group"
+                  >
+                    <div className="w-10 h-10 rounded-2xl bg-[#22b4a6]/15 border border-white/15 flex items-center justify-center shrink-0">
+                      <Mail className="w-5 h-5 text-[#22b4a6]" />
+                    </div>
+                    <div>
+                      <span className="font-mono text-[10px] text-[#22b4a6] tracking-wider uppercase font-semibold block">
+                        EMAIL DUKUNGAN
+                      </span>
+                      <span className="text-sm font-bold text-white group-hover:text-[#a5f3fc] transition-colors">
+                        support@technodigi.co.id
+                      </span>
+                      <p className="text-xs text-[#a3a3a3]">Untuk penawaran & kerja sama resmi</p>
+                    </div>
+                  </a>
                 </div>
               </div>
 
-              {/* Direct WhatsApp CTA Button at Bottom */}
-              <div className="pt-6 mt-6 border-t border-white/10">
-                <Button
-                  href="https://wa.me/6285353615220"
-                  variant="primary"
-                  size="md"
-                >
-                  <MessageSquare className="w-4 h-4 text-[#22b4a6]" />
-                  Chat WhatsApp Langsung
-                </Button>
+              {/* Office Locations */}
+              <div className="pt-6 border-t border-white/10">
+                <div className="flex items-center gap-2 mb-4">
+                  <MapPin className="w-4 h-4 text-[#22b4a6]" />
+                  <span className="font-mono text-xs text-white font-semibold tracking-wider uppercase">
+                    LOKASI KANTOR (INDONESIA)
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3">
+                  {locations.map((loc) => (
+                    <div
+                      key={loc.city}
+                      className="p-3.5 rounded-2xl bg-white/[0.025] border border-white/10"
+                    >
+                      <div className="font-bold text-sm text-white">{loc.city}</div>
+                      <div className="text-xs text-[#22b4a6] font-mono">{loc.region}</div>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </motion.div>
+
+              {/* Operating Hours */}
+              <div className="pt-4 border-t border-white/10 flex items-center gap-3 text-xs text-[#a3a3a3]">
+                <Clock className="w-4 h-4 text-[#22b4a6] shrink-0" />
+                <span>Senin – Jumat: 08:00 – 17:00 WIB</span>
+              </div>
+            </div>
           </div>
         </div>
-      </section>
+      </div>
     </div>
   );
 }

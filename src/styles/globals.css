@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme inline {
-    --font-sans: 'Geist', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
-    --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 /* === APPLE LIQUID GLASS CANVAS & SYSTEM === */
@@ -19,6 +19,7 @@
 body {
     background-color: var(--color-bg-deep);
     color: #ffffff;
+    font-family: var(--font-sans);
     overflow-x: hidden;
 }
 
