@@ -8,11 +8,11 @@ export function CTA() {
       <div className="relative z-10 mx-auto max-w-5xl text-center">
         {/* Main CTA Card — Pure Frosted Liquid Glass */}
         <motion.div
-          initial={{ opacity: 0, y: 24, scale: 0.98 }}
+          initial={{ opacity: 0.01, y: 24, scale: 0.98 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           viewport={{ once: true, margin: "-40px" }}
-          className="rounded-3xl border border-white/15 border-t-white/35 bg-white/[0.035] backdrop-blur-3xl p-10 sm:p-14 md:p-20 shadow-[0_30px_90px_rgba(0,0,0,0.6)] relative overflow-hidden group transition-all duration-500 hover:border-white/40"
+          className="rounded-3xl border border-white/15 border-t-white/35 bg-white/[0.035] backdrop-blur-3xl p-10 sm:p-14 md:p-20 shadow-[0_30px_90px_rgba(0,0,0,0.6)] relative overflow-hidden group transition-all duration-500 hover:border-white/40 gpu-layer"
         >
           {/* Blended Background Image Overlay */}
           <div
@@ -29,11 +29,11 @@ export function CTA() {
           <div className="relative z-10 space-y-6">
             {/* Headline — Direct & Natural */}
             <motion.h2
-              initial={{ opacity: 0, y: 18 }}
+              initial={{ opacity: 0.01, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
               viewport={{ once: true }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] max-w-4xl mx-auto"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] max-w-4xl mx-auto gpu-layer"
             >
               Siap Membenahi Operasional Bisnis Anda dengan{" "}
               <span className="bg-gradient-to-r from-white via-[#a5f3fc] to-[#22b4a6] bg-clip-text text-transparent">
@@ -43,22 +43,22 @@ export function CTA() {
 
             {/* Subtitle */}
             <motion.p
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0.01, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
               viewport={{ once: true }}
-              className="max-w-2xl mx-auto text-[#a3a3a3] text-base sm:text-lg leading-relaxed font-sans"
+              className="max-w-2xl mx-auto text-[#a3a3a3] text-base sm:text-lg leading-relaxed font-sans gpu-layer"
             >
               Konsultasikan ide atau permasalahan teknis perusahaan Anda bersama tim pakar Technodigi. Diskusi awal 100% gratis tanpa komitmen.
             </motion.p>
 
             {/* Single Action Button with MessagesSquare */}
             <motion.div
-              initial={{ opacity: 0, y: 14 }}
+              initial={{ opacity: 0.01, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
               viewport={{ once: true }}
-              className="pt-4"
+              className="pt-4 gpu-layer"
             >
               <Button href="/contact" size="lg" variant="primary">
                 <MessagesSquare className="w-4 h-4 text-[#22b4a6]" />

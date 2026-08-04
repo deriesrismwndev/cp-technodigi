@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { MessagesSquare, Layers } from "lucide-react";
@@ -10,15 +11,35 @@ const clientLogos = [
 ];
 
 export function Hero() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Autoplay was prevented by iOS Low Power Mode
+          // Gracefully fallback to static frame #1 of hero-bg.mp4 without showing any play button
+          if (videoRef.current) {
+            videoRef.current.currentTime = 0;
+            videoRef.current.pause();
+          }
+        });
+      }
+    }
+  }, []);
+
   return (
     <section className="relative min-h-screen w-full bg-transparent flex flex-col justify-between pt-32 pb-20 overflow-x-clip">
-      {/* Video Background with Mask Image directly on element — No extra wrappers, No Y-clipping box */}
+      {/* Video Background — Strictly No WebKit Play Controls on iOS Low Power Mode */}
       <video
+        ref={videoRef}
         autoPlay
         muted
         loop
         playsInline
         preload="auto"
+        controls={false}
         aria-hidden="true"
         tabIndex={-1}
         className="absolute inset-0 w-full h-full object-cover object-center opacity-35 mix-blend-screen pointer-events-none select-none [&::-webkit-media-controls]:!hidden [&::-webkit-media-controls-panel]:!hidden [&::-webkit-media-controls-play-button]:!hidden [&::-webkit-media-controls-start-playback-button]:!hidden [&::-webkit-media-controls-container]:!hidden"
@@ -39,10 +60,10 @@ export function Hero() {
         <div className="max-w-4xl lg:max-w-3xl w-full text-center lg:text-left flex flex-col items-center lg:items-start">
           {/* Main Headline (H1) */}
           <motion.h1
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0.01, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.08] tracking-tight text-white mb-6 text-center lg:text-left max-w-4xl"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.08] tracking-tight text-white mb-6 text-center lg:text-left max-w-4xl gpu-layer"
           >
             Solusi Software & Sistem Terintegrasi.
             <br />
@@ -53,10 +74,10 @@ export function Hero() {
 
           {/* Subtitle / Description with Highlights */}
           <motion.p
-            initial={{ opacity: 0, y: 18 }}
+            initial={{ opacity: 0.01, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="text-base sm:text-lg text-[#a3a3a3] leading-relaxed mb-10 max-w-2xl text-center lg:text-left mx-auto lg:mx-0"
+            className="text-base sm:text-lg text-[#a3a3a3] leading-relaxed mb-10 max-w-2xl text-center lg:text-left mx-auto lg:mx-0 gpu-layer"
           >
             Technodigi Mandiri Solusi menghadirkan{" "}
             <span className="text-[#22b4a6] font-semibold">perangkat lunak kustom</span>,{" "}
@@ -67,10 +88,10 @@ export function Hero() {
 
           {/* CTA Buttons */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0.01, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4 w-full sm:w-auto"
+            className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4 w-full sm:w-auto gpu-layer"
           >
             <Button href="/contact" size="lg" variant="primary">
               <MessagesSquare className="w-4 h-4 text-[#22b4a6]" />
@@ -88,10 +109,10 @@ export function Hero() {
       <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8 w-full pt-16">
         <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-between text-center lg:text-left gap-6">
           <motion.p
-            initial={{ opacity: 0 }}
+            initial={{ opacity: 0.01 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="font-mono text-[10px] tracking-[0.3em] text-[#22b4a6] uppercase font-semibold shrink-0"
+            className="font-mono text-[10px] tracking-[0.3em] text-[#22b4a6] uppercase font-semibold shrink-0 gpu-layer"
           >
             DIPERCAYA OLEH PERUSAHAAN & INSTANSI
           </motion.p>
@@ -100,10 +121,10 @@ export function Hero() {
             {clientLogos.map((client, i) => (
               <motion.div
                 key={client.src}
-                initial={{ opacity: 0, y: 12 }}
+                initial={{ opacity: 0.01, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.7 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="group cursor-pointer transition-transform duration-500 ease-out hover:scale-105"
+                className="group cursor-pointer transition-transform duration-500 ease-out hover:scale-105 gpu-layer"
               >
                 <img
                   src={client.src}

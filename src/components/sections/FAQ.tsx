@@ -39,11 +39,11 @@ export function FAQ() {
       <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8">
         {/* Header Centered */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0.01, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           viewport={{ once: true, margin: "-40px" }}
-          className="text-center max-w-3xl mx-auto mb-16"
+          className="text-center max-w-3xl mx-auto mb-16 gpu-layer"
         >
           <SectionLabel className="justify-center">PERTANYAAN UMUM</SectionLabel>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight">
@@ -62,11 +62,11 @@ export function FAQ() {
           {faqs.map((faq, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0.01, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
               viewport={{ once: true, margin: "-30px" }}
-              className={`rounded-2xl transition-all duration-500 ease-out overflow-hidden ${
+              className={`rounded-2xl transition-all duration-500 ease-out overflow-hidden gpu-layer ${
                 openIndex === i
                   ? "bg-white/[0.08] border border-white/20 backdrop-blur-2xl shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
                   : "bg-white/[0.035] border border-white/10 hover:border-white/20 backdrop-blur-xl"
@@ -100,11 +100,11 @@ export function FAQ() {
               <AnimatePresence initial={false}>
                 {openIndex === i && (
                   <motion.div
-                    initial={{ opacity: 0, height: 0 }}
+                    initial={{ opacity: 0.01, height: 0 }}
                     animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
+                    exit={{ opacity: 0.01, height: 0 }}
                     transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                    className="overflow-hidden"
+                    className="overflow-hidden gpu-layer"
                   >
                     <p className="text-sm md:text-base text-[#a3a3a3] leading-relaxed px-6 pb-6 pl-14">
                       {faq.answer}

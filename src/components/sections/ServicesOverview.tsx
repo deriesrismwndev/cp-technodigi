@@ -81,11 +81,11 @@ export function ServicesOverview() {
       <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8 space-y-12 sm:space-y-16">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0.01, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           viewport={{ once: true, margin: "-40px" }}
-          className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6"
+          className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 gpu-layer"
         >
           <div>
             <SectionLabel>LAYANAN UTAMA</SectionLabel>
@@ -115,7 +115,7 @@ export function ServicesOverview() {
               <div
                 key={service.id}
                 onMouseEnter={() => setActiveHover(index)}
-                className={`relative rounded-3xl border border-white/12 border-t-white/25 bg-white/[0.035] backdrop-blur-3xl p-8 transition-all duration-700 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] cursor-pointer overflow-hidden flex flex-col justify-between group ${
+                className={`relative rounded-3xl border border-white/12 border-t-white/25 bg-white/[0.035] backdrop-blur-3xl p-8 transition-all duration-700 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] cursor-pointer overflow-hidden flex flex-col justify-between group gpu-layer ${
                   isExpanded
                     ? "flex-[3.5] bg-gradient-to-br " + service.color + " border-white/30"
                     : "flex-1 hover:bg-white/[0.06] hover:border-white/20"
@@ -141,10 +141,10 @@ export function ServicesOverview() {
                   </div>
                   {isExpanded && (
                     <motion.span
-                      initial={{ opacity: 0, scale: 0.9 }}
+                      initial={{ opacity: 0.01, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                      className="font-mono text-xs text-[#22b4a6] font-semibold tracking-wider px-3 py-1 rounded-full bg-white/[0.05] border border-white/10"
+                      className="font-mono text-xs text-[#22b4a6] font-semibold tracking-wider px-3 py-1 rounded-full bg-white/[0.05] border border-white/10 gpu-layer"
                     >
                       {service.subtitle}
                     </motion.span>
@@ -154,10 +154,10 @@ export function ServicesOverview() {
                 {/* Middle Content */}
                 {isExpanded ? (
                   <motion.div
-                    initial={{ opacity: 0, y: 15 }}
+                    initial={{ opacity: 0.01, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                    className="relative z-10 space-y-4 my-auto"
+                    className="relative z-10 space-y-4 my-auto gpu-layer"
                   >
                     <h3 className="text-2xl lg:text-3xl font-extrabold text-white tracking-tight leading-snug">
                       {service.title}
@@ -193,11 +193,11 @@ export function ServicesOverview() {
                 <div className="relative z-10 flex items-center justify-end pt-4 border-t border-white/10">
                   {isExpanded && (
                     <motion.a
-                      initial={{ opacity: 0 }}
+                      initial={{ opacity: 0.01 }}
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.4, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
                       href="/services"
-                      className="inline-flex items-center gap-2 font-mono text-xs font-semibold text-white hover:text-[#22b4a6] transition-colors duration-300"
+                      className="inline-flex items-center gap-2 font-mono text-xs font-semibold text-white hover:text-[#22b4a6] transition-colors duration-300 gpu-layer"
                     >
                       <span>Lihat Detail</span>
                       <ArrowRight className="w-4 h-4" />
@@ -216,11 +216,11 @@ export function ServicesOverview() {
             return (
               <motion.div
                 key={service.id}
-                initial={{ opacity: 0, y: 24 }}
+                initial={{ opacity: 0.01, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
                 viewport={{ once: true, margin: "-30px" }}
-                className="h-full"
+                className="h-full gpu-layer"
               >
                 <div className="h-full relative overflow-hidden rounded-3xl border border-white/12 border-t-white/25 bg-white/[0.035] backdrop-blur-3xl p-6 sm:p-8 flex flex-col justify-between group hover:border-white/30 hover:bg-white/[0.06] transition-all duration-500 ease-out hover:-translate-y-1 hover:shadow-[0_15px_30px_rgba(0,0,0,0.4)]">
                   {/* Blended Background Overlay */}

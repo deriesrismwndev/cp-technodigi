@@ -30,7 +30,7 @@ export function AboutAndWhyUs() {
     <section className="py-16 lg:py-20 bg-transparent relative">
       <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8">
         {/* Single Unified Liquid Glass Card Container */}
-        <div className="rounded-3xl border border-white/12 border-t-white/25 bg-white/[0.035] backdrop-blur-3xl p-8 md:p-14 lg:p-16 relative overflow-hidden group">
+        <div className="rounded-3xl border border-white/12 border-t-white/25 bg-white/[0.035] backdrop-blur-3xl p-8 md:p-14 lg:p-16 relative overflow-hidden group gpu-layer">
           {/* Blended Background Image Overlay */}
           <div
             className="absolute inset-0 bg-cover bg-center mix-blend-overlay opacity-45 group-hover:opacity-60 transition-opacity duration-700 pointer-events-none"
@@ -44,11 +44,11 @@ export function AboutAndWhyUs() {
           <div className="relative z-10">
             {/* Headline Statement — Natural & Human */}
             <motion.h2
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0.01, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               viewport={{ once: true, margin: "-40px" }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-[1.12] tracking-tight mb-8 max-w-4xl"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-[1.12] tracking-tight mb-8 max-w-4xl gpu-layer"
             >
               Bukan cuma bikin aplikasi, kami pastikan sistemnya{" "}
               <span className="bg-gradient-to-r from-white via-[#a5f3fc] to-[#22b4a6] bg-clip-text text-transparent">
@@ -58,11 +58,11 @@ export function AboutAndWhyUs() {
 
             {/* Narrative Paragraphs — Direct & Authentic */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0.01, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
               viewport={{ once: true, margin: "-40px" }}
-              className="max-w-3xl space-y-4 text-base sm:text-lg text-[#a3a3a3] leading-relaxed mb-12"
+              className="max-w-3xl space-y-4 text-base sm:text-lg text-[#a3a3a3] leading-relaxed mb-12 gpu-layer"
             >
               <p>
                 Banyak proyek sistem IT gagal karena fiturnya tidak sesuai alur kerja di lapangan. Di{" "}
@@ -83,11 +83,11 @@ export function AboutAndWhyUs() {
             {/* Bridging Element to 3 Pillars */}
             <div className="pt-10 border-t border-white/10">
               <motion.div
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0.01, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
                 viewport={{ once: true }}
-                className="flex items-center gap-3 mb-8"
+                className="flex items-center gap-3 mb-8 gpu-layer"
               >
                 <div className="w-8 h-8 rounded-full bg-[#22b4a6]/15 border border-white/15 flex items-center justify-center shrink-0">
                   <Compass className="w-4 h-4 text-[#22b4a6]" />
@@ -107,11 +107,11 @@ export function AboutAndWhyUs() {
                 {approachPillars.map((pillar, i) => (
                   <motion.div
                     key={pillar.title}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0.01, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.7, delay: 0.25 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
                     viewport={{ once: true }}
-                    className="rounded-2xl border border-white/10 hover:border-white/25 bg-white/[0.03] hover:bg-white/[0.07] backdrop-blur-2xl p-6 transition-all duration-500 ease-out group/item flex flex-col justify-between hover:-translate-y-1 hover:shadow-[0_15px_30px_rgba(0,0,0,0.4)]"
+                    className="rounded-2xl border border-white/10 hover:border-white/25 bg-white/[0.03] hover:bg-white/[0.07] backdrop-blur-2xl p-6 transition-all duration-500 ease-out group/item flex flex-col justify-between hover:-translate-y-1 hover:shadow-[0_15px_30px_rgba(0,0,0,0.4)] gpu-layer"
                   >
                     <div>
                       <div className="w-12 h-12 rounded-2xl bg-[#22b4a6]/15 border border-white/15 flex items-center justify-center mb-5 group-hover/item:scale-110 transition-transform duration-500 ease-out">
