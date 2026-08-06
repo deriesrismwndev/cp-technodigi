@@ -1,0 +1,84 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { SectionLabel } from "@/components/ui/SectionLabel";
+
+const breadcrumbs = [
+  { name: "Beranda", item: "/" },
+  { name: "Syarat & Ketentuan", item: "/terms-of-service" }
+];
+---
+
+<Layout
+  title="Syarat & Ketentuan (Terms & Conditions) — Technodigi Mandiri Solusi"
+  description="Syarat dan Ketentuan penggunaan layanan CV Technodigi Mandiri Solusi. Panduan kemitraan, lisensi, dan kesepakatan eksekusi proyek IT."
+  keywords={[
+    "Syarat Ketentuan Technodigi",
+    "Terms of Service Technodigi Mandiri Solusi",
+    "Ketentuan Layanan IT",
+    "Kontrak Proyek Software"
+  ]}
+  breadcrumbs={breadcrumbs}
+>
+  <div class="py-32 relative z-10 mx-auto max-w-4xl px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <SectionLabel className="justify-center">LEGAL & KEMITRAAN</SectionLabel>
+      <h1 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4">
+        Syarat & <span class="bg-gradient-to-r from-white via-[#a5f3fc] to-[#22b4a6] bg-clip-text text-transparent">Ketentuan</span>
+      </h1>
+      <p class="text-[#a3a3a3] text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+        Terakhir diperbarui: August 2026. Ketentuan penggunaan situs dan kemitraan proyek CV Technodigi Mandiri Solusi.
+      </p>
+    </div>
+
+    <div class="space-y-10 text-[#a3a3a3] text-sm sm:text-base leading-relaxed bg-white/[0.02] border border-white/10 rounded-3xl p-8 sm:p-12 backdrop-blur-xl">
+      <section className="space-y-3">
+        <h2 className="text-xl font-bold text-white tracking-tight">1. Ketentuan Umum</h2>
+        <p>
+          Dengan mengakses situs web <code className="text-[#22b4a6]">https://technodigi.co.id</code> atau menggunakan layanan yang disediakan oleh <strong className="text-white">CV Technodigi Mandiri Solusi</strong>, Anda menyetujui untuk terikat oleh Syarat & Ketentuan ini. Jika Anda tidak menyetujui salah satu bagian dari ketentuan ini, Anda disarankan untuk tidak melanjutkan penggunaan layanan kami.
+        </p>
+      </section>
+
+      <section className="space-y-3">
+        <h2 className="text-xl font-bold text-white tracking-tight">2. Ruang Lingkup Layanan IT</h2>
+        <p>
+          Technodigi Mandiri Solusi menyediakan layanan berupa konsultan teknologi informasi, pengembangan perangkat lunak kustom (web & mobile), desain dan pengadaan infrastruktur jaringan, solusi cloud DevOps, serta pemeliharaan sistem terkelola (Managed IT Support). Spesifikasi detail dan ruang lingkup eksekusi (*Scope of Work*) akan diatur dalam Perjanjian Kerja Sama (PKS) tersendiri untuk setiap proyek.
+        </p>
+      </section>
+
+      <section className="space-y-3">
+        <h2 className="text-xl font-bold text-white tracking-tight">3. Hak Kekayaan Intelektual (HAKI)</h2>
+        <p>
+          Seluruh konten, merek dagang, logo, desain antarmuka, dan kode sumber bawaan di situs ini adalah milik sah CV Technodigi Mandiri Solusi. Hak kepemilikan atas kode sumber (*source code*) aplikasi kustom yang dibangun untuk klien akan dialihkan sepenuhnya kepada klien setelah seluruh kewajiban pembayaran terpenuhi sesuai dengan kesepakatan kontrak.
+        </p>
+      </section>
+
+      <section className="space-y-3">
+        <h2 className="text-xl font-bold text-white tracking-tight">4. Garansi & Pemeliharaan System</h2>
+        <p>
+          Setiap proyek pengembangan perangkat lunak dilengkapi dengan masa garansi pemeliharaan (bug fixing) sesuai dengan kontrak kerja. Garansi ini berlaku untuk perbaikan bug atau kendala teknis yang timbul dari kode asli yang dikembangkan oleh tim Technodigi.
+        </p>
+      </section>
+
+      <section className="space-y-3">
+        <h2 className="text-xl font-bold text-white tracking-tight">5. Batasan Tanggung Jawab</h2>
+        <p>
+          CV Technodigi Mandiri Solusi tidak bertanggung jawab atas kerugian tidak langsung, kehilangan data akibat kelalaian pihak pengguna, serangan siber pihak ketiga di luar cakupan perlindungan yang disepakati, atau gangguan yang disebabkan oleh keadaan memaksa (*Force Majeure*).
+        </p>
+      </section>
+
+      <section className="space-y-3">
+        <h2 className="text-xl font-bold text-white tracking-tight">6. Perubahan Ketentuan</h2>
+        <p>
+          Kami berhak untuk mengubah atau memperbarui Syarat & Ketentuan ini sewaktu-waktu. Pembaruan akan berlaku segera setelah diunggah ke halaman ini.
+        </p>
+      </section>
+
+      <section className="space-y-3">
+        <h2 className="text-xl font-bold text-white tracking-tight">7. Hukum yang Berlaku</h2>
+        <p>
+          Syarat & Ketentuan ini diatur dan ditafsirkan sesuai dengan hukum yang berlaku di Negara Kesatuan Republik Indonesia.
+        </p>
+      </section>
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,95 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { SectionLabel } from "@/components/ui/SectionLabel";
+
+const breadcrumbs = [
+  { name: "Beranda", item: "/" },
+  { name: "Kebijakan Privasi", item: "/privacy-policy" }
+];
+---
+
+<Layout
+  title="Kebijakan Privasi (Privacy Policy) — Technodigi Mandiri Solusi"
+  description="Kebijakan Privasi CV Technodigi Mandiri Solusi. Pelajari bagaimana kami melindungi data pribadi dan informasi klien dalam setiap kemitraan teknologi."
+  keywords={[
+    "Kebijakan Privasi Technodigi",
+    "Privacy Policy Technodigi Mandiri Solusi",
+    "Perlindungan Data Klien",
+    "Keamanan Informasi IT"
+  ]}
+  breadcrumbs={breadcrumbs}
+>
+  <div class="py-32 relative z-10 mx-auto max-w-4xl px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <SectionLabel className="justify-center">PRIVASI & KEAMANAN DATA</SectionLabel>
+      <h1 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4">
+        Kebijakan <span class="bg-gradient-to-r from-white via-[#a5f3fc] to-[#22b4a6] bg-clip-text text-transparent">Privasi</span>
+      </h1>
+      <p class="text-[#a3a3a3] text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+        Terakhir diperbarui: August 2026. Komitmen CV Technodigi Mandiri Solusi dalam menjaga kerahasiaan dan privasi data Anda.
+      </p>
+    </div>
+
+    <div class="space-y-10 text-[#a3a3a3] text-sm sm:text-base leading-relaxed bg-white/[0.02] border border-white/10 rounded-3xl p-8 sm:p-12 backdrop-blur-xl">
+      <section className="space-y-3">
+        <h2 className="text-xl font-bold text-white tracking-tight">1. Pendahuluan</h2>
+        <p>
+          Selamat datang di <strong className="text-white">CV Technodigi Mandiri Solusi</strong> ("Kami"). Kami sangat menghargai privasi Anda dan berkomitmen untuk melindungi data pribadi serta informasi bisnis yang Anda bagikan kepada kami saat mengakses situs web <code className="text-[#22b4a6]">https://technodigi.co.id</code> maupun saat menggunakan layanan teknologi kami.
+        </p>
+      </section>
+
+      <section className="space-y-3">
+        <h2 className="text-xl font-bold text-white tracking-tight">2. Informasi yang Kami Kumpulkan</h2>
+        <p>Kami dapat mengumpulkan jenis informasi berikut saat Anda berinteraksi dengan kami:</p>
+        <ul className="list-disc pl-6 space-y-2 text-[#d4d4d4]">
+          <li><strong className="text-white">Informasi Identitas Kontak:</strong> Nama lengkap, alamat email, nomor telepon/WhatsApp, nama perusahaan, dan rincian kebutuhan proyek yang Anda masukkan melalui formulir kontak.</li>
+          <li><strong className="text-white">Data Penggunaan Otomatis:</strong> Alamat IP, jenis peramban (browser), perangkat, waktu akses, serta halaman yang Anda kunjungi untuk keperluan analisis lalu lintas web.</li>
+        </ul>
+      </section>
+
+      <section className="space-y-3">
+        <h2 className="text-xl font-bold text-white tracking-tight">3. Penggunaan Informasi</h2>
+        <p>Informasi yang kami kumpulkan digunakan secara eksklusif untuk:</p>
+        <ul className="list-disc pl-6 space-y-2 text-[#d4d4d4]">
+          <li>Merespons permintaan konsultasi dan memberikan penawaran layanan IT.</li>
+          <li>Merancang dan mengeksekusi proyek pengembangan perangkat lunak, infrastruktur jaringan, atau solusi cloud sesuai kesepakatan.</li>
+          <li>Meningkatkan kualitas layanan, performa sistem, serta keamanan situs web kami.</li>
+          <li>Memenuhi kewajiban hukum dan regulasi yang berlaku di Republik Indonesia.</li>
+        </ul>
+      </section>
+
+      <section className="space-y-3">
+        <h2 className="text-xl font-bold text-white tracking-tight">4. Keamanan & Kerahasiaan Data (NDA)</h2>
+        <p>
+          Kami mengimplementasikan standar keamanan teknis dan organisasional yang ketat untuk mencegah akses tanpa izin, kebocoran, atau pengubahan data Anda. Untuk proyek kustom enterprise, kami senantiasa siap menandatangani <strong className="text-white">Non-Disclosure Agreement (NDA)</strong> guna menjamin kerahasiaan aset digital perusahaan Anda.
+        </p>
+      </section>
+
+      <section className="space-y-3">
+        <h2 className="text-xl font-bold text-white tracking-tight">5. Pembagian Data Kepada Pihak Ketiga</h2>
+        <p>
+          Kami <strong className="text-white">tidak pernah menjual, menyewakan, atau memperdagangkan</strong> data pribadi atau bisnis Anda kepada pihak ketiga mana pun. Pembagian data hanya dilakukan jika diwajibkan oleh hukum atau dengan persetujuan tertulis dari Anda.
+        </p>
+      </section>
+
+      <section className="space-y-3">
+        <h2 className="text-xl font-bold text-white tracking-tight">6. Hak-Hak Anda</h2>
+        <p>
+          Anda berhak untuk meminta akses, pembaruan, atau penghapusan data pribadi Anda yang tersimpan di sistem kami kapan saja dengan menghubungi tim support kami.
+        </p>
+      </section>
+
+      <section className="space-y-3">
+        <h2 className="text-xl font-bold text-white tracking-tight">7. Hubungi Kami</h2>
+        <p>
+          Jika Anda memiliki pertanyaan seputar Kebijakan Privasi ini, silakan hubungi kami melalui:
+        </p>
+        <div className="p-4 rounded-xl bg-white/[0.04] border border-white/10 text-xs sm:text-sm font-mono text-[#22b4a6] space-y-1">
+          <div>CV Technodigi Mandiri Solusi</div>
+          <div>Email: support@technodigi.co.id</div>
+          <div>WhatsApp: +62 853-5361-5220</div>
+        </div>
+      </section>
+    </div>
+  </div>
+</Layout>
