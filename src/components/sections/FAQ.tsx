@@ -37,7 +37,6 @@ export function FAQ() {
   return (
     <section className="py-20 bg-transparent relative">
       <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8">
-        {/* Header Centered */}
         <motion.div
           initial={{ opacity: 0.01, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -57,7 +56,6 @@ export function FAQ() {
           </p>
         </motion.div>
 
-        {/* FAQ Accordion List — Pure Liquid Glass */}
         <div className="max-w-3xl mx-auto space-y-4">
           {faqs.map((faq, i) => (
             <motion.div
@@ -82,7 +80,6 @@ export function FAQ() {
                     {faq.question}
                   </span>
                 </div>
-                {/* Clean Liquid Glass Chevron Dropdown Button */}
                 <div
                   className={`shrink-0 p-2 rounded-full border border-white/15 backdrop-blur-xl transition-all duration-500 ease-out ${
                     openIndex === i

@@ -15,7 +15,6 @@ export function ClientTicker() {
           DIPERCAYA OLEH PERUSAHAAN & INSTANSI
         </p>
 
-        {/* 4 Client Logos - Muted Dark Teal Tint by default, full original color on hover */}
         <div className="flex flex-wrap items-center justify-center gap-10 md:gap-16">
           {clientLogos.map((client, i) => (
             <motion.div

@@ -16,7 +16,7 @@ const services = [
     icon: Code2,
     title: "Software & Mobile App Development",
     subtitle: "Aplikasi Web & Mobile Custom",
-    bgImage: "/home_services_one.jpeg",
+    bgImage: "/images/home_services_one.jpeg",
     description:
       "Aplikasi bisnis dan portal internal yang dibangun khusus sesuai alur kerja spesifik perusahaan Anda. Cepat, responsif, dan mudah dikembangkan seiring pertumbuhan bisnis.",
     features: [
@@ -31,7 +31,7 @@ const services = [
     icon: Bot,
     title: "Business Automation & AI Solutions",
     subtitle: "Otomatisasi Workflow & Integrasi AI",
-    bgImage: "/home_services_two.jpeg",
+    bgImage: "/images/home_services_two.jpeg",
     description:
       "Memangkas jam kerja manual yang berulang melalui otomatisasi alur kerja terpadu dan penerapan kecerdasan buatan (AI) untuk keputusan operasional yang presisi.",
     features: [
@@ -46,7 +46,7 @@ const services = [
     icon: BarChart3,
     title: "Data Analytics & Executive Dashboard",
     subtitle: "Dasbor Analytics Real-Time & BI",
-    bgImage: "/home_services_three.jpeg",
+    bgImage: "/images/home_services_three.jpeg",
     description:
       "Mengolah tumpukan data mentah menjadi dasbor analitis interaktif real-time. Membantu direksi dan manajemen mengambil keputusan strategis berbasis data akurat.",
     features: [
@@ -61,7 +61,7 @@ const services = [
     icon: Network,
     title: "IT Infrastructure, Hardware & Support",
     subtitle: "Jaringan Enterprise & Perawatan 24/7",
-    bgImage: "/home_services_four.jpeg",
+    bgImage: "/images/home_services_four.jpeg",
     description:
       "Perancangan jaringan enterprise yang stabil, pengadaan perangkat keras dari distributor resmi, serta dukungan teknis & pemeliharaan 24/7 agar bisnis berjalan tanpa gangguan.",
     features: [
@@ -79,7 +79,6 @@ export function ServicesOverview() {
   return (
     <section className="py-16 sm:py-20 bg-transparent relative">
       <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8 space-y-12 sm:space-y-16">
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0.01, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -105,7 +104,6 @@ export function ServicesOverview() {
           </a>
         </motion.div>
 
-        {/* DESKTOP (>= 1024px): Expanding Horizontal Glass Accordion Deck */}
         <div className="hidden lg:flex gap-4 h-[520px] w-full">
           {services.map((service, index) => {
             const isExpanded = activeHover === index;
@@ -121,14 +119,12 @@ export function ServicesOverview() {
                     : "flex-1 hover:bg-white/[0.06] hover:border-white/20"
                 }`}
               >
-                {/* Custom Background Image Overlay */}
                 <div
                   className="absolute inset-0 bg-cover bg-center mix-blend-overlay opacity-45 group-hover:opacity-60 transition-opacity duration-700 pointer-events-none"
                   style={{ backgroundImage: `url('${service.bgImage}')` }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-[#030712]/75 via-[#030712]/45 to-[#030712]/80 pointer-events-none" />
 
-                {/* Top Bar */}
                 <div className="relative z-10 flex items-center justify-between">
                   <div
                     className={`w-14 h-14 rounded-2xl border border-white/15 flex items-center justify-center transition-all duration-500 ease-out shrink-0 ${
@@ -151,7 +147,6 @@ export function ServicesOverview() {
                   )}
                 </div>
 
-                {/* Middle Content */}
                 {isExpanded ? (
                   <motion.div
                     initial={{ opacity: 0.01, y: 15 }}
@@ -189,7 +184,6 @@ export function ServicesOverview() {
                   </div>
                 )}
 
-                {/* Bottom Bar */}
                 <div className="relative z-10 flex items-center justify-end pt-4 border-t border-white/10">
                   {isExpanded && (
                     <motion.a
@@ -209,7 +203,6 @@ export function ServicesOverview() {
           })}
         </div>
 
-        {/* MOBILE & TABLET (< 1024px): 1-col on Mobile, 2-col Grid on Tablet */}
         <div className="lg:hidden grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-stretch">
           {services.map((service, i) => {
             const Icon = service.icon;
@@ -223,7 +216,6 @@ export function ServicesOverview() {
                 className="h-full gpu-layer"
               >
                 <div className="h-full relative overflow-hidden rounded-3xl border border-white/12 border-t-white/25 bg-white/[0.035] backdrop-blur-3xl p-6 sm:p-8 flex flex-col justify-between group hover:border-white/30 hover:bg-white/[0.06] transition-all duration-500 ease-out hover:-translate-y-1 hover:shadow-[0_15px_30px_rgba(0,0,0,0.4)]">
-                  {/* Blended Background Overlay */}
                   <div
                     className="absolute inset-0 bg-cover bg-center mix-blend-overlay opacity-45 group-hover:opacity-60 transition-opacity duration-500 pointer-events-none"
                     style={{ backgroundImage: `url('${service.bgImage}')` }}
@@ -231,7 +223,6 @@ export function ServicesOverview() {
                   <div className="absolute inset-0 bg-gradient-to-r from-[#030712]/75 via-[#030712]/45 to-[#030712]/80 pointer-events-none" />
 
                   <div>
-                    {/* Top Row: Icon Sphere */}
                     <div className="relative z-10 flex items-center justify-between mb-6">
                       <div className="w-12 h-12 rounded-2xl bg-[#22b4a6]/15 border border-white/15 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 ease-out">
                         <Icon className="w-6 h-6 text-[#22b4a6]" />
@@ -250,7 +241,6 @@ export function ServicesOverview() {
                   </div>
 
                   <div>
-                    {/* Feature Checklist */}
                     <div className="relative z-10 pt-4 border-t border-white/10 space-y-2 mb-6">
                       {service.features.map((feature) => (
                         <div
@@ -263,7 +253,6 @@ export function ServicesOverview() {
                       ))}
                     </div>
 
-                    {/* Bottom CTA Link */}
                     <a
                       href="/services"
                       className="relative z-10 inline-flex items-center gap-2 font-mono text-xs font-semibold text-[#22b4a6] group-hover:text-white transition-colors duration-300"

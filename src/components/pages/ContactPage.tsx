@@ -41,12 +41,10 @@ export function ContactPage() {
 
   return (
     <div className="pt-32 pb-24 relative overflow-hidden bg-transparent">
-      {/* Background Halo Blobs */}
       <div className="absolute top-1/4 left-10 w-[550px] h-[550px] bg-[#22b4a6]/15 rounded-full blur-[160px] pointer-events-none" />
       <div className="absolute top-1/3 right-10 w-[550px] h-[550px] bg-[#06b6d4]/15 rounded-full blur-[170px] pointer-events-none" />
 
       <div className="mx-auto max-w-6xl px-6 lg:px-8 relative z-10">
-        {/* Header Section */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <SectionLabel className="justify-center">HUBUNGI KAMI</SectionLabel>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight leading-tight mb-4">
@@ -61,9 +59,7 @@ export function ContactPage() {
           </p>
         </div>
 
-        {/* 2-Column Layout — Frosted Liquid Glass */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Left Column: Form Card */}
           <div className="lg:col-span-7 rounded-3xl border border-white/12 border-t-white/25 bg-white/[0.035] backdrop-blur-3xl p-8 md:p-10 flex flex-col justify-between relative overflow-hidden group">
             <div className="relative z-10">
               <h2 className="text-2xl font-extrabold text-white tracking-tight mb-2">
@@ -166,7 +162,6 @@ export function ContactPage() {
             </div>
           </div>
 
-          {/* Right Column: Contact Info & Locations Card */}
           <div className="lg:col-span-5 rounded-3xl border border-white/12 border-t-white/25 bg-white/[0.035] backdrop-blur-3xl p-8 md:p-10 flex flex-col justify-between relative overflow-hidden">
             <div className="space-y-8">
               <div>
@@ -175,7 +170,6 @@ export function ContactPage() {
                 </h2>
 
                 <div className="space-y-6">
-                  {/* WhatsApp */}
                   <a
                     href="https://wa.me/6285353615220"
                     target="_blank"
@@ -196,7 +190,6 @@ export function ContactPage() {
                     </div>
                   </a>
 
-                  {/* Email */}
                   <a
                     href="mailto:support@technodigi.co.id"
                     className="flex items-start gap-4 p-4 rounded-2xl bg-white/[0.03] hover:bg-white/[0.07] border border-white/10 transition-colors group"
@@ -217,7 +210,6 @@ export function ContactPage() {
                 </div>
               </div>
 
-              {/* Office Locations */}
               <div className="pt-6 border-t border-white/10">
                 <div className="flex items-center gap-2 mb-4">
                   <MapPin className="w-4 h-4 text-[#22b4a6]" />
@@ -239,7 +231,6 @@ export function ContactPage() {
                 </div>
               </div>
 
-              {/* Operating Hours */}
               <div className="pt-4 border-t border-white/10 flex items-center gap-3 text-xs text-[#a3a3a3]">
                 <Clock className="w-4 h-4 text-[#22b4a6] shrink-0" />
                 <span>Senin – Jumat: 08:00 – 17:00 WIB</span>

@@ -23,9 +23,9 @@ const currentPath = Astro.url.pathname;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16.png" />
+    <link rel="apple-touch-icon" href="/favicons/apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -34,9 +34,8 @@ const currentPath = Astro.url.pathname;
     />
   </head>
   <body class="flex min-h-screen flex-col bg-[#030712] text-white antialiased selection:bg-[#22b4a6]/30 selection:text-white overflow-x-hidden relative font-sans">
-    {/* Global Unified Ambient Light Orbs (Seamless across all sections) */}
     <div class="fixed top-[-10%] left-[-10%] w-[750px] h-[750px] bg-[#22b4a6]/10 rounded-full blur-[220px] pointer-events-none z-0" />
-    <div class="fixed bottom-[-10%] right-[-10%] w-[750px] h-[750px] bg-[#06b6d4]/08 rounded-full blur-[220px] pointer-events-none z-0" />
+    <div class="fixed bottom-[-10%] right-[-10%] w-[750px] h-[750px] bg-[#06b6d4]/10 rounded-full blur-[220px] pointer-events-none z-0" />
 
     <Navbar currentPath={currentPath} client:load />
     <main class="flex-1 w-full overflow-x-hidden relative z-10">

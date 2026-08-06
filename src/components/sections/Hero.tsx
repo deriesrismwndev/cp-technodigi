@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { MessagesSquare, Layers } from "lucide-react";
@@ -12,18 +12,14 @@ const clientLogos = [
 
 export function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoFailed, setVideoFailed] = useState(false);
 
   useEffect(() => {
     if (videoRef.current) {
       const playPromise = videoRef.current.play();
       if (playPromise !== undefined) {
         playPromise.catch(() => {
-          // Autoplay was prevented by iOS Low Power Mode
-          // Gracefully fallback to static frame #1 of hero-bg.mp4 without showing any play button
-          if (videoRef.current) {
-            videoRef.current.currentTime = 0;
-            videoRef.current.pause();
-          }
+          setVideoFailed(true);
         });
       }
     }
@@ -31,34 +27,42 @@ export function Hero() {
 
   return (
     <section className="relative min-h-screen w-full bg-transparent flex flex-col justify-between pt-32 pb-20 overflow-x-clip">
-      {/* Video Background — Strictly No WebKit Play Controls on iOS Low Power Mode */}
-      <video
-        ref={videoRef}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        controls={false}
-        aria-hidden="true"
-        tabIndex={-1}
-        className="absolute inset-0 w-full h-full object-cover object-center opacity-35 mix-blend-screen pointer-events-none select-none [&::-webkit-media-controls]:!hidden [&::-webkit-media-controls-panel]:!hidden [&::-webkit-media-controls-play-button]:!hidden [&::-webkit-media-controls-start-playback-button]:!hidden [&::-webkit-media-controls-container]:!hidden"
-        style={{
-          maskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 98%)",
-          WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 98%)",
-        }}
-      >
-        <source src="/hero-bg.mp4" type="video/mp4" />
-      </video>
+      {videoFailed ? (
+        <img
+          src="/images/hero-bg-poster.jpeg"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover object-center opacity-35 mix-blend-screen pointer-events-none select-none"
+          style={{
+            maskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 98%)",
+            WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 98%)",
+          }}
+        />
+      ) : (
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          controls={false}
+          aria-hidden="true"
+          tabIndex={-1}
+          className="absolute inset-0 w-full h-full object-cover object-center opacity-35 mix-blend-screen pointer-events-none select-none [&::-webkit-media-controls]:!hidden [&::-webkit-media-controls-panel]:!hidden [&::-webkit-media-controls-play-button]:!hidden [&::-webkit-media-controls-start-playback-button]:!hidden [&::-webkit-media-controls-container]:!hidden"
+          style={{
+            maskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 98%)",
+            WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 98%)",
+          }}
+        >
+          <source src="/images/hero-bg.mp4" type="video/mp4" />
+        </video>
+      )}
 
-      {/* Ambient Liquid Halo Blobs */}
-      <div className="absolute top-1/4 left-10 w-[550px] h-[550px] bg-[#22b4a6]/15 rounded-full blur-[160px] pointer-events-none animate-liquid-float pointer-events-none" />
-      <div className="absolute top-1/3 right-10 w-[550px] h-[550px] bg-[#06b6d4]/12 rounded-full blur-[180px] pointer-events-none animate-liquid-pulse pointer-events-none" />
+      <div className="absolute top-1/4 left-10 w-[550px] h-[550px] bg-[#22b4a6]/15 rounded-full blur-[160px] pointer-events-none animate-liquid-float" />
+      <div className="absolute top-1/3 right-10 w-[550px] h-[550px] bg-[#06b6d4]/12 rounded-full blur-[180px] pointer-events-none animate-liquid-pulse" />
 
-      {/* Hero Content - Centered on Mobile & Tablet, Left-Aligned on Desktop */}
       <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8 w-full my-auto text-center lg:text-left flex flex-col items-center lg:items-start justify-center">
         <div className="max-w-4xl lg:max-w-3xl w-full text-center lg:text-left flex flex-col items-center lg:items-start">
-          {/* Main Headline (H1) */}
           <motion.h1
             initial={{ opacity: 0.01, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
@@ -72,7 +76,6 @@ export function Hero() {
             </span>
           </motion.h1>
 
-          {/* Subtitle / Description with Highlights */}
           <motion.p
             initial={{ opacity: 0.01, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
@@ -86,7 +89,6 @@ export function Hero() {
             yang dirancang khusus untuk memangkas proses manual serta mempercepat skala operasional perusahaan Anda.
           </motion.p>
 
-          {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0.01, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -105,7 +107,6 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Client Logos Section */}
       <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8 w-full pt-16">
         <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-between text-center lg:text-left gap-6">
           <motion.p

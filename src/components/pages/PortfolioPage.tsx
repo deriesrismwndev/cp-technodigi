@@ -62,7 +62,6 @@ export function PortfolioPage() {
 
   return (
     <div className="bg-[#030712]">
-      {/* Hero */}
       <section className="pt-36 md:pt-44 pb-28 relative overflow-hidden">
         <div className="absolute top-1/3 right-1/4 w-[450px] h-[450px] bg-[#22b4a6]/15 rounded-full blur-[140px] pointer-events-none" />
         <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8">
@@ -87,10 +86,8 @@ export function PortfolioPage() {
         </div>
       </section>
 
-      {/* Projects Grid */}
       <section className="py-20 relative overflow-hidden">
         <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8">
-          {/* Category Filter Pills */}
           <div className="flex flex-wrap gap-3 mb-12">
             {categories.map((cat) => (
               <button
@@ -118,7 +115,6 @@ export function PortfolioPage() {
               >
                 <Card className="h-full flex flex-col justify-between">
                   <div>
-                    {/* Placeholder graphic glass container */}
                     <div className="relative h-44 rounded-2xl bg-white/[0.02] border border-white/10 mb-6 flex items-center justify-center overflow-hidden group-hover:border-[#22b4a6]/30 transition-colors">
                       <div className="absolute inset-0 bg-gradient-to-tr from-[#22b4a6]/10 to-transparent opacity-50" />
                       <ExternalLink className="w-8 h-8 text-[#22b4a6] group-hover:scale-110 transition-transform relative z-10" />
@@ -150,7 +146,6 @@ export function PortfolioPage() {
         </div>
       </section>
 
-      {/* CTA */}
       <section className="py-28 relative overflow-hidden px-4">
         <div className="relative z-10 mx-auto max-w-5xl">
           <div className="rounded-3xl border border-white/15 border-t-white/30 bg-white/[0.035] backdrop-blur-3xl p-10 md:p-16 text-center shadow-[0_30px_80px_rgba(0,0,0,0.7)]">

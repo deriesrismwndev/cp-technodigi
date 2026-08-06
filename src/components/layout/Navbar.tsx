@@ -48,10 +48,9 @@ export function Navbar({ currentPath }: NavbarProps) {
       className={`fixed top-5 left-4 right-4 z-50 mx-auto max-w-6xl overflow-hidden border border-white/12 border-t-white/22 bg-white/[0.03] backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] px-5 md:px-7 py-2 md:py-2.5 rounded-3xl lg:rounded-full transition-[background-color,border-color,box-shadow] duration-200`}
     >
       <div className="flex h-10 md:h-11 items-center justify-between relative">
-        {/* Logo image only */}
         <a href="/" className="flex items-center group shrink-0">
           <img
-            src="/logo.png"
+            src="/images/logo.png"
             alt="Technodigi Mandiri Solusi"
             width={44}
             height={44}
@@ -63,7 +62,6 @@ export function Navbar({ currentPath }: NavbarProps) {
           />
         </a>
 
-        {/* Desktop Navigation (>= 1024px) with Liquid Glass Active Pill */}
         <div className="hidden lg:flex items-center gap-2 absolute left-1/2 -translate-x-1/2">
           {navLinks.map((link) => {
             const isActive =
@@ -85,7 +83,6 @@ export function Navbar({ currentPath }: NavbarProps) {
           })}
         </div>
 
-        {/* Desktop CTA Button — Custom WhatsApp SVG Icon */}
         <div className="hidden lg:block shrink-0">
           <a
             href="https://wa.me/6285353615220"
@@ -98,7 +95,6 @@ export function Navbar({ currentPath }: NavbarProps) {
           </a>
         </div>
 
-        {/* Mobile & Tablet Toggle Button */}
         <button
           className="lg:hidden text-[#22b4a6] hover:text-[#22b4a6]/80 p-1.5 cursor-pointer transition-colors duration-200"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -112,7 +108,6 @@ export function Navbar({ currentPath }: NavbarProps) {
         </button>
       </div>
 
-      {/* Direct Smooth Height Expand for Mobile */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div

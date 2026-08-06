@@ -69,7 +69,6 @@ const services = [
 export function ServicesPage() {
   return (
     <div className="bg-[#030712]">
-      {/* Hero */}
       <section className="pt-36 md:pt-44 pb-24 relative overflow-hidden">
         <div className="absolute top-1/3 right-1/4 w-[450px] h-[450px] bg-[#22b4a6]/15 rounded-full blur-[140px] pointer-events-none" />
         <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8">
@@ -94,7 +93,6 @@ export function ServicesPage() {
         </div>
       </section>
 
-      {/* Services Detail */}
       <section className="py-16 relative overflow-hidden">
         <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8">
           <div className="space-y-16">
@@ -143,7 +141,6 @@ export function ServicesPage() {
         </div>
       </section>
 
-      {/* CTA */}
       <section className="py-28 relative overflow-hidden px-4">
         <div className="relative z-10 mx-auto max-w-5xl">
           <div className="rounded-3xl border border-white/15 border-t-white/30 bg-white/[0.035] backdrop-blur-3xl p-10 md:p-16 text-center shadow-[0_30px_80px_rgba(0,0,0,0.7)]">

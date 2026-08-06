@@ -27,7 +27,6 @@ const reasons = [
 export function WhyUs() {
   return (
     <section className="py-28 bg-[#030712] relative overflow-hidden">
-      {/* Ambient background blob */}
       <div className="absolute top-1/3 left-0 w-[450px] h-[450px] bg-[#06b6d4]/10 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8">

@@ -5,12 +5,10 @@ import { Sparkles, Cpu, Layers } from "lucide-react";
 export function AboutBrief() {
   return (
     <section className="py-24 bg-[#030712] relative overflow-hidden">
-      {/* Ambient glow light */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-[#22b4a6]/10 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8">
         <div className="rounded-3xl border border-white/12 border-t-white/25 bg-white/[0.035] backdrop-blur-3xl p-8 md:p-14 shadow-[0_30px_70px_rgba(0,0,0,0.6)] relative overflow-hidden">
-          {/* Specular Glare */}
           <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent" />
 
           <SectionLabel>About Us</SectionLabel>

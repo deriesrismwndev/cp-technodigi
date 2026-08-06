@@ -29,20 +29,15 @@ export function AboutAndWhyUs() {
   return (
     <section className="py-16 lg:py-20 bg-transparent relative">
       <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8">
-        {/* Single Unified Liquid Glass Card Container */}
         <div className="rounded-3xl border border-white/12 border-t-white/25 bg-white/[0.035] backdrop-blur-3xl p-8 md:p-14 lg:p-16 relative overflow-hidden group gpu-layer">
-          {/* Blended Background Image Overlay */}
           <div
             className="absolute inset-0 bg-cover bg-center mix-blend-overlay opacity-45 group-hover:opacity-60 transition-opacity duration-700 pointer-events-none"
-            style={{ backgroundImage: "url('/home_about_card.jpeg')" }}
+            style={{ backgroundImage: "url('/images/home_about_card.jpeg')" }}
           />
 
-          {/* Soft Vignette Overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#030712]/80 via-[#030712]/50 to-[#030712]/80 pointer-events-none" />
 
-          {/* Card Inner Content */}
           <div className="relative z-10">
-            {/* Headline Statement — Natural & Human */}
             <motion.h2
               initial={{ opacity: 0.01, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -56,7 +51,6 @@ export function AboutAndWhyUs() {
               </span>
             </motion.h2>
 
-            {/* Narrative Paragraphs — Direct & Authentic */}
             <motion.div
               initial={{ opacity: 0.01, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -80,7 +74,6 @@ export function AboutAndWhyUs() {
               </p>
             </motion.div>
 
-            {/* Bridging Element to 3 Pillars */}
             <div className="pt-10 border-t border-white/10">
               <motion.div
                 initial={{ opacity: 0.01, y: 16 }}
@@ -102,7 +95,6 @@ export function AboutAndWhyUs() {
                 </div>
               </motion.div>
 
-              {/* 3 Integrated Approach Cards */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {approachPillars.map((pillar, i) => (
                   <motion.div

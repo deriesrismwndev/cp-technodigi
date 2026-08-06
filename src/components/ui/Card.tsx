@@ -24,7 +24,6 @@ export function Card({
       )}
       {...props}
     >
-      {/* Specular glare line */}
       <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-60 group-hover:opacity-100 transition-opacity" />
       {children}
     </div>
