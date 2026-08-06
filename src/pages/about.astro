@@ -1,11 +1,25 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import { AboutPage as AboutComponent } from "@/components/pages/AboutPage";
+
+const breadcrumbs = [
+  { name: "Beranda", item: "/" },
+  { name: "Tentang Kami", item: "/about" }
+];
 ---
 
 <Layout
   title="Tentang Kami — Technodigi Mandiri Solusi"
-  description="Tentang Technodigi Mandiri Solusi — mitra teknologi informasi terpercaya di Indonesia."
+  description="Pelajari profil, visi, misi, dan metodologi kerja Technodigi Mandiri Solusi — mitra konsultasi & solusi teknologi terpercaya untuk akselerasi bisnis di Indonesia."
+  keywords={[
+    "Tentang Technodigi",
+    "Profil Perusahaan IT Indonesia",
+    "Tim Konsultan IT Jakarta",
+    "Visi Misi Technodigi",
+    "Mitra Teknologi Terpercaya"
+  ]}
+  breadcrumbs={breadcrumbs}
 >
   <AboutComponent client:visible />
 </Layout>
+

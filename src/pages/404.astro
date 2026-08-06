@@ -1,0 +1,36 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { Button } from "@/components/ui/Button";
+import { Home, ArrowLeft } from "lucide-react";
+---
+
+<Layout
+  title="404: Halaman Tidak Ditemukan — Technodigi Mandiri Solusi"
+  description="Halaman yang Anda cari tidak ditemukan atau telah dipindahkan."
+  noindex={true}
+>
+  <div className="min-h-[75vh] flex flex-col items-center justify-center text-center px-6 py-24 relative z-10">
+    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#22b4a6]/10 border border-[#22b4a6]/30 text-[#22b4a6] text-xs font-mono tracking-widest uppercase mb-6">
+      ERROR 404
+    </div>
+    
+    <h1 className="text-6xl sm:text-7xl font-extrabold text-white tracking-tight leading-none mb-4">
+      Halaman <span className="bg-gradient-to-r from-white via-[#a5f3fc] to-[#22b4a6] bg-clip-text text-transparent">Tidak Ditemukan</span>
+    </h1>
+    
+    <p className="text-base sm:text-lg text-[#a3a3a3] max-w-md mx-auto mb-10 leading-relaxed">
+      Tautan yang Anda tuju mungkin sudah kedaluwarsa, telah dipindahkan, atau alamat URL salah dimasukkan.
+    </p>
+
+    <div className="flex flex-col sm:flex-row items-center gap-4">
+      <Button href="/" size="lg" variant="primary">
+        <Home className="w-4 h-4 text-[#22b4a6]" />
+        Kembali ke Beranda
+      </Button>
+      <Button href="/services" size="lg" variant="secondary">
+        <ArrowLeft className="w-4 h-4 text-[#22b4a6]" />
+        Lihat Layanan Kami
+      </Button>
+    </div>
+  </div>
+</Layout>

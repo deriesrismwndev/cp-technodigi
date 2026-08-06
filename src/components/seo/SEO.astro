@@ -1,0 +1,107 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+  keywords?: string[];
+  ogImage?: string;
+  ogType?: 'website' | 'article' | 'profile';
+  canonicalURL?: string;
+  noindex?: boolean;
+  googleSiteVerification?: string;
+  bingSiteVerification?: string;
+}
+
+const DEFAULT_TITLE = "Technodigi Mandiri Solusi — IT Solutions Partner";
+const DEFAULT_DESCRIPTION = "Mitra teknologi end-to-end Anda — dari custom software development, infrastruktur jaringan, hingga solusi cloud yang siap skala. IT consulting, cybersecurity, dan IT support.";
+const DEFAULT_KEYWORDS = [
+  "IT Solutions Partner",
+  "Software Development Indonesia",
+  "IT Consulting Jakarta",
+  "Jasa Pembuatan Aplikasi",
+  "Cybersecurity Indonesia",
+  "Cloud Infrastructure",
+  "Network Engineering",
+  "Managed IT Services",
+  "Technodigi Mandiri Solusi"
+];
+
+const {
+  title = DEFAULT_TITLE,
+  description = DEFAULT_DESCRIPTION,
+  keywords = DEFAULT_KEYWORDS,
+  ogImage = "/images/og-image.jpg",
+  ogType = "website",
+  canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://technodigi.co.id").href,
+  noindex = false,
+  googleSiteVerification,
+  bingSiteVerification,
+} = Astro.props;
+
+const formattedTitle = title.includes("Technodigi") ? title : `${title} | Technodigi Mandiri Solusi`;
+const fullOgImageUrl = new URL(ogImage, Astro.site || "https://technodigi.co.id").href;
+const keywordsString = keywords.join(", ");
+const robotsContent = noindex 
+  ? "noindex, nofollow" 
+  : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
+---
+
+<!-- Global Metadata -->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#030712" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
+<meta name="generator" content={Astro.generator} />
+
+<!-- Verification Tags (if provided) -->
+{googleSiteVerification && <meta name="google-site-verification" content={googleSiteVerification} />}
+{bingSiteVerification && <meta name="msvalidate.01" content={bingSiteVerification} />}
+
+<!-- Primary Meta Tags -->
+<title>{formattedTitle}</title>
+<meta name="title" content={formattedTitle} />
+<meta name="description" content={description} />
+<meta name="keywords" content={keywordsString} />
+<meta name="author" content="Technodigi Mandiri Solusi" />
+<meta name="robots" content={robotsContent} />
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Geo & Region Meta Tags -->
+<meta name="geo.region" content="ID" />
+<meta name="geo.placename" content="Jakarta, Indonesia" />
+<meta name="language" content="Indonesian" />
+
+<!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+<meta property="og:type" content={ogType} />
+<meta property="og:site_name" content="Technodigi Mandiri Solusi" />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={formattedTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={fullOgImageUrl} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={formattedTitle} />
+<meta property="og:locale" content="id_ID" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={canonicalURL} />
+<meta name="twitter:title" content={formattedTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={fullOgImageUrl} />
+
+<!-- Icons & Manifest -->
+<link rel="icon" type="image/x-icon" href="/favicons/favicon.ico" />
+<link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+
+<!-- Fonts Preconnect -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+  rel="stylesheet"
+/>
+

@@ -1,11 +1,50 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import { ServicesPage as ServicesComponent } from "@/components/pages/ServicesPage";
+
+const breadcrumbs = [
+  { name: "Beranda", item: "/" },
+  { name: "Layanan", item: "/services" }
+];
+
+const detailedServices = [
+  {
+    name: "Pengembangan Software & Aplikasi Kustom",
+    description: "Pengembangan web app, mobile app (iOS & Android), dan sistem informasi kustom skala enterprise."
+  },
+  {
+    name: "Infrastruktur Jaringan & Hardware Enterprise",
+    description: "Desain arsitektur jaringan, instalasi LAN/WAN/WiFi enterprise, server data center, dan pengadaan hardware resmi."
+  },
+  {
+    name: "Solusi Cloud & Automasi DevOps",
+    description: "Migrasi ke AWS/GCP/Azure, manajemen server cloud, kontainerisasi Docker/Kubernetes, dan automasi CI/CD."
+  },
+  {
+    name: "Cybersecurity & Vulnerability Assessment",
+    description: "Pengujian penetrasi celah keamanan (pen testing), audit infrastruktur, pencegahan serangan siber, dan penanganan insiden."
+  },
+  {
+    name: "IT Consulting & Managed Services 24/7",
+    description: "Konsultasi strategi digital, audit sistem IT eksisting, dan dukungan teknis pemeliharaan rutin 24/7."
+  }
+];
 ---
 
 <Layout
-  title="Layanan — Technodigi Mandiri Solusi"
-  description="Layanan IT end-to-end Technodigi Mandiri Solusi: IT consulting, custom software, network, cybersecurity, cloud, dan IT support."
+  title="Layanan IT Enterprise & Software Development — Technodigi Mandiri Solusi"
+  description="Layanan IT end-to-end Technodigi Mandiri Solusi: custom software development, infrastruktur jaringan enterprise, cloud DevOps, cybersecurity, dan IT support 24/7."
+  keywords={[
+    "Layanan IT Enterprise",
+    "Jasa Software Development",
+    "Infrastruktur Jaringan Komputer",
+    "Jasa Cloud DevOps Indonesia",
+    "Audit Cybersecurity Jakarta",
+    "Managed IT Support 24/7"
+  ]}
+  breadcrumbs={breadcrumbs}
+  services={detailedServices}
 >
   <ServicesComponent client:visible />
 </Layout>
+

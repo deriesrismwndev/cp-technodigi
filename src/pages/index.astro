@@ -5,12 +5,75 @@ import { AboutAndWhyUs } from "@/components/sections/AboutAndWhyUs";
 import { ServicesOverview } from "@/components/sections/ServicesOverview";
 import { FAQ } from "@/components/sections/FAQ";
 import { CTA } from "@/components/sections/CTA";
+
+const homepageFaqs = [
+  {
+    question: "Layanan IT apa saja yang dikerjakan oleh Technodigi Mandiri Solusi?",
+    answer: "Kami mengeksekusi 4 pilar layanan utama: pengembangan aplikasi kustom (web & mobile), otomatisasi alur kerja bisnis & integrasi AI, pengolahan data analytics & dasbor eksekutif real-time, serta perancangan infrastruktur jaringan enterprise, pengadaan hardware resmi, dan dukungan teknis 24/7."
+  },
+  {
+    question: "Bagaimana tahap awal dimulainya sebuah proyek teknologi?",
+    answer: "Proyek diawali dengan tahap analisis kebutuhan gratis tanpa komitmen. Setelah membedah alur operasional bisnis Anda, kami menyusun rancangan teknis, arsitektur sistem, serta estimasi waktu dan biaya yang transparan sebelum masuk ke tahap eksekusi."
+  },
+  {
+    question: "Apakah Technodigi menangani perencanaan sekaligus eksekusi teknisnya?",
+    answer: "Ya, ini adalah nilai tambah utama kami. Kami tidak hanya memberikan saran konsultasi di atas kertas, tetapi mengeksekusi langsung pengkodean backend, antarmuka pengguna, pengujian keamanan, deployment, hingga pemeliharaan rutin pasca-peluncuran."
+  },
+  {
+    question: "Berapa lama estimasi waktu penyelesaian satu proyek?",
+    answer: "Durasi pengerjaan disesuaikan dengan skala dan kompleksitas proyek — mulai dari 2–4 minggu untuk otomatisasi workflow/dasbor analitis sederhana, hingga 2–4 bulan untuk sistem manajemen enterprise dan aplikasi custom skala besar."
+  },
+  {
+    question: "Bagaimana bentuk dukungan dan perawatan setelah sistem diluncurkan?",
+    answer: "Peluncuran sistem adalah awal dari kemitraan. Kami menyediakan garansi pemeliharaan rutin, monitoring kesehatan sistem 24/7, pembaruan keamanan berkala, serta tim teknis responsif untuk memastikan operasional bisnis Anda berjalan tanpa hambatan."
+  }
+];
+
+const homepageServices = [
+  {
+    name: "Custom Software Development",
+    description: "Pengembangan aplikasi web & mobile enterprise kustom skala tinggi dengan arsitektur modern."
+  },
+  {
+    name: "IT Infrastructure & Networking",
+    description: "Perancangan, instalasi, dan optimasi jaringan enterprise, data center, serta keamanan infrastruktur."
+  },
+  {
+    name: "Cloud Transformation & DevOps",
+    description: "Migrasi cloud, infrastruktur terkelola, otomatisasi CI/CD, dan efisiensi biaya komputasi."
+  },
+  {
+    name: "Managed IT Services & CyberSecurity",
+    description: "Monitoring sistem 24/7, pengujian celah keamanan, pencegahan serangan siber, dan IT support proaktif."
+  }
+];
+
+const breadcrumbs = [
+  { name: "Beranda", item: "/" }
+];
 ---
 
-<Layout title="Technodigi Mandiri Solusi — IT Solutions Partner">
+<Layout
+  title="Technodigi Mandiri Solusi — Enterprise IT Solutions & Software Development Partner"
+  description="Mitra teknologi informasi terpercaya di Indonesia. Menyediakan layanan custom software development, infrastruktur jaringan enterprise, cloud DevOps, cybersecurity, dan IT consulting."
+  keywords={[
+    "IT Solutions Partner",
+    "Software Development Indonesia",
+    "IT Consulting Jakarta",
+    "Jasa Pembuatan Aplikasi Enterprise",
+    "Infrastruktur Jaringan Enterprise",
+    "Cloud Managed Services",
+    "Cybersecurity Indonesia",
+    "Technodigi Mandiri Solusi"
+  ]}
+  breadcrumbs={breadcrumbs}
+  faqs={homepageFaqs}
+  services={homepageServices}
+>
   <Hero client:load />
   <AboutAndWhyUs client:visible />
   <ServicesOverview client:visible />
   <FAQ client:visible />
   <CTA client:visible />
 </Layout>
+

@@ -1,0 +1,150 @@
+---
+export interface BreadcrumbItem {
+  name: string;
+  item: string;
+}
+
+export interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+export interface ServiceItem {
+  name: string;
+  description: string;
+}
+
+export interface Props {
+  breadcrumbs?: BreadcrumbItem[];
+  faqs?: FAQItem[];
+  services?: ServiceItem[];
+  customSchema?: Record<string, any> | Array<Record<string, any>>;
+}
+
+const { breadcrumbs, faqs, services, customSchema } = Astro.props;
+
+const siteUrl = Astro.site?.origin || "https://technodigi.co.id";
+
+// Organization / LocalBusiness Schema
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": ["Organization", "LocalBusiness"],
+  "@id": `${siteUrl}/#organization`,
+  "name": "PT Technodigi Mandiri Solusi",
+  "alternateName": "Technodigi Mandiri Solusi",
+  "url": siteUrl,
+  "logo": `${siteUrl}/images/logo.png`,
+  "image": `${siteUrl}/images/og-image.jpg`,
+  "description": "Mitra teknologi end-to-end Anda — dari custom software, infrastruktur jaringan, hingga solusi cloud yang siap skala.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Jakarta",
+    "addressCountry": "ID"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "email": "info@technodigi.co.id",
+    "availableLanguage": ["Indonesian", "English"]
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "reviewCount": "28",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "sameAs": [
+    "https://linkedin.com/company/technodigi",
+    "https://github.com/technodigi"
+  ],
+  "knowsAbout": [
+    "Software Development",
+    "IT Consulting",
+    "Cybersecurity",
+    "Cloud Infrastructure",
+    "Network Engineering",
+    "Managed IT Services"
+  ]
+};
+
+
+// WebSite Schema
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${siteUrl}/#website`,
+  "url": siteUrl,
+  "name": "Technodigi Mandiri Solusi",
+  "publisher": {
+    "@id": `${siteUrl}/#organization`
+  },
+  "inLanguage": "id-ID"
+};
+
+// Breadcrumbs Schema
+let breadcrumbSchema = null;
+if (breadcrumbs && breadcrumbs.length > 0) {
+  breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": breadcrumbs.map((crumb, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": crumb.name,
+      "item": crumb.item.startsWith("http") ? crumb.item : `${siteUrl}${crumb.item}`
+    }))
+  };
+}
+
+// FAQ Page Schema
+let faqSchema = null;
+if (faqs && faqs.length > 0) {
+  faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  };
+}
+
+// Services Schema
+let serviceSchema = null;
+if (services && services.length > 0) {
+  serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "OfferCatalog",
+    "name": "Layanan IT Technodigi Mandiri Solusi",
+    "itemListElement": services.map((service, index) => ({
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": service.name,
+        "description": service.description,
+        "provider": {
+          "@id": `${siteUrl}/#organization`
+        }
+      }
+    }))
+  };
+}
+
+const schemas = [
+  organizationSchema,
+  websiteSchema,
+  breadcrumbSchema,
+  faqSchema,
+  serviceSchema,
+  ...(Array.isArray(customSchema) ? customSchema : customSchema ? [customSchema] : [])
+].filter(Boolean);
+---
+
+{schemas.map(schema => (
+  <script type="application/ld+json" set:html={JSON.stringify(schema, null, 2)} />
+))}

@@ -1,11 +1,40 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import { ContactPage as ContactComponent } from "@/components/pages/ContactPage";
+
+const breadcrumbs = [
+  { name: "Beranda", item: "/" },
+  { name: "Hubungi Kami", item: "/contact" }
+];
+
+const contactSchema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Hubungi Technodigi Mandiri Solusi",
+  "description": "Halaman kontak resmi Technodigi Mandiri Solusi untuk konsultasi gratis proyek IT dan sistem informasi.",
+  "url": "https://technodigi.co.id/contact",
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "PT Technodigi Mandiri Solusi",
+    "email": "info@technodigi.co.id"
+  }
+};
+
 ---
 
 <Layout
-  title="Kontak — Technodigi Mandiri Solusi"
-  description="Hubungi Technodigi Mandiri Solusi untuk konsultasi gratis tentang proyek IT dan kebutuhan transformasi digital Anda."
+  title="Hubungi Kami & Konsultasi IT Gratis — Technodigi Mandiri Solusi"
+  description="Diskusi gratis tentang kebutuhan teknologi perusahaan Anda. Hubungi tim ahli Technodigi Mandiri Solusi via email, WhatsApp, atau formulir kontak resmi."
+  keywords={[
+    "Kontak Technodigi",
+    "Konsultasi IT Gratis",
+    "Hubungi Perusahaan Software Jakarta",
+    "Formulir Konsultasi IT",
+    "Solusi Teknologi Bisnis"
+  ]}
+  breadcrumbs={breadcrumbs}
+  customSchema={contactSchema}
 >
   <ContactComponent client:visible />
 </Layout>
+

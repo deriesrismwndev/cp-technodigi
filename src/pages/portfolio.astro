@@ -1,11 +1,25 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import { PortfolioPage as PortfolioComponent } from "@/components/pages/PortfolioPage";
+
+const breadcrumbs = [
+  { name: "Beranda", item: "/" },
+  { name: "Portofolio Proyek", item: "/portfolio" }
+];
 ---
 
 <Layout
-  title="Portfolio — Technodigi Mandiri Solusi"
-  description="Portofolio proyek IT Technodigi Mandiri Solusi: software development, infrastruktur jaringan, migrasi cloud, dan transformasi digital."
+  title="Portofolio Proyek IT & Studi Kasus — Technodigi Mandiri Solusi"
+  description="Lihat rekam jejak portofolio proyek IT Technodigi Mandiri Solusi: pengembangan software enterprise, migrasi cloud, modernisasi jaringan, dan solusi otomatisasi digital."
+  keywords={[
+    "Portofolio IT Technodigi",
+    "Studi Kasus Software Enterprise",
+    "Proyek Jaringan Komputer",
+    "Hasil Kerja Technodigi",
+    "Transformasi Digital Indonesia"
+  ]}
+  breadcrumbs={breadcrumbs}
 >
   <PortfolioComponent client:visible />
 </Layout>
+

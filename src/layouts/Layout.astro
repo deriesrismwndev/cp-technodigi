@@ -1,16 +1,36 @@
 ---
 import { Navbar } from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer.astro";
+import SEO from "@/components/seo/SEO.astro";
+import JsonLd, { type BreadcrumbItem, type FAQItem, type ServiceItem } from "@/components/seo/JsonLd.astro";
 import "@/styles/globals.css";
 
 interface Props {
   title?: string;
   description?: string;
+  keywords?: string[];
+  ogImage?: string;
+  ogType?: 'website' | 'article' | 'profile';
+  canonicalURL?: string;
+  noindex?: boolean;
+  breadcrumbs?: BreadcrumbItem[];
+  faqs?: FAQItem[];
+  services?: ServiceItem[];
+  customSchema?: Record<string, any> | Array<Record<string, any>>;
 }
 
 const {
-  title = "Technodigi Mandiri Solusi — IT Solutions Partner",
-  description = "Mitra teknologi end-to-end Anda — dari custom software, infrastruktur jaringan, hingga solusi cloud yang siap skala. IT consulting, software development, cybersecurity, dan IT support.",
+  title,
+  description,
+  keywords,
+  ogImage,
+  ogType,
+  canonicalURL,
+  noindex,
+  breadcrumbs,
+  faqs,
+  services,
+  customSchema,
 } = Astro.props;
 
 const currentPath = Astro.url.pathname;
@@ -19,18 +39,20 @@ const currentPath = Astro.url.pathname;
 <!doctype html>
 <html lang="id" class="bg-[#030712]">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16.png" />
-    <link rel="apple-touch-icon" href="/favicons/apple-touch-icon.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap"
-      rel="stylesheet"
+    <SEO
+      title={title}
+      description={description}
+      keywords={keywords}
+      ogImage={ogImage}
+      ogType={ogType}
+      canonicalURL={canonicalURL}
+      noindex={noindex}
+    />
+    <JsonLd
+      breadcrumbs={breadcrumbs}
+      faqs={faqs}
+      services={services}
+      customSchema={customSchema}
     />
   </head>
   <body class="flex min-h-screen flex-col bg-[#030712] text-white antialiased selection:bg-[#22b4a6]/30 selection:text-white overflow-x-hidden relative font-sans">
@@ -44,3 +66,4 @@ const currentPath = Astro.url.pathname;
     <Footer />
   </body>
 </html>
+
