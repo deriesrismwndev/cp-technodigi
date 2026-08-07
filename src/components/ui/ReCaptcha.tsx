@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useId } from "react";
 import { ShieldCheck } from "lucide-react";
 
 interface ReCaptchaProps {
@@ -27,67 +27,78 @@ declare global {
 }
 
 export function ReCaptcha({ siteKey, onChange }: ReCaptchaProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const widgetIdRef = useRef<number | null>(null);
+  const rawId = useId();
+  const containerId = `recaptcha-${rawId.replace(/[^a-zA-Z0-9]/g, "")}`;
+  const onChangeRef = useRef(onChange);
+  const renderedRef = useRef(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
 
+  onChangeRef.current = onChange;
+
   useEffect(() => {
+    let isMounted = true;
+
+    const renderWidget = () => {
+      if (!window.grecaptcha || renderedRef.current) return;
+
+      const container = document.getElementById(containerId);
+      if (!container) return;
+
+      // Jangan render ulang jika widget sudah ada di dalam container
+      if (container.children.length > 0) return;
+
+      try {
+        window.grecaptcha.render(container, {
+          sitekey: siteKey,
+          theme: "dark",
+          callback: (token) => {
+            setIsVerified(true);
+            onChangeRef.current(token);
+          },
+          "expired-callback": () => {
+            setIsVerified(false);
+            onChangeRef.current(null);
+          },
+          "error-callback": () => {
+            setIsVerified(false);
+            onChangeRef.current(null);
+          },
+        });
+        renderedRef.current = true;
+        if (isMounted) setIsLoaded(true);
+      } catch (e) {
+        // Jika sudah pernah dirender, abaikan
+        console.error("reCAPTCHA render error:", e);
+      }
+    };
+
     const loadScript = () => {
       if (document.querySelector('script[src*="recaptcha/api.js"]')) {
-        if (window.grecaptcha) {
-          renderWidget();
-        } else {
-          window.onRecaptchaLoad = renderWidget;
-        }
+        renderWidget();
         return;
       }
 
       window.onRecaptchaLoad = renderWidget;
 
       const script = document.createElement("script");
-      script.src = "https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit";
+      script.src =
+        "https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit";
       script.async = true;
       script.defer = true;
       document.head.appendChild(script);
     };
 
-    const renderWidget = () => {
-      if (!window.grecaptcha || !containerRef.current) return;
-
-      widgetIdRef.current = window.grecaptcha.render(containerRef.current, {
-        sitekey: siteKey,
-        theme: "dark",
-        callback: (token) => {
-          setIsVerified(true);
-          onChange(token);
-        },
-        "expired-callback": () => {
-          setIsVerified(false);
-          onChange(null);
-        },
-        "error-callback": () => {
-          setIsVerified(false);
-          onChange(null);
-        },
-      });
-
-      setIsLoaded(true);
-    };
-
     loadScript();
 
     return () => {
-      window.onRecaptchaLoad = undefined;
+      isMounted = false;
     };
-  }, [siteKey, onChange]);
+  }, [siteKey, containerId]);
 
   return (
     <div className="flex flex-col items-start gap-2">
-      <div
-        ref={containerRef}
-        className="[&>div]:!w-auto [&>div>div]:!w-auto [&>div>div>iframe]:!w-[304px] [&>div>div>iframe]:!h-[78px]"
-      />
+      <div id={containerId} />
       {!isLoaded && (
         <p className="text-xs text-white/40 flex items-center gap-2">
           <ShieldCheck className="w-4 h-4 text-[#22b4a6]" />
