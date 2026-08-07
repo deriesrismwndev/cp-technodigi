@@ -27,7 +27,7 @@ const approachPillars = [
 
 export function AboutAndWhyUs() {
   return (
-    <section className="py-16 lg:py-20 bg-transparent relative">
+    <section className="py-20 bg-transparent relative">
       <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8">
         <div className="rounded-3xl border border-white/12 border-t-white/25 bg-white/[0.035] backdrop-blur-3xl p-8 md:p-14 lg:p-16 relative overflow-hidden group gpu-layer">
           <div

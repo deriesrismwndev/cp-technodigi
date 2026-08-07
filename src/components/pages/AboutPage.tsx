@@ -91,7 +91,7 @@ const expertise = [
 export function AboutPage() {
   return (
     <div className="bg-[#030712]">
-      <section className="pt-36 md:pt-44 pb-28 relative overflow-hidden">
+      <section className="pt-36 md:pt-44 pb-20 relative overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-[450px] h-[450px] bg-[#22b4a6]/15 rounded-full blur-[140px] pointer-events-none" />
         <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8">
           <SectionLabel>About Technodigi</SectionLabel>
@@ -135,7 +135,7 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section className="py-16 relative overflow-hidden">
+      <section className="py-20 relative overflow-hidden">
         <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {stats.map((stat, i) => (
@@ -159,7 +159,7 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section className="py-28 relative overflow-hidden">
+      <section className="py-20 relative overflow-hidden">
         <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8">
           <SectionLabel>Our Journey</SectionLabel>
           <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-16 tracking-tight">
@@ -196,7 +196,7 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section className="py-28 relative overflow-hidden">
+      <section className="py-20 relative overflow-hidden">
         <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8">
           <SectionLabel>Values</SectionLabel>
           <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-16 tracking-tight">
@@ -233,7 +233,7 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section className="py-28 relative overflow-hidden">
+      <section className="py-20 relative overflow-hidden">
         <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8 text-center">
           <SectionLabel className="justify-center">Expertise</SectionLabel>
           <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">
@@ -261,7 +261,7 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section className="py-28 relative overflow-hidden px-4">
+      <section className="py-20 relative overflow-hidden px-4">
         <div className="relative z-10 mx-auto max-w-5xl">
           <div className="rounded-3xl border border-white/15 border-t-white/30 bg-white/[0.035] backdrop-blur-3xl p-10 md:p-16 text-center shadow-[0_30px_80px_rgba(0,0,0,0.7)]">
             <SectionLabel className="justify-center">Let&apos;s Talk</SectionLabel>

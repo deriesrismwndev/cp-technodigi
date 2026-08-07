@@ -40,7 +40,7 @@ export function Testimonials() {
     );
 
   return (
-    <section className="py-28 bg-[#030712] relative overflow-hidden">
+    <section className="py-20 bg-[#030712] relative overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-[#22b4a6]/10 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8">

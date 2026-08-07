@@ -9,7 +9,7 @@ const clientLogos = [
 
 export function ClientTicker() {
   return (
-    <section className="relative py-16 bg-transparent">
+    <section className="relative py-20 bg-transparent">
       <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8 text-center">
         <p className="font-mono text-[10px] tracking-[0.4em] text-[#22b4a6] uppercase mb-10 font-semibold">
           DIPERCAYA OLEH PERUSAHAAN & INSTANSI

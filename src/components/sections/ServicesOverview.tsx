@@ -77,7 +77,7 @@ export function ServicesOverview() {
   const [activeHover, setActiveHover] = useState<number>(0);
 
   return (
-    <section className="py-16 sm:py-20 bg-transparent relative">
+    <section className="py-20 bg-transparent relative">
       <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8 space-y-12 sm:space-y-16">
         <motion.div
           initial={{ opacity: 0.01, y: 24 }}
