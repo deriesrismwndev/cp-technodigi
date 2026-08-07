@@ -2,6 +2,8 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Button } from "@/components/ui/Button";
+import { SearchableSelect } from "@/components/ui/SearchableSelect";
+import { ReCaptcha } from "@/components/ui/ReCaptcha";
 import {
   Send,
   Mail,
@@ -9,10 +11,27 @@ import {
   Clock,
   Sparkles,
   MessageSquare,
+  ShieldAlert,
 } from "lucide-react";
+
+const RECAPTCHA_SITE_KEY = "6LfZoHktAAAAAPpEs2K8SWgXEBU0goLMoBDgQPGT";
+
+const topicOptions = [
+  "Pengembangan Web / Aplikasi",
+  "Aplikasi Mobile (iOS & Android)",
+  "Otomatisasi Workflow / AI",
+  "Data Analytics & Dashboard",
+  "Infrastruktur Jaringan / Hardware",
+  "Cloud & DevOps",
+  "Cybersecurity / Keamanan",
+  "IT Support & Maintenance",
+  "Konsultasi IT / Lainnya",
+];
 
 export function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [captchaError, setCaptchaError] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -23,6 +42,20 @@ export function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!captchaToken) {
+      setCaptchaError(true);
+      return;
+    }
+
+    const subject = encodeURIComponent(
+      `[Konsultasi] ${formData.subject || "Permintaan Konsultasi"} - ${formData.name}`,
+    );
+    const body = encodeURIComponent(
+      `Nama: ${formData.name}\nEmail: ${formData.email}\nWhatsApp: ${formData.phone}\n\nDetail Pesan:\n${formData.message}`,
+    );
+
+    window.location.href = `mailto:support@technodigi.co.id?subject=${subject}&body=${body}`;
     setSubmitted(true);
   };
 
@@ -128,13 +161,12 @@ export function ContactPage() {
                       <label className="block text-xs font-mono text-white/80 mb-2 font-medium">
                         TOPIK / KEBUTUHAN *
                       </label>
-                      <input
-                        type="text"
-                        required
-                        placeholder="Pengembangan Web, AI, IT Support..."
+                      <SearchableSelect
                         value={formData.subject}
-                        onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                        className="w-full bg-white/[0.04] border border-white/10 rounded-2xl px-5 py-3.5 text-sm text-white placeholder-white/30 focus:border-white/25 focus:bg-white/[0.08] focus:outline-none transition-all duration-300"
+                        onChange={(value) => setFormData({ ...formData, subject: value })}
+                        options={topicOptions}
+                        placeholder="Pilih topik kebutuhan..."
+                        required
                       />
                     </div>
                   </div>
@@ -151,6 +183,22 @@ export function ContactPage() {
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       className="w-full bg-white/[0.04] border border-white/10 rounded-2xl px-5 py-3.5 text-sm text-white placeholder-white/30 focus:border-white/25 focus:bg-white/[0.08] focus:outline-none transition-all duration-300 resize-none"
                     />
+                  </div>
+
+                  <div>
+                    <ReCaptcha
+                      siteKey={RECAPTCHA_SITE_KEY}
+                      onChange={(token) => {
+                        setCaptchaToken(token);
+                        if (token) setCaptchaError(false);
+                      }}
+                    />
+                    {captchaError && (
+                      <p className="mt-2 text-xs text-red-400 flex items-center gap-2">
+                        <ShieldAlert className="w-4 h-4 shrink-0" />
+                        Harap selesaikan verifikasi keamanan terlebih dahulu.
+                      </p>
+                    )}
                   </div>
 
                   <Button type="submit" size="lg" variant="primary" className="w-full">
