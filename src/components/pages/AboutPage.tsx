@@ -21,28 +21,22 @@ import {
 
 const milestones = [
   {
-    year: "2019",
-    title: "Awal Mula",
+    year: "2023",
+    title: "Inisiasi & Proyek Independen",
     description:
-      "Didirikan oleh tim engineer yang memiliki visi untuk membawa solusi IT berkualitas enterprise ke bisnis Indonesia.",
+      "Para founder & engineer berpengalaman mulai menangani konsultasi IT dan pengembangan aplikasi kustom secara independen.",
   },
   {
-    year: "2020",
-    title: "Ekspansi Tim",
+    year: "2025",
+    title: "Pendirian CV Technodigi Mandiri Solusi",
     description:
-      "Memperluas tim teknis dan mulai menangani proyek berskala korporasi di sektor keuangan dan pemerintahan.",
+      "Resmi berdiri sebagai badan hukum CV, mengonsolidasikan tim pakar teknis, dan meluncurkan 4 pilar layanan IT utama.",
   },
   {
-    year: "2022",
-    title: "Cloud & Cybersecurity",
+    year: "2026",
+    title: "Ekspansi Solusi Enterprise",
     description:
-      "Meluncurkan layanan cloud solutions dan cybersecurity untuk menjawab kebutuhan transformasi digital yang meningkat.",
-  },
-  {
-    year: "2024",
-    title: "50+ Proyek",
-    description:
-      "Mencapai milestone 50+ proyek dengan klien aktif di berbagai sektor industri, siap untuk tahap berikutnya.",
+      "Memperluas kemitraan strategi IT, solusi cloud infrastructure terkelola, dan otomatisasi bisnis lintas sektor.",
   },
 ];
 
@@ -79,10 +73,11 @@ const values = [
 
 const stats = [
   { value: "50+", label: "Proyek Selesai" },
-  { value: "30+", label: "Klien Aktif" },
-  { value: "5+", label: "Tahun Pengalaman" },
+  { value: "30+", label: "Klien & Mitra" },
+  { value: "5+", label: "Thn Pengalaman Tim" },
   { value: "99.9%", label: "Uptime SLA" },
 ];
+
 
 const expertise = [
   { icon: Code2, label: "Software Engineering" },
