@@ -146,3 +146,21 @@ video::-webkit-media-controls {
 .animate-shimmer {
     animation: shimmer-sweep 3s ease-in-out infinite;
 }
+
+@keyframes client-marquee {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(-50%, 0, 0);
+    }
+}
+
+.animate-client-marquee {
+    animation: client-marquee 30s linear infinite;
+    will-change: transform;
+}
+
+.animate-client-marquee:hover {
+    animation-play-state: paused;
+}
